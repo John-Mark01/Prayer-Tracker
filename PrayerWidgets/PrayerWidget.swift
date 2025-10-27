@@ -79,6 +79,7 @@ struct PrayerWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: PrayerWidgetProvider()) { entry in
             PrayerWidgetView(entry: entry)
+                .containerRelativeFrame(.horizontal)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Prayer Tracker")

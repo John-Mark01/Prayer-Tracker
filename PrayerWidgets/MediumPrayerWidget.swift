@@ -7,9 +7,11 @@
 
 import SwiftUI
 import WidgetKit
+import AppIntents
 
 struct MediumPrayerWidget: View {
     let entry: PrayerWidgetEntry
+    @State private var buttonPressed = false
 
     private var calendar: Calendar {
         Calendar.current
@@ -19,12 +21,47 @@ struct MediumPrayerWidget: View {
         PrayerStatistics(entries: entry.entries)
     }
 
-    // Get last 35 days (5 weeks) for monthly view
-    private var calendarDays: [Date] {
+    // Get current month name
+    private var currentMonthName: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM"
+        return formatter.string(from: Date())
+    }
+
+    // Get all days in current month
+    private var currentMonthDays: [Date] {
         let today = Date()
-        return (0..<35).compactMap { daysAgo in
-            calendar.date(byAdding: .day, value: -daysAgo, to: today)
-        }.reversed()
+        let components = calendar.dateComponents([.year, .month], from: today)
+        guard let firstDayOfMonth = calendar.date(from: components),
+              let range = calendar.range(of: .day, in: .month, for: firstDayOfMonth) else {
+            return []
+        }
+
+        // Get all days in the month
+        return range.compactMap { day in
+            calendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth)
+        }
+    }
+
+    // Group days into weeks (rows of 7)
+    private var weekRows: [[Date]] {
+        var weeks: [[Date]] = []
+        var currentWeek: [Date] = []
+
+        for date in currentMonthDays {
+            currentWeek.append(date)
+            if currentWeek.count == 7 {
+                weeks.append(currentWeek)
+                currentWeek = []
+            }
+        }
+
+        // Add remaining days as last week
+        if !currentWeek.isEmpty {
+            weeks.append(currentWeek)
+        }
+
+        return weeks
     }
 
     var body: some View {
@@ -32,62 +69,75 @@ struct MediumPrayerWidget: View {
             // Background
             Color(white: 0.95)
 
-            HStack(spacing: 12) {
-                // Left side: Title and streak
-                VStack(alignment: .leading, spacing: 8) {
+            VStack(spacing: 12) {
+                // Top section
+                HStack(spacing: 12) {
+                    // Check button
+                    Button(intent: CheckInIntent()) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.blue)
+                                .frame(width: 44, height: 44)
+                                .scaleEffect(buttonPressed ? 0.9 : 1.0)
+
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundStyle(.white)
+                                .symbolEffect(.bounce, value: buttonPressed)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: buttonPressed)
+
+                    // Title and month
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Prayer")
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                             .foregroundStyle(.primary)
 
-                        HStack(spacing: 4) {
-                            Text("\(entry.currentStreak)")
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.blue)
-
-                            Image(systemName: "flame.fill")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.blue)
-                        }
+                        Text(currentMonthName)
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
                     }
 
                     Spacer()
 
-                    // Check button
-                    ZStack {
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 48, height: 48)
+                    // Streak counter
+                    VStack(alignment: .center, spacing: 2) {
+                        HStack(spacing: 4) {
+                            Text("\(entry.currentStreak)")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                                .contentTransition(.numericText())
+                            
+                            Text("🔥")
+                                .font(.system(size: 16))
+                        }
 
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.white)
+                        Text("days")
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
                     }
                 }
-                .padding(.leading, 16)
-                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
 
-                // Right side: Calendar grid
-                VStack(spacing: 4) {
-                    // 5 rows x 7 columns
-                    ForEach(0..<5, id: \.self) { row in
-                        HStack(spacing: 4) {
-                            ForEach(0..<7, id: \.self) { col in
-                                let index = row * 7 + col
-                                if index < calendarDays.count {
-                                    let day = calendarDays[index]
-                                    CalendarPixel(
-                                        hasEntry: stats.hasEntry(for: day),
-                                        count: stats.entryCount(for: day),
-                                        isToday: calendar.isDateInToday(day)
-                                    )
-                                }
+                // Calendar section
+                VStack(alignment: .leading, spacing: 2) {
+                    ForEach(Array(weekRows.enumerated()), id: \.offset) { weekIndex, week in
+                        HStack(spacing: 6) {
+                            ForEach(week, id: \.self) { date in
+                                CalendarPixel(
+                                    hasEntry: stats.hasEntry(for: date),
+                                    count: stats.entryCount(for: date),
+                                    isToday: calendar.isDateInToday(date)
+                                )
+                                .transition(.scale.combined(with: .opacity))
                             }
                         }
                     }
                 }
-                .padding(.trailing, 16)
-                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
             }
         }
     }
@@ -109,13 +159,15 @@ struct CalendarPixel: View {
     }
 
     var body: some View {
-        RoundedRectangle(cornerRadius: 3)
+        RoundedRectangle(cornerRadius: 4)
             .fill(fillColor)
-            .frame(width: 12, height: 12)
+            .frame(width: 15, height: 15)
             .overlay(
-                RoundedRectangle(cornerRadius: 3)
+                RoundedRectangle(cornerRadius: 4)
                     .strokeBorder(isToday ? Color.blue : Color.clear, lineWidth: 1.5)
             )
+            .scaleEffect(isToday ? 1.1 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isToday)
     }
 }
 

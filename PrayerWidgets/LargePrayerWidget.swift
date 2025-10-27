@@ -82,7 +82,7 @@ struct LargePrayerWidget: View {
                                 .foregroundStyle(.orange)
                         }
 
-                        Text("WEEKS")
+                        Text("DAYS")
                             .font(.system(size: 10, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white.opacity(0.5))
                             .tracking(1)
@@ -92,17 +92,16 @@ struct LargePrayerWidget: View {
                 .padding(.top, 16)
 
                 // Calendar grid
-                HStack(spacing: 0) {
+                HStack(alignment: .top, spacing: 4) {
                     // Weekday labels
                     VStack(spacing: 2) {
                         ForEach(weekdayLabels, id: \.self) { label in
                             Text(label)
                                 .font(.system(size: 9, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.white.opacity(0.4))
-                                .frame(width: 16, height: 10)
+                                .frame(width: 14, height: 10)
                         }
                     }
-                    .padding(.trailing, 4)
 
                     // Week columns
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -119,10 +118,12 @@ struct LargePrayerWidget: View {
                                 }
                             }
                         }
+                        .padding(.leading, 2)
                     }
                 }
+                .frame(height: 85)
                 .padding(.horizontal, 16)
-                .padding(.bottom, 12)
+                .padding(.bottom, 8)
 
                 // Check-in button
                 Button(intent: CheckInIntent()) {

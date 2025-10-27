@@ -11,8 +11,14 @@ All widget code is written and ready to use. You just need to set up the target 
 - Large streak counter with flame icon 🔥
 - Today's prayer count with sparkle icon ✨
 - Purple gradient background
-- Clean, minimal design
+- Edge-to-edge design (no padding)
 - Opens app on tap
+
+**Animations**:
+- Flame icon bounces when streak increases
+- Sparkle icon pulses when count updates
+- Smooth numeric text transitions
+- Content fades in with scale effect
 
 **Updates**: Every 15 minutes
 
@@ -22,16 +28,24 @@ All widget code is written and ready to use. You just need to set up the target 
 ![35-day calendar grid like Meditate widget]
 
 **Features**:
-- "Prayer" title with current streak
+- "Prayer" title prominently displayed
+- **Today's prayer count** (large, bold number with sparkle icon)
 - 35-day pixel calendar (5 weeks × 7 days)
-- Blue check-in button
+- Interactive blue check-in button with plus icon
 - Color intensity based on prayer frequency
   - Light: 1-2 prayers
   - Medium: 3-4 prayers
   - Deep: 5+ prayers
-- Today indicator (blue border)
+- Today indicator (blue border with subtle scale)
 
-**Interactive**: Tap check button to open app
+**Animations**:
+- Number bounces when today's count changes
+- Sparkle icon pulses on update
+- Button scales down on press, plus icon rotates
+- Calendar pixels fade in with scale transition
+- Smooth numeric text transitions
+
+**Interactive**: Tap check button to **add prayer directly from widget**!
 
 ---
 
@@ -219,6 +233,23 @@ After setup, verify:
 
 ---
 
+## ✨ Animations Added
+
+All widgets now include smooth, delightful animations:
+
+### Small Widget
+- **Numeric transitions**: Numbers morph smoothly using `.contentTransition(.numericText())`
+- **Flame bounce**: `.symbolEffect(.bounce)` when streak changes
+- **Sparkle pulse**: `.symbolEffect(.pulse)` when today's count updates
+- **Content fade-in**: `.transition(.opacity.combined(with: .scale))`
+
+### Medium Widget
+- **Number bounce**: Today's count animates with `.contentTransition(.numericText())`
+- **Icon pulse**: Sparkle icon pulses on count changes
+- **Button press**: Circle scales to 0.9x, plus icon rotates 90°
+- **Today highlight**: Current day pixel scales to 1.05x with spring animation
+- **Pixel transitions**: Calendar pixels fade/scale in smoothly
+
 ## 🎨 Customization Points
 
 Easy to adjust:
@@ -235,12 +266,15 @@ Easy to adjust:
 
 3. **Calendar Range**:
    - **Medium**: Change `0..<35` for different day count
-   - **Large**: Change `0..<20` for different week count
 
-4. **Pixel Intensity** (MediumPrayerWidget.swift:86 & LargePrayerWidget.swift:109):
+4. **Pixel Intensity** (MediumPrayerWidget.swift:120):
    ```swift
    let intensity = min(Double(count) / 5.0, 1.0)  // Adjust divisor
    ```
+
+5. **Animation Speeds**:
+   - Button: `.spring(response: 0.3, dampingFraction: 0.6)`
+   - Pixels: `.spring(response: 0.3, dampingFraction: 0.7)`
 
 ---
 
