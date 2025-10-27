@@ -1,6 +1,6 @@
 //
-//  WidgetsLiveActivity.swift
-//  Widgets
+//  PrayerWidgetsLiveActivity.swift
+//  PrayerWidgets
 //
 //  Created by John-Mark Iliev on 27.10.25.
 //
@@ -9,7 +9,7 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct WidgetsAttributes: ActivityAttributes {
+struct PrayerWidgetsAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
         var emoji: String
@@ -19,9 +19,9 @@ struct WidgetsAttributes: ActivityAttributes {
     var name: String
 }
 
-struct WidgetsLiveActivity: Widget {
+struct PrayerWidgetsLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: WidgetsAttributes.self) { context in
+        ActivityConfiguration(for: PrayerWidgetsAttributes.self) { context in
             // Lock screen/banner UI goes here
             VStack {
                 Text("Hello \(context.state.emoji)")
@@ -56,25 +56,25 @@ struct WidgetsLiveActivity: Widget {
     }
 }
 
-extension WidgetsAttributes {
-    fileprivate static var preview: WidgetsAttributes {
-        WidgetsAttributes(name: "World")
+extension PrayerWidgetsAttributes {
+    fileprivate static var preview: PrayerWidgetsAttributes {
+        PrayerWidgetsAttributes(name: "World")
     }
 }
 
-extension WidgetsAttributes.ContentState {
-    fileprivate static var smiley: WidgetsAttributes.ContentState {
-        WidgetsAttributes.ContentState(emoji: "😀")
+extension PrayerWidgetsAttributes.ContentState {
+    fileprivate static var smiley: PrayerWidgetsAttributes.ContentState {
+        PrayerWidgetsAttributes.ContentState(emoji: "😀")
      }
      
-     fileprivate static var starEyes: WidgetsAttributes.ContentState {
-         WidgetsAttributes.ContentState(emoji: "🤩")
+     fileprivate static var starEyes: PrayerWidgetsAttributes.ContentState {
+         PrayerWidgetsAttributes.ContentState(emoji: "🤩")
      }
 }
 
-#Preview("Notification", as: .content, using: WidgetsAttributes.preview) {
-   WidgetsLiveActivity()
+#Preview("Notification", as: .content, using: PrayerWidgetsAttributes.preview) {
+   PrayerWidgetsLiveActivity()
 } contentStates: {
-    WidgetsAttributes.ContentState.smiley
-    WidgetsAttributes.ContentState.starEyes
+    PrayerWidgetsAttributes.ContentState.smiley
+    PrayerWidgetsAttributes.ContentState.starEyes
 }

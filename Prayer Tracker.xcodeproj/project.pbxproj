@@ -7,18 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		369EF06A2EB0163800AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
-		369EF06C2EB0163800AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
-		369EF07D2EB0163900AC7A06 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0672EB0163800AC7A06 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
+		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
+		369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		369EF07B2EB0163900AC7A06 /* PBXContainerItemProxy */ = {
+		369EF0E62EB01C5D00AC7A06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36DD5C7D2EB0073F00E7A9DC /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 369EF0662EB0163800AC7A06;
-			remoteInfo = WidgetsExtension;
+			remoteGlobalIDString = 36DD5C842EB0073F00E7A9DC;
+			remoteInfo = "Prayer Tracker";
+		};
+		369EF1012EB01EE100AC7A06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36DD5C7D2EB0073F00E7A9DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 369EF0F12EB01EE000AC7A06;
+			remoteInfo = PrayerWidgetsExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -29,7 +36,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				369EF07D2EB0163900AC7A06 /* WidgetsExtension.appex in Embed Foundation Extensions */,
+				369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,45 +44,91 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		369EF0672EB0163800AC7A06 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		369EF0E22EB01C5D00AC7A06 /* PrayerTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrayerTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrayerWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrayerWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prayer Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		369EF0812EB0163900AC7A06 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */ = {
+		369EF0EB2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "Prayer Tracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PrayerStatisticsTests.swift,
+				PrayerTrackerTests/TESTING_PERSISTENCE.md,
+				README.md,
+			);
+			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
+		};
+		369EF0ED2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "PrayerTrackerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PrayerStatisticsTests.swift,
+				PrayerTrackerTests/TESTING_PERSISTENCE.md,
+				README.md,
+			);
+			target = 369EF0E12EB01C5D00AC7A06 /* PrayerTrackerTests */;
+		};
+		369EF1072EB01EE100AC7A06 /* Exceptions for "PrayerWidgets" folder in "PrayerWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 369EF0662EB0163800AC7A06 /* WidgetsExtension */;
+			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
+		};
+		369EF1302EB01F8B00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Prayer_TrackerApp.swift,
+			);
+			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		369EF06D2EB0163800AC7A06 /* Widgets */ = {
+		369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				369EF0812EB0163900AC7A06 /* Exceptions for "Widgets" folder in "WidgetsExtension" target */,
+				369EF0EB2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "Prayer Tracker" target */,
+				369EF0ED2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "PrayerTrackerTests" target */,
 			);
-			path = Widgets;
+			path = PrayerTrackerTests;
+			sourceTree = "<group>";
+		};
+		369EF0F52EB01EE000AC7A06 /* PrayerWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				369EF1072EB01EE100AC7A06 /* Exceptions for "PrayerWidgets" folder in "PrayerWidgetsExtension" target */,
+			);
+			path = PrayerWidgets;
 			sourceTree = "<group>";
 		};
 		36DD5C872EB0073F00E7A9DC /* Prayer Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				369EF1302EB01F8B00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */,
+			);
 			path = "Prayer Tracker";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		369EF0642EB0163800AC7A06 /* Frameworks */ = {
+		369EF0DF2EB01C5D00AC7A06 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369EF06C2EB0163800AC7A06 /* SwiftUI.framework in Frameworks */,
-				369EF06A2EB0163800AC7A06 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		369EF0EF2EB01EE000AC7A06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */,
+				369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +154,10 @@
 		36DD5C7C2EB0073F00E7A9DC = {
 			isa = PBXGroup;
 			children = (
+				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
 				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
-				369EF06D2EB0163800AC7A06 /* Widgets */,
+				369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */,
+				369EF0F52EB01EE000AC7A06 /* PrayerWidgets */,
 				369EF0682EB0163800AC7A06 /* Frameworks */,
 				36DD5C862EB0073F00E7A9DC /* Products */,
 			);
@@ -112,7 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */,
-				369EF0672EB0163800AC7A06 /* WidgetsExtension.appex */,
+				369EF0E22EB01C5D00AC7A06 /* PrayerTrackerTests.xctest */,
+				369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,26 +176,50 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		369EF0662EB0163800AC7A06 /* WidgetsExtension */ = {
+		369EF0E12EB01C5D00AC7A06 /* PrayerTrackerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 369EF0822EB0163900AC7A06 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */;
+			buildConfigurationList = 369EF0E82EB01C5D00AC7A06 /* Build configuration list for PBXNativeTarget "PrayerTrackerTests" */;
 			buildPhases = (
-				369EF0632EB0163800AC7A06 /* Sources */,
-				369EF0642EB0163800AC7A06 /* Frameworks */,
-				369EF0652EB0163800AC7A06 /* Resources */,
+				369EF0DE2EB01C5D00AC7A06 /* Sources */,
+				369EF0DF2EB01C5D00AC7A06 /* Frameworks */,
+				369EF0E02EB01C5D00AC7A06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				369EF0E72EB01C5D00AC7A06 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */,
+			);
+			name = PrayerTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = PrayerTrackerTests;
+			productReference = 369EF0E22EB01C5D00AC7A06 /* PrayerTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 369EF1042EB01EE100AC7A06 /* Build configuration list for PBXNativeTarget "PrayerWidgetsExtension" */;
+			buildPhases = (
+				369EF0EE2EB01EE000AC7A06 /* Sources */,
+				369EF0EF2EB01EE000AC7A06 /* Frameworks */,
+				369EF0F02EB01EE000AC7A06 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				369EF06D2EB0163800AC7A06 /* Widgets */,
+				369EF0F52EB01EE000AC7A06 /* PrayerWidgets */,
+				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
 			);
-			name = WidgetsExtension;
+			name = PrayerWidgetsExtension;
 			packageProductDependencies = (
 			);
-			productName = WidgetsExtension;
-			productReference = 369EF0672EB0163800AC7A06 /* WidgetsExtension.appex */;
+			productName = PrayerWidgetsExtension;
+			productReference = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		36DD5C842EB0073F00E7A9DC /* Prayer Tracker */ = {
@@ -154,7 +234,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				369EF07C2EB0163900AC7A06 /* PBXTargetDependency */,
+				369EF1022EB01EE100AC7A06 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
@@ -176,7 +256,11 @@
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					369EF0662EB0163800AC7A06 = {
+					369EF0E12EB01C5D00AC7A06 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 36DD5C842EB0073F00E7A9DC;
+					};
+					369EF0F12EB01EE000AC7A06 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 					36DD5C842EB0073F00E7A9DC = {
@@ -199,13 +283,21 @@
 			projectRoot = "";
 			targets = (
 				36DD5C842EB0073F00E7A9DC /* Prayer Tracker */,
-				369EF0662EB0163800AC7A06 /* WidgetsExtension */,
+				369EF0E12EB01C5D00AC7A06 /* PrayerTrackerTests */,
+				369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		369EF0652EB0163800AC7A06 /* Resources */ = {
+		369EF0E02EB01C5D00AC7A06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		369EF0F02EB01EE000AC7A06 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -222,7 +314,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		369EF0632EB0163800AC7A06 /* Sources */ = {
+		369EF0DE2EB01C5D00AC7A06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		369EF0EE2EB01EE000AC7A06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,25 +338,73 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		369EF07C2EB0163900AC7A06 /* PBXTargetDependency */ = {
+		369EF0E72EB01C5D00AC7A06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 369EF0662EB0163800AC7A06 /* WidgetsExtension */;
-			targetProxy = 369EF07B2EB0163900AC7A06 /* PBXContainerItemProxy */;
+			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
+			targetProxy = 369EF0E62EB01C5D00AC7A06 /* PBXContainerItemProxy */;
+		};
+		369EF1022EB01EE100AC7A06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
+			targetProxy = 369EF1012EB01EE100AC7A06 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		369EF07F2EB0163900AC7A06 /* Debug */ = {
+		369EF0E92EB01C5D00AC7A06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S6ZFW3NA3K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerTrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prayer Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Prayer Tracker";
+			};
+			name = Debug;
+		};
+		369EF0EA2EB01C5D00AC7A06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6ZFW3NA3K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerTrackerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prayer Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Prayer Tracker";
+			};
+			name = Release;
+		};
+		369EF1052EB01EE100AC7A06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PrayerWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6ZFW3NA3K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PrayerWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrayerWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -265,7 +412,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerWidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -277,17 +424,18 @@
 			};
 			name = Debug;
 		};
-		369EF0802EB0163900AC7A06 /* Release */ = {
+		369EF1062EB01EE100AC7A06 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PrayerWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S6ZFW3NA3K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Widgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Widgets;
+				INFOPLIST_FILE = PrayerWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PrayerWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -295,7 +443,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerWidgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -497,11 +645,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		369EF0822EB0163900AC7A06 /* Build configuration list for PBXNativeTarget "WidgetsExtension" */ = {
+		369EF0E82EB01C5D00AC7A06 /* Build configuration list for PBXNativeTarget "PrayerTrackerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				369EF07F2EB0163900AC7A06 /* Debug */,
-				369EF0802EB0163900AC7A06 /* Release */,
+				369EF0E92EB01C5D00AC7A06 /* Debug */,
+				369EF0EA2EB01C5D00AC7A06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		369EF1042EB01EE100AC7A06 /* Build configuration list for PBXNativeTarget "PrayerWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				369EF1052EB01EE100AC7A06 /* Debug */,
+				369EF1062EB01EE100AC7A06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

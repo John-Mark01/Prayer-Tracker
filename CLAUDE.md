@@ -152,34 +152,36 @@ Both modes provide persistent storage. The app will automatically use App Groups
 ✅ Statistics calculation (streaks, totals, averages)
 ✅ Alarm creation and management UI
 ✅ Refactored views to use shared business logic
+✅ Widget Extension with 3 sizes (Small, Medium, Large)
+✅ Interactive check-in via App Intents
+✅ Pixel-grid calendar visualizations
 
 ## What Needs Implementation
 
-### 1. Widget Extension (High Priority)
+### 1. Widget Extension Setup (In Xcode)
 
-Create a Widget Extension with 3 sizes:
+Widget code is complete! Just needs Xcode target setup:
 
-**Small Widget**:
-- Today's prayer count
-- Single check-in button
+**Files Ready** (in `PrayerWidgets/`):
+- ✅ PrayerWidgetsBundle.swift (entry point)
+- ✅ PrayerWidget.swift (timeline provider)
+- ✅ SmallPrayerWidget.swift (streak + today's count)
+- ✅ MediumPrayerWidget.swift (35-day calendar grid)
+- ✅ LargePrayerWidget.swift (20-week pixel calendar)
+- ✅ CheckInIntent.swift (interactive button)
 
-**Medium Widget**:
-- 7-day mini calendar grid
-- Check-in button
-
-**Large Widget**:
-- Full month calendar (like HabitKit inspiration)
-- Streak counter
-- Check-in button
-
-**Implementation Steps**:
+**Setup Steps** (see `PrayerWidgets/WIDGET_SETUP.md` for details):
 1. File > New > Target > Widget Extension
-2. Add to App Group `group.johnmark.PrayerTracker`
-3. Create `WidgetProvider` conforming to `TimelineProvider`
-4. Use shared ModelContainer from AppGroup.containerURL
-5. Create 3 widget families: `.systemSmall`, `.systemMedium`, `.systemLarge`
-6. Implement deep link to open main app on button tap
-7. Handle button actions to insert PrayerEntry
+2. Name it "PrayerWidgets"
+3. Delete template files, add our widget Swift files to target
+4. Share model files (PrayerEntry, PrayerStatistics, AppGroup) with both targets
+5. Enable App Groups on both main app and widget: `group.johnmark.PrayerTracker`
+6. Build and run PrayerWidgets scheme
+
+**Widget Features**:
+- **Small**: Streak counter + today's count with gradient background
+- **Medium**: 35-day calendar grid (5 weeks) + check button
+- **Large**: 20-week pixel calendar with weekday labels + interactive check-in button
 
 ### 2. Live Activities (High Priority)
 
@@ -310,6 +312,16 @@ Prayer Tracker/
 │   └── AlarmsView.swift          # Alarm management
 │
 └── Assets.xcassets/              # Asset catalog
+
+PrayerWidgets/
+├── PrayerWidgetsBundle.swift    # Widget bundle entry point
+├── PrayerWidget.swift            # Timeline provider
+├── SmallPrayerWidget.swift       # Small widget (streak + count)
+├── MediumPrayerWidget.swift      # Medium widget (5-week calendar)
+├── LargePrayerWidget.swift       # Large widget (20-week calendar)
+├── CheckInIntent.swift           # App Intent for button
+├── WIDGET_SETUP.md               # Setup instructions
+└── Info.plist                    # Extension info
 
 Prayer TrackerTests/
 └── PrayerStatisticsTests.swift   # Unit tests for business logic
