@@ -16,15 +16,19 @@ final class PrayerAlarm {
     var durationMinutes: Int
     var isEnabled: Bool
     var notificationIdentifier: String?
+    var calendarIdentifier: String?
+    var addToCalendar: Bool
     var prayer: Prayer?
 
-    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true, prayer: Prayer? = nil) {
+    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true, prayer: Prayer? = nil, addToCalendar: Bool = false) {
         self.title = title
         self.hour = hour
         self.minute = minute
         self.durationMinutes = durationMinutes
         self.isEnabled = isEnabled
         self.notificationIdentifier = nil
+        self.calendarIdentifier = nil
+        self.addToCalendar = addToCalendar
         self.prayer = prayer
     }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+internal import EventKit
 
 struct AlarmsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -120,6 +121,11 @@ struct AlarmsView: View {
                     NotificationManager.shared.cancelNotification(identifier: identifier)
                 }
 
+                // Delete calendar event if exists
+                if let calendarId = alarm.calendarIdentifier {
+                    CalendarManager.shared.deleteCalendarEvent(identifier: calendarId)
+                }
+
                 modelContext.delete(alarm)
             }
         }
@@ -173,18 +179,46 @@ struct AlarmRow: View {
                 set: { newValue in
                     alarm.isEnabled = newValue
 
-                    // Schedule or cancel notification
+                    // Schedule or cancel notification and calendar event
                     Task {
                         if newValue {
                             // Toggled ON - schedule notification
                             if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
                                 alarm.notificationIdentifier = identifier
                             }
+
+                            // Create calendar event if user opted in
+                            if alarm.addToCalendar && alarm.calendarIdentifier == nil {
+                                let calStatus = CalendarManager.shared.checkAuthorizationStatus()
+
+                                // Request permission if needed
+                                if calStatus == .notDetermined {
+                                    let granted = await CalendarManager.shared.requestCalendarAccess()
+                                    if !granted {
+                                        print("⚠️ Calendar permission denied on toggle")
+                                        return
+                                    }
+                                }
+
+                                // Create event if authorized
+                                if calStatus == .fullAccess || calStatus == .notDetermined {
+                                    if let calendarId = await CalendarManager.shared.createCalendarEvent(for: alarm) {
+                                        alarm.calendarIdentifier = calendarId
+                                    }
+                                }
+                            }
                         } else {
                             // Toggled OFF - cancel notification
                             if let identifier = alarm.notificationIdentifier {
                                 NotificationManager.shared.cancelNotification(identifier: identifier)
                                 alarm.notificationIdentifier = nil
+                            }
+
+                            // Delete calendar event if exists
+                            if let calendarId = alarm.calendarIdentifier {
+                                if CalendarManager.shared.deleteCalendarEvent(identifier: calendarId) {
+                                    alarm.calendarIdentifier = nil
+                                }
                             }
                         }
                     }
@@ -209,6 +243,7 @@ struct AddAlarmView: View {
     @State private var selectedPrayer: Prayer?
     @State private var selectedTime = Date()
     @State private var durationMinutes = 5
+    @State private var addToCalendar = false
 
     var body: some View {
         NavigationStack {
@@ -270,6 +305,16 @@ struct AddAlarmView: View {
                         } header: {
                             Text("Duration")
                         }
+
+                        Section {
+                            Toggle("Add to Calendar", isOn: $addToCalendar)
+                                .tint(.purple)
+                        } header: {
+                            Text("Calendar Integration")
+                        } footer: {
+                            Text("Create a recurring event in your Calendar app for this prayer time")
+                                .font(.caption)
+                        }
                     }
                     .scrollContentBackground(.hidden)
                 }
@@ -308,20 +353,20 @@ struct AddAlarmView: View {
             minute: components.minute ?? 0,
             durationMinutes: durationMinutes,
             isEnabled: true,
-            prayer: prayer
+            prayer: prayer,
+            addToCalendar: addToCalendar
         )
 
         modelContext.insert(alarm)
 
-        // Request permission and schedule notification
+        // Request permissions and schedule notification/calendar
         Task {
-            // Request authorization if needed
-            let status = await NotificationManager.shared.checkAuthorizationStatus()
-            if status == .notDetermined {
+            // 1. Handle notifications (always)
+            let notifStatus = await NotificationManager.shared.checkAuthorizationStatus()
+            if notifStatus == .notDetermined {
                 let granted = await NotificationManager.shared.requestAuthorization()
                 if !granted {
                     print("⚠️ Notification permission denied")
-                    return
                 }
             }
 
@@ -329,6 +374,25 @@ struct AddAlarmView: View {
             if alarm.isEnabled {
                 if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
                     alarm.notificationIdentifier = identifier
+                }
+            }
+
+            // 2. Handle calendar integration (only if user opted in)
+            if alarm.addToCalendar {
+                let calStatus = CalendarManager.shared.checkAuthorizationStatus()
+
+                // Request calendar permission if needed
+                if calStatus == .notDetermined {
+                    let granted = await CalendarManager.shared.requestCalendarAccess()
+                    if !granted {
+                        print("⚠️ Calendar permission denied")
+                        return
+                    }
+                }
+
+                // Create calendar event
+                if let calendarId = await CalendarManager.shared.createCalendarEvent(for: alarm) {
+                    alarm.calendarIdentifier = calendarId
                 }
             }
         }
