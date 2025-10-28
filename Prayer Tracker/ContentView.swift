@@ -16,16 +16,6 @@ struct ContentView: View {
                     Label("Today", systemImage: "house.fill")
                 }
 
-            CalendarView()
-                .tabItem {
-                    Label("Calendar", systemImage: "calendar")
-                }
-
-            StatisticsView()
-                .tabItem {
-                    Label("Stats", systemImage: "chart.bar.fill")
-                }
-
             AlarmsView()
                 .tabItem {
                     Label("Alarms", systemImage: "bell.fill")
@@ -37,5 +27,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: PrayerEntry.self, inMemory: true)
+        .modelContainer(for: Prayer.self, inMemory: true)
 }

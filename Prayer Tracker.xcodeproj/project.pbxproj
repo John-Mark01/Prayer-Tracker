@@ -57,7 +57,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				PrayerStatisticsTests.swift,
-				PrayerTrackerTests/TESTING_PERSISTENCE.md,
 				README.md,
 			);
 			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
@@ -66,7 +65,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				PrayerStatisticsTests.swift,
-				PrayerTrackerTests/TESTING_PERSISTENCE.md,
 				README.md,
 			);
 			target = 369EF0E12EB01C5D00AC7A06 /* PrayerTrackerTests */;
@@ -78,10 +76,15 @@
 			);
 			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
 		};
-		369EF1302EB01F8B00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */ = {
+		369EF1912EB148FA00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Prayer_TrackerApp.swift,
+				AppGroup.swift,
+				PixelGridView.swift,
+				Prayer.swift,
+				PrayerAlarm.swift,
+				PrayerEntry.swift,
+				PrayerStatistics.swift,
 			);
 			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
 		};
@@ -108,7 +111,7 @@
 		36DD5C872EB0073F00E7A9DC /* Prayer Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				369EF1302EB01F8B00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */,
+				369EF1912EB148FA00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */,
 			);
 			path = "Prayer Tracker";
 			sourceTree = "<group>";
@@ -213,7 +216,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				369EF0F52EB01EE000AC7A06 /* PrayerWidgets */,
-				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
 			);
 			name = PrayerWidgetsExtension;
 			packageProductDependencies = (

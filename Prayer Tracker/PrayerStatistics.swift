@@ -112,4 +112,21 @@ struct PrayerStatistics {
             calendar.isDate(entry.timestamp, inSameDayAs: date)
         }.count
     }
+
+    // MARK: - Intensity Calculation
+
+    /// Returns the intensity level (0-5+) for a given date based on entry count
+    func intensity(for date: Date) -> Int {
+        entryCount(for: date)
+    }
+
+    /// Returns an opacity value (0.0-1.0) based on entry count for visualization
+    func intensityOpacity(for date: Date) -> Double {
+        let count = entryCount(for: date)
+        if count == 0 { return 0.15 }
+        else if count == 1 { return 0.35 }
+        else if count == 2 { return 0.55 }
+        else if count <= 4 { return 0.75 }
+        else { return 1.0 }
+    }
 }

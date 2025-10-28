@@ -10,18 +10,30 @@ import SwiftData
 
 struct TodayView: View {
     @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
     @Query private var allEntries: [PrayerEntry]
 
-    private var stats: PrayerStatistics {
-        PrayerStatistics(entries: allEntries)
+    @State private var showingAddSheet = false
+    @State private var selectedPrayer: Prayer?
+
+    private let calendar = Calendar.current
+
+    private func todayEntries(for prayer: Prayer) -> [PrayerEntry] {
+        let today = calendar.startOfDay(for: Date())
+        return prayer.entries.filter { entry in
+            calendar.isDate(entry.timestamp, inSameDayAs: today)
+        }
     }
 
-    private var todayCount: Int {
-        stats.todayCount()
+    private func todayCount(for prayer: Prayer) -> Int {
+        todayEntries(for: prayer).count
     }
 
-    private var currentStreak: Int {
-        stats.currentStreak()
+    private func checkIn(for prayer: Prayer) {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            let entry = PrayerEntry(timestamp: Date(), prayer: prayer)
+            modelContext.insert(entry)
+        }
     }
 
     var body: some View {
@@ -30,85 +42,64 @@ struct TodayView: View {
                 Color(white: 0.05)
                     .ignoresSafeArea()
 
-                VStack(spacing: 40) {
-                    Spacer()
+                if prayers.isEmpty {
+                    // Empty State
+                    VStack(spacing: 16) {
+                        Image(systemName: "hands.sparkles")
+                            .font(.system(size: 60))
+                            .foregroundStyle(.white.opacity(0.3))
 
-                    // Streak Counter
-                    VStack(spacing: 8) {
-                        Text("\(currentStreak)")
-                            .font(.system(size: 72, weight: .bold, design: .rounded))
+                        Text("No prayers yet")
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
 
-                        Text("DAY STREAK")
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
-                            .tracking(2)
-                    }
-
-                    // Today's Count
-                    VStack(spacing: 8) {
-                        HStack(spacing: 12) {
-                            Image(systemName: "hands.sparkles.fill")
-                                .font(.system(size: 24))
-                                .foregroundStyle(.purple)
-
-                            Text("\(todayCount)")
-                                .font(.system(size: 42, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                        }
-
-                        Text("prayers today")
+                        Text("Tap + to add your first prayer")
                             .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.7))
+                            .foregroundStyle(.white.opacity(0.6))
                     }
-
-                    Spacer()
-
-                    // Check-in Button
-                    Button(action: checkIn) {
-                        HStack(spacing: 12) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 28))
-
-                            Text("Check In")
-                                .font(.system(size: 22, weight: .semibold, design: .rounded))
+                } else {
+                    // Prayer List
+                    ScrollView {
+                        LazyVStack(spacing: 16) {
+                            ForEach(prayers) { prayer in
+                                PrayerCardView(
+                                    prayer: prayer,
+                                    entries: prayer.entries,
+                                    todayCount: todayCount(for: prayer),
+                                    onCheckIn: { checkIn(for: prayer) },
+                                    onTap: { selectedPrayer = prayer }
+                                )
+                            }
                         }
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 70)
-                        .background(
-                            LinearGradient(
-                                colors: [.purple, .blue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .shadow(color: .purple.opacity(0.5), radius: 20, y: 10)
+                        .padding(20)
                     }
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 50)
                 }
             }
-            .navigationTitle("Prayer Tracker")
+            .navigationTitle("Today")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-        }
-    }
-
-    private func checkIn() {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            let entry = PrayerEntry(timestamp: Date())
-            modelContext.insert(entry)
-
-            // Haptic feedback
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            generator.impactOccurred()
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { showingAddSheet = true }) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundStyle(.purple)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddSheet) {
+                AddPrayerSheet()
+            }
+            .sheet(item: $selectedPrayer) { prayer in
+                NavigationStack {
+                    PrayerDetailView(prayer: prayer)
+                }
+            }
         }
     }
 }
 
 #Preview {
     TodayView()
-        .modelContainer(for: PrayerEntry.self, inMemory: true)
+        .modelContainer(for: Prayer.self, inMemory: true)
 }

@@ -12,9 +12,11 @@ import SwiftData
 final class PrayerEntry {
     var timestamp: Date
     var title: String?
+    var prayer: Prayer?
 
-    init(timestamp: Date = Date(), title: String? = nil) {
+    init(timestamp: Date = Date(), title: String? = nil, prayer: Prayer? = nil) {
         self.timestamp = timestamp
         self.title = title
+        self.prayer = prayer
     }
 }

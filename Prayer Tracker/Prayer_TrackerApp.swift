@@ -12,6 +12,7 @@ import SwiftData
 struct Prayer_TrackerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
+            Prayer.self,
             PrayerEntry.self,
             PrayerAlarm.self,
         ])
