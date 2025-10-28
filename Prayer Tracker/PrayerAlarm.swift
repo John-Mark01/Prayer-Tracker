@@ -16,17 +16,24 @@ final class PrayerAlarm {
     var durationMinutes: Int
     var isEnabled: Bool
     var notificationIdentifier: String?
+    var prayer: Prayer?
 
-    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true) {
+    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true, prayer: Prayer? = nil) {
         self.title = title
         self.hour = hour
         self.minute = minute
         self.durationMinutes = durationMinutes
         self.isEnabled = isEnabled
         self.notificationIdentifier = nil
+        self.prayer = prayer
     }
 
     var timeString: String {
         String(format: "%02d:%02d", hour, minute)
+    }
+
+    // Use prayer's title if available, otherwise fall back to alarm's title
+    var displayTitle: String {
+        prayer?.title ?? title
     }
 }

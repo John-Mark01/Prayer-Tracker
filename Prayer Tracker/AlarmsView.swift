@@ -11,7 +11,30 @@ import SwiftData
 struct AlarmsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: [SortDescriptor(\PrayerAlarm.hour), SortDescriptor(\PrayerAlarm.minute)]) private var alarms: [PrayerAlarm]
+    @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
     @State private var showingAddAlarm = false
+
+    // Group alarms by prayer
+    private var groupedAlarms: [(prayer: Prayer?, alarms: [PrayerAlarm])] {
+        let grouped = Dictionary(grouping: alarms) { $0.prayer }
+
+        // Sort: prayers with alarms first (by prayer sort order), then orphaned alarms
+        var result: [(Prayer?, [PrayerAlarm])] = []
+
+        // Add prayers with alarms
+        for prayer in prayers {
+            if let prayerAlarms = grouped[prayer], !prayerAlarms.isEmpty {
+                result.append((prayer, prayerAlarms))
+            }
+        }
+
+        // Add orphaned alarms (no prayer associated)
+        if let orphanedAlarms = grouped[nil], !orphanedAlarms.isEmpty {
+            result.append((nil, orphanedAlarms))
+        }
+
+        return result
+    }
 
     var body: some View {
         NavigationStack {
@@ -37,12 +60,34 @@ struct AlarmsView: View {
                     }
                 } else {
                     List {
-                        ForEach(alarms) { alarm in
-                            AlarmRow(alarm: alarm, modelContext: modelContext)
-                                .listRowBackground(Color.clear)
-                                .listRowSeparator(.hidden)
+                        ForEach(Array(groupedAlarms.enumerated()), id: \.offset) { _, group in
+                            Section {
+                                ForEach(group.alarms) { alarm in
+                                    AlarmRow(alarm: alarm, modelContext: modelContext)
+                                        .listRowBackground(Color.clear)
+                                        .listRowSeparator(.hidden)
+                                }
+                                .onDelete { offsets in
+                                    deleteAlarms(from: group.alarms, offsets: offsets)
+                                }
+                            } header: {
+                                if let prayer = group.prayer {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: prayer.iconName)
+                                            .foregroundStyle(Color(hex: prayer.colorHex) ?? .purple)
+                                        Text(prayer.title)
+                                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                    }
+                                    .foregroundStyle(.white)
+                                    .textCase(nil)
+                                } else {
+                                    Text("Other Alarms")
+                                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                        .foregroundStyle(.white.opacity(0.6))
+                                        .textCase(nil)
+                                }
+                            }
                         }
-                        .onDelete(perform: deleteAlarms)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
@@ -65,11 +110,16 @@ struct AlarmsView: View {
         }
     }
 
-    private func deleteAlarms(offsets: IndexSet) {
+    private func deleteAlarms(from alarmsList: [PrayerAlarm], offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                let alarm = alarms[index]
-                // TODO: Cancel notification
+                let alarm = alarmsList[index]
+
+                // Cancel notification if exists
+                if let identifier = alarm.notificationIdentifier {
+                    NotificationManager.shared.cancelNotification(identifier: identifier)
+                }
+
                 modelContext.delete(alarm)
             }
         }
@@ -80,14 +130,34 @@ struct AlarmRow: View {
     let alarm: PrayerAlarm
     let modelContext: ModelContext
 
+    private var prayerColor: Color {
+        if let prayer = alarm.prayer {
+            return Color(hex: prayer.colorHex) ?? .purple
+        }
+        return .purple
+    }
+
     var body: some View {
         HStack(spacing: 16) {
+            // Prayer icon
+            if let prayer = alarm.prayer {
+                ZStack {
+                    Circle()
+                        .fill(prayerColor.opacity(0.2))
+                        .frame(width: 50, height: 50)
+
+                    Image(systemName: prayer.iconName)
+                        .font(.system(size: 24))
+                        .foregroundStyle(prayerColor)
+                }
+            }
+
             VStack(alignment: .leading, spacing: 4) {
                 Text(alarm.timeString)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
 
-                Text(alarm.title)
+                Text(alarm.displayTitle)
                     .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(.white.opacity(0.8))
 
@@ -102,10 +172,25 @@ struct AlarmRow: View {
                 get: { alarm.isEnabled },
                 set: { newValue in
                     alarm.isEnabled = newValue
-                    // TODO: Schedule or cancel notification
+
+                    // Schedule or cancel notification
+                    Task {
+                        if newValue {
+                            // Toggled ON - schedule notification
+                            if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
+                                alarm.notificationIdentifier = identifier
+                            }
+                        } else {
+                            // Toggled OFF - cancel notification
+                            if let identifier = alarm.notificationIdentifier {
+                                NotificationManager.shared.cancelNotification(identifier: identifier)
+                                alarm.notificationIdentifier = nil
+                            }
+                        }
+                    }
                 }
             ))
-            .tint(.purple)
+            .tint(prayerColor)
         }
         .padding(16)
         .background(
@@ -119,8 +204,9 @@ struct AlarmRow: View {
 struct AddAlarmView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
 
-    @State private var title = ""
+    @State private var selectedPrayer: Prayer?
     @State private var selectedTime = Date()
     @State private var durationMinutes = 5
 
@@ -130,35 +216,63 @@ struct AddAlarmView: View {
                 Color(white: 0.05)
                     .ignoresSafeArea()
 
-                Form {
-                    Section {
-                        TextField("Prayer Name", text: $title)
+                if prayers.isEmpty {
+                    // Empty state when no prayers exist
+                    VStack(spacing: 16) {
+                        Image(systemName: "hands.sparkles")
+                            .font(.system(size: 60))
+                            .foregroundStyle(.white.opacity(0.3))
+
+                        Text("No Prayers Yet")
+                            .font(.title2.bold())
+                            .foregroundStyle(.white)
+
+                        Text("Create a prayer first before adding alarms")
                             .font(.body)
-                    } header: {
-                        Text("Title")
+                            .foregroundStyle(.white.opacity(0.6))
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 40)
                     }
-
-                    Section {
-                        DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                            .datePickerStyle(.wheel)
-                    } header: {
-                        Text("When")
-                    }
-
-                    Section {
-                        Picker("Duration", selection: $durationMinutes) {
-                            Text("5 minutes").tag(5)
-                            Text("10 minutes").tag(10)
-                            Text("15 minutes").tag(15)
-                            Text("20 minutes").tag(20)
-                            Text("30 minutes").tag(30)
+                } else {
+                    Form {
+                        Section {
+                            Picker("Prayer", selection: $selectedPrayer) {
+                                Text("Select Prayer").tag(nil as Prayer?)
+                                ForEach(prayers) { prayer in
+                                    HStack {
+                                        Image(systemName: prayer.iconName)
+                                            .foregroundStyle(Color(hex: prayer.colorHex) ?? .purple)
+                                        Text(prayer.title)
+                                    }
+                                    .tag(prayer as Prayer?)
+                                }
+                            }
+                        } header: {
+                            Text("Which Prayer")
                         }
-                        .pickerStyle(.wheel)
-                    } header: {
-                        Text("Duration")
+
+                        Section {
+                            DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                                .datePickerStyle(.wheel)
+                        } header: {
+                            Text("When")
+                        }
+
+                        Section {
+                            Picker("Duration", selection: $durationMinutes) {
+                                Text("5 minutes").tag(5)
+                                Text("10 minutes").tag(10)
+                                Text("15 minutes").tag(15)
+                                Text("20 minutes").tag(20)
+                                Text("30 minutes").tag(30)
+                            }
+                            .pickerStyle(.wheel)
+                        } header: {
+                            Text("Duration")
+                        }
                     }
+                    .scrollContentBackground(.hidden)
                 }
-                .scrollContentBackground(.hidden)
             }
             .navigationTitle("New Prayer Alarm")
             .navigationBarTitleDisplayMode(.inline)
@@ -170,30 +284,54 @@ struct AddAlarmView: View {
                     }
                 }
 
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        saveAlarm()
+                if !prayers.isEmpty {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            saveAlarm()
+                        }
+                        .disabled(selectedPrayer == nil)
                     }
-                    .disabled(title.isEmpty)
                 }
             }
         }
     }
 
     private func saveAlarm() {
+        guard let prayer = selectedPrayer else { return }
+
         let calendar = Calendar.current
         let components = calendar.dateComponents([.hour, .minute], from: selectedTime)
 
         let alarm = PrayerAlarm(
-            title: title,
+            title: prayer.title,
             hour: components.hour ?? 0,
             minute: components.minute ?? 0,
             durationMinutes: durationMinutes,
-            isEnabled: true
+            isEnabled: true,
+            prayer: prayer
         )
 
         modelContext.insert(alarm)
-        // TODO: Schedule notification
+
+        // Request permission and schedule notification
+        Task {
+            // Request authorization if needed
+            let status = await NotificationManager.shared.checkAuthorizationStatus()
+            if status == .notDetermined {
+                let granted = await NotificationManager.shared.requestAuthorization()
+                if !granted {
+                    print("⚠️ Notification permission denied")
+                    return
+                }
+            }
+
+            // Schedule notification if enabled
+            if alarm.isEnabled {
+                if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
+                    alarm.notificationIdentifier = identifier
+                }
+            }
+        }
 
         dismiss()
     }

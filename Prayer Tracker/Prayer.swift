@@ -21,6 +21,9 @@ final class Prayer: Identifiable {
     @Relationship(deleteRule: .cascade, inverse: \PrayerEntry.prayer)
     var entries: [PrayerEntry]
 
+    @Relationship(deleteRule: .cascade, inverse: \PrayerAlarm.prayer)
+    var alarms: [PrayerAlarm]
+
     init(
         id: UUID = UUID(),
         title: String,
@@ -38,5 +41,6 @@ final class Prayer: Identifiable {
         self.createdDate = createdDate
         self.sortOrder = sortOrder
         self.entries = []
+        self.alarms = []
     }
 }
