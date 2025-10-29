@@ -14,6 +14,7 @@ struct AlarmsView: View {
     @Query(sort: [SortDescriptor(\PrayerAlarm.hour), SortDescriptor(\PrayerAlarm.minute)]) private var alarms: [PrayerAlarm]
     @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
     @State private var showingAddAlarm = false
+    @State private var showingDebug = false
 
     // Group alarms by prayer
     private var groupedAlarms: [(prayer: Prayer?, alarms: [PrayerAlarm])] {
@@ -98,6 +99,13 @@ struct AlarmsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: { showingDebug = true }) {
+                        Image(systemName: "ladybug.fill")
+                            .foregroundStyle(.orange)
+                    }
+                }
+
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { showingAddAlarm = true }) {
                         Image(systemName: "plus")
@@ -108,6 +116,9 @@ struct AlarmsView: View {
             .sheet(isPresented: $showingAddAlarm) {
                 AddAlarmView()
             }
+            .sheet(isPresented: $showingDebug) {
+                LiveActivityDebugView()
+            }
         }
     }
 
@@ -116,14 +127,26 @@ struct AlarmsView: View {
             for index in offsets {
                 let alarm = alarmsList[index]
 
-                // Cancel notification if exists
+                // Cancel alarm notification if exists
                 if let identifier = alarm.notificationIdentifier {
+                    NotificationManager.shared.cancelNotification(identifier: identifier)
+                }
+
+                // Cancel warning notification if exists
+                if let identifier = alarm.warningNotificationIdentifier {
                     NotificationManager.shared.cancelNotification(identifier: identifier)
                 }
 
                 // Delete calendar event if exists
                 if let calendarId = alarm.calendarIdentifier {
                     CalendarManager.shared.deleteCalendarEvent(identifier: calendarId)
+                }
+
+                // End Live Activity if exists
+                if let activityId = alarm.liveActivityId {
+                    Task {
+                        await LiveActivityManager.shared.endActivity(activityID: activityId)
+                    }
                 }
 
                 modelContext.delete(alarm)
@@ -179,15 +202,22 @@ struct AlarmRow: View {
                 set: { newValue in
                     alarm.isEnabled = newValue
 
-                    // Schedule or cancel notification and calendar event
+                    // Schedule or cancel notifications, calendar event, and Live Activity
                     Task {
                         if newValue {
-                            // Toggled ON - schedule notification
+                            // Toggled ON - schedule notifications and calendar
+
+                            // 1. Schedule warning notification (5 min before)
+                            if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
+                                alarm.warningNotificationIdentifier = identifier
+                            }
+
+                            // 2. Schedule alarm notification
                             if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
                                 alarm.notificationIdentifier = identifier
                             }
 
-                            // Create calendar event if user opted in
+                            // 3. Create calendar event if user opted in
                             if alarm.addToCalendar && alarm.calendarIdentifier == nil {
                                 let calStatus = CalendarManager.shared.checkAuthorizationStatus()
 
@@ -207,14 +237,30 @@ struct AlarmRow: View {
                                     }
                                 }
                             }
+
+                            // Note: Live Activity will be started when warning notification fires
                         } else {
-                            // Toggled OFF - cancel notification
+                            // Toggled OFF - cancel everything
+
+                            // 1. End Live Activity if exists
+                            if let activityId = alarm.liveActivityId {
+                                await LiveActivityManager.shared.endActivity(activityID: activityId)
+                                alarm.liveActivityId = nil
+                            }
+
+                            // 2. Cancel alarm notification
                             if let identifier = alarm.notificationIdentifier {
                                 NotificationManager.shared.cancelNotification(identifier: identifier)
                                 alarm.notificationIdentifier = nil
                             }
 
-                            // Delete calendar event if exists
+                            // 3. Cancel warning notification
+                            if let identifier = alarm.warningNotificationIdentifier {
+                                NotificationManager.shared.cancelNotification(identifier: identifier)
+                                alarm.warningNotificationIdentifier = nil
+                            }
+
+                            // 4. Delete calendar event if exists
                             if let calendarId = alarm.calendarIdentifier {
                                 if CalendarManager.shared.deleteCalendarEvent(identifier: calendarId) {
                                     alarm.calendarIdentifier = nil
@@ -359,7 +405,7 @@ struct AddAlarmView: View {
 
         modelContext.insert(alarm)
 
-        // Request permissions and schedule notification/calendar
+        // Request permissions and schedule notifications/calendar
         Task {
             // 1. Handle notifications (always)
             let notifStatus = await NotificationManager.shared.checkAuthorizationStatus()
@@ -370,11 +416,19 @@ struct AddAlarmView: View {
                 }
             }
 
-            // Schedule notification if enabled
+            // Schedule notifications if enabled
             if alarm.isEnabled {
+                // Schedule warning notification (5 min before)
+                if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
+                    alarm.warningNotificationIdentifier = identifier
+                }
+
+                // Schedule alarm notification
                 if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
                     alarm.notificationIdentifier = identifier
                 }
+
+                // Note: Live Activity will be started when warning notification fires
             }
 
             // 2. Handle calendar integration (only if user opted in)

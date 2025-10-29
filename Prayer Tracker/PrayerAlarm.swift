@@ -16,7 +16,9 @@ final class PrayerAlarm {
     var durationMinutes: Int
     var isEnabled: Bool
     var notificationIdentifier: String?
+    var warningNotificationIdentifier: String?
     var calendarIdentifier: String?
+    var liveActivityId: String?
     var addToCalendar: Bool
     var prayer: Prayer?
 
@@ -27,7 +29,9 @@ final class PrayerAlarm {
         self.durationMinutes = durationMinutes
         self.isEnabled = isEnabled
         self.notificationIdentifier = nil
+        self.warningNotificationIdentifier = nil
         self.calendarIdentifier = nil
+        self.liveActivityId = nil
         self.addToCalendar = addToCalendar
         self.prayer = prayer
     }

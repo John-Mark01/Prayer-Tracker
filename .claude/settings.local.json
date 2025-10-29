@@ -5,7 +5,10 @@
       "Bash(xcrun simctl install:*)",
       "Bash(xcrun simctl launch:*)",
       "Bash(xcrun simctl uninstall:*)",
-      "Bash(xcrun simctl spawn:*)"
+      "Bash(xcrun simctl spawn:*)",
+      "Bash(xcrun simctl:*)",
+      "WebSearch",
+      "WebFetch(domain:medium.com)"
     ],
     "deny": [],
     "ask": []

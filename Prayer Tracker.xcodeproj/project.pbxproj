@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
 		369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		369EF0E22EB01C5D00AC7A06 /* PrayerTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrayerTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 				AppGroup.swift,
 				PixelGridView.swift,
 				Prayer.swift,
+				PrayerActivityAttributes.swift,
 				PrayerAlarm.swift,
 				PrayerEntry.swift,
 				PrayerStatistics.swift,
@@ -157,6 +160,7 @@
 		36DD5C7C2EB0073F00E7A9DC = {
 			isa = PBXGroup;
 			children = (
+				3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */,
 				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
 				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
 				369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */,
@@ -310,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +595,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -624,6 +631,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

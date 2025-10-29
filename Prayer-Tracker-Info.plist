@@ -2,11 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCalendarsFullAccessUsageDescription</key>
-	<string>Prayer Tracker needs full calendar access to create and manage recurring
-     prayer time events.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Prayer Tracker needs access to your calendar to create recurring prayer
-     time events when you enable calendar integration for your alarms.</string>
+	<key>NSSupportsLiveActivitiesFrequentUpdates</key>
+	<true/>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 </dict>
 </plist>
