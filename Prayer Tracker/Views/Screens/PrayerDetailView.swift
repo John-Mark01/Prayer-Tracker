@@ -198,8 +198,8 @@ struct PrayerDetailView: View {
                     }
                     .padding(.bottom, 20)
                 }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)

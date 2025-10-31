@@ -127,20 +127,26 @@ struct LiveActivityDebugView: View {
     private func startTestActivity() {
         print("🧪 Starting test Live Activity...")
 
+        // Generate a test UUID for the prayer
+        let testPrayerID = UUID().uuidString
+        print("🧪 Test Prayer ID: \(testPrayerID)")
+
         let attributes = PrayerActivityAttributes(
-            prayerID: nil,
+            prayerID: testPrayerID,
             prayerTitle: "Test Prayer",
             prayerSubtitle: "This is a test",
             iconName: "hands.sparkles.fill",
             colorHex: "#9333EA",
-            alarmTime: Date().addingTimeInterval(300), // 5 min from now
-            durationMinutes: 5
+            alarmTime: Date().addingTimeInterval(60), // 5 min from now
+            durationMinutes: 1
         )
 
         let contentState = PrayerActivityAttributes.ContentState(
             phase: .warning,
             startTime: nil,
-            elapsedSeconds: 0,
+            remainingSeconds: 60,
+            totalSeconds: 60,
+            currentProgress: 0.0,
             lastUpdateTime: Date()
         )
 
@@ -175,7 +181,9 @@ struct LiveActivityDebugView: View {
             let newState = PrayerActivityAttributes.ContentState(
                 phase: .completed,
                 startTime: Date(),
-                elapsedSeconds: activity.attributes.durationMinutes * 60,
+                remainingSeconds: 0,
+                totalSeconds: activity.attributes.durationMinutes * 60,
+                currentProgress: 1.0,
                 lastUpdateTime: Date()
             )
 

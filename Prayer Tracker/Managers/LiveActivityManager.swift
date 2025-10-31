@@ -12,6 +12,9 @@ import Foundation
 @Observable class LiveActivityManager {
     static let shared = LiveActivityManager()
 
+    // Store active timers for each running activity
+    private var activeTimers: [String: Timer] = [:]
+
     private init() {}
 
     // MARK: - Authorization
@@ -33,6 +36,7 @@ import Foundation
 
         // Calculate alarm time (next occurrence)
         let alarmTime = nextAlarmDate(hour: alarm.hour, minute: alarm.minute)
+        let durationSeconds = alarm.durationMinutes * 60
 
         // Create attributes (static data)
         let attributes = PrayerActivityAttributes(
@@ -49,7 +53,9 @@ import Foundation
         let contentState = PrayerActivityAttributes.ContentState(
             phase: .warning,
             startTime: nil,
-            elapsedSeconds: 0,
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
             lastUpdateTime: Date()
         )
 
@@ -78,41 +84,117 @@ import Foundation
             return
         }
 
+        let durationSeconds = activity.attributes.durationMinutes * 60
+        let startTime = Date()
+
         // Create updated content state (active phase)
         let newState = PrayerActivityAttributes.ContentState(
             phase: .active,
-            startTime: Date(),
-            elapsedSeconds: 0,
+            startTime: startTime,
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
             lastUpdateTime: Date()
         )
 
         // Set stale date for when the timer ends
-        let staleDate = Date().addingTimeInterval(TimeInterval(activity.attributes.durationMinutes * 60))
+        let staleDate = startTime.addingTimeInterval(TimeInterval(durationSeconds))
 
         await activity.update(
             ActivityContent(state: newState, staleDate: staleDate)
         )
         print("✅ Transitioned activity to active: \(activityID)")
 
-        // Schedule automatic completion when timer ends
-        scheduleAutoCompletion(activityID: activityID, durationMinutes: activity.attributes.durationMinutes)
+        // Start the progress update timer
+        startProgressUpdates(activityID: activityID, durationSeconds: durationSeconds)
     }
 
-    // MARK: - Auto-completion
+    // MARK: - Active Progress Updates
 
-    /// Schedule automatic completion when timer ends
-    private func scheduleAutoCompletion(activityID: String, durationMinutes: Int) {
-        Task {
-            // Wait for the prayer duration
-            try? await Task.sleep(nanoseconds: UInt64(durationMinutes * 60) * 1_000_000_000)
+    /// Start a timer that updates the activity state every second
+    private func startProgressUpdates(activityID: String, durationSeconds: Int) {
+        // Cancel any existing timer for this activity
+        stopProgressUpdates(activityID: activityID)
 
-            // Timer completed - transition to completed state
+        print("🔄 Starting progress updates for activity: \(activityID)")
+
+        // Create a repeating timer that fires every second
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                await self?.updateActivityProgress(activityID: activityID)
+            }
+        }
+
+        // Store the timer
+        activeTimers[activityID] = timer
+
+        // Also add to common run loop to ensure it fires even in background
+        RunLoop.current.add(timer, forMode: .common)
+    }
+
+    /// Update the activity progress based on elapsed time
+    private func updateActivityProgress(activityID: String) async {
+        guard let activity = findActivity(id: activityID) else {
+            print("⚠️ Activity not found during update: \(activityID)")
+            stopProgressUpdates(activityID: activityID)
+            return
+        }
+
+        guard activity.content.state.phase == .active,
+              let startTime = activity.content.state.startTime else {
+            print("⚠️ Activity not in active phase")
+            stopProgressUpdates(activityID: activityID)
+            return
+        }
+
+        let totalSeconds = activity.content.state.totalSeconds
+        let elapsed = Int(Date().timeIntervalSince(startTime))
+        let remaining = max(0, totalSeconds - elapsed)
+        let progress = min(1.0, Double(elapsed) / Double(totalSeconds))
+
+        // Check if timer has completed
+        if remaining <= 0 {
+            print("⏱️ Timer completed, transitioning to completed state")
             await transitionToCompleted(activityID: activityID)
+            return
+        }
+
+        // Update the activity state
+        let newState = PrayerActivityAttributes.ContentState(
+            phase: .active,
+            startTime: startTime,
+            remainingSeconds: remaining,
+            totalSeconds: totalSeconds,
+            currentProgress: progress,
+            lastUpdateTime: Date()
+        )
+
+        await activity.update(
+            ActivityContent(state: newState, staleDate: activity.content.staleDate)
+        )
+
+        // Log every 10 seconds to avoid spam
+        if elapsed % 10 == 0 {
+            print("🔄 Updated progress: \(remaining)s remaining, \(Int(progress * 100))% complete")
         }
     }
 
+    /// Stop progress updates for an activity
+    private func stopProgressUpdates(activityID: String) {
+        if let timer = activeTimers[activityID] {
+            timer.invalidate()
+            activeTimers.removeValue(forKey: activityID)
+            print("🛑 Stopped progress updates for activity: \(activityID)")
+        }
+    }
+
+    // MARK: - Completion
+
     /// Transition activity to completed phase (when timer finishes)
     private func transitionToCompleted(activityID: String) async {
+        // Stop the timer first
+        stopProgressUpdates(activityID: activityID)
+
         guard let activity = findActivity(id: activityID) else {
             print("⚠️ Activity not found for completion: \(activityID)")
             return
@@ -121,7 +203,9 @@ import Foundation
         let newState = PrayerActivityAttributes.ContentState(
             phase: .completed,
             startTime: activity.content.state.startTime,
-            elapsedSeconds: activity.attributes.durationMinutes * 60,
+            remainingSeconds: 0,
+            totalSeconds: activity.content.state.totalSeconds,
+            currentProgress: 1.0,
             lastUpdateTime: Date()
         )
 
@@ -154,6 +238,9 @@ import Foundation
 
     /// End a Live Activity
     func endActivity(activityID: String, dismissalPolicy: ActivityUIDismissalPolicy = .immediate) async {
+        // Stop any active timer
+        stopProgressUpdates(activityID: activityID)
+
         guard let activity = findActivity(id: activityID) else {
             print("⚠️ Activity not found: \(activityID)")
             return
@@ -165,6 +252,14 @@ import Foundation
 
     /// End all active prayer Live Activities
     func endAllActivities() async {
+        // Stop all timers
+        for (activityID, timer) in activeTimers {
+            timer.invalidate()
+            print("🛑 Stopped timer for: \(activityID)")
+        }
+        activeTimers.removeAll()
+
+        // End all activities
         for activity in Activity<PrayerActivityAttributes>.activities {
             await activity.end(nil, dismissalPolicy: .immediate)
         }
@@ -214,5 +309,6 @@ import Foundation
         for activity in activities {
             print("  - \(activity.id): \(activity.attributes.prayerTitle) - Phase: \(activity.content.state.phase)")
         }
+        print("📋 Active Timers: \(activeTimers.count)")
     }
 }

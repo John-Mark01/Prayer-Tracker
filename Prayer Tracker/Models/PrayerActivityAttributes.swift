@@ -18,8 +18,14 @@ struct PrayerActivityAttributes: ActivityAttributes {
         /// When the prayer timer started (nil during warning phase)
         var startTime: Date?
 
-        /// Elapsed seconds since prayer started (0 during warning phase)
-        var elapsedSeconds: Int
+        /// Remaining seconds in the countdown (actively updated)
+        var remainingSeconds: Int
+
+        /// Total duration in seconds
+        var totalSeconds: Int
+
+        /// Current progress from 0.0 to 1.0 (actively updated)
+        var currentProgress: Double
 
         /// When the activity was last updated
         var lastUpdateTime: Date

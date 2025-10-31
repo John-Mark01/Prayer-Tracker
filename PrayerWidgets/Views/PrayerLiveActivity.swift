@@ -49,11 +49,11 @@ struct PrayerLiveActivity: Widget {
                     } else {
                         // Show time info
                         VStack(alignment: .trailing, spacing: 2) {
-                            if context.state.phase == .active, let startTime = context.state.startTime {
-                                // Use live timer that updates automatically
-                                let endTime = startTime.addingTimeInterval(TimeInterval(context.attributes.durationMinutes * 60))
-                                Text(endTime, style: .timer)
+                            if context.state.phase == .active {
+                                // Display remaining time from state
+                                Text(formatTime(context.state.remainingSeconds))
                                     .font(.title2.bold())
+                                    .monospacedDigit()
                                     .multilineTextAlignment(.trailing)
                                 Text("remaining")
                                     .font(.caption)
@@ -78,17 +78,17 @@ struct PrayerLiveActivity: Widget {
                     }
                 }
             } compactLeading: {
-                // Compact leading view - prayer icon (constrained)
+                // Compact leading view - prayer icon
                 Image(systemName: context.attributes.iconName)
                     .font(.system(size: 14))
             } compactTrailing: {
                 Group {
-                    // Compact trailing view - keep it minimal and constrained
-                    if context.state.phase == .active, let startTime = context.state.startTime {
-                        // Live countdown timer during active phase
-                        let endTime = startTime.addingTimeInterval(TimeInterval(context.attributes.durationMinutes * 60))
-                        Text(endTime, style: .timer)
+                    // Compact trailing view - keep it minimal
+                    if context.state.phase == .active {
+                        // Show remaining time from state
+                        Text(formatTime(context.state.remainingSeconds))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .monospacedDigit()
                     } else if context.state.phase == .warning {
                         // Warning phase - show just the time
                         Text(context.attributes.alarmTime, style: .time)
@@ -102,7 +102,6 @@ struct PrayerLiveActivity: Widget {
                 }
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
-                .monospacedDigit()
                 .frame(maxWidth: 40)
             } minimal: {
                 // Minimal view - prayer icon
@@ -153,11 +152,10 @@ struct LockScreenLiveActivityView: View {
                         .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
-                } else if context.state.phase == .active, let startTime = context.state.startTime {
-                    // Live countdown timer
-                    let endTime = startTime.addingTimeInterval(TimeInterval(context.attributes.durationMinutes * 60))
+                } else if context.state.phase == .active {
+                    // Display time from state
                     VStack(alignment: .trailing, spacing: 2) {
-                        Text(endTime, style: .timer)
+                        Text(formatTime(context.state.remainingSeconds))
                             .font(.title3.bold())
                             .monospacedDigit()
                         Text("remaining")
@@ -176,10 +174,7 @@ struct LockScreenLiveActivityView: View {
             }
 
             // Progress bar (only during active phase)
-            if context.state.phase == .active, let startTime = context.state.startTime {
-                let endTime = startTime.addingTimeInterval(TimeInterval(context.attributes.durationMinutes * 60))
-                let totalDuration = TimeInterval(context.attributes.durationMinutes * 60)
-
+            if context.state.phase == .active {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
                         // Background
@@ -187,21 +182,18 @@ struct LockScreenLiveActivityView: View {
                             .fill(Color.gray.opacity(0.2))
                             .frame(height: 8)
 
-                        // Progress - calculated based on time elapsed
-                        let elapsed = Date().timeIntervalSince(startTime)
-                        let progress = min(max(elapsed / totalDuration, 0), 1)
-
+                        // Progress - directly from state
                         RoundedRectangle(cornerRadius: 4)
                             .fill(Color(hex: context.attributes.colorHex))
                             .frame(
-                                width: geometry.size.width * progress,
+                                width: geometry.size.width * context.state.currentProgress,
                                 height: 8
                             )
                     }
                 }
                 .frame(height: 8)
 
-                // Time remaining text with live countdown
+                // Time remaining text
                 HStack {
                     Text("Prayer time")
                         .font(.caption)
@@ -209,8 +201,8 @@ struct LockScreenLiveActivityView: View {
 
                     Spacer()
 
-                    // Live countdown that updates automatically
-                    Text(endTime, style: .timer)
+                    // Display formatted time from state
+                    Text(formatTime(context.state.remainingSeconds))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .monospacedDigit()
@@ -226,6 +218,15 @@ struct LockScreenLiveActivityView: View {
         .activityBackgroundTint(Color(hex: context.attributes.colorHex).opacity(0.1))
         .activitySystemActionForegroundColor(Color(hex: context.attributes.colorHex))
     }
+}
+
+// MARK: - Helper Functions
+
+/// Format seconds as MM:SS
+private func formatTime(_ seconds: Int) -> String {
+    let minutes = seconds / 60
+    let remainingSeconds = seconds % 60
+    return String(format: "%d:%02d", minutes, remainingSeconds)
 }
 
 // MARK: - Color Extension

@@ -112,6 +112,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		364966252EB56E2F00EC74CF /* Exceptions for "PrayerWidgets" folder in "Prayer Tracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Intents/CheckInPrayerIntent.swift,
+			);
+			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
+		};
 		369EF0EB2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "Prayer Tracker" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -150,6 +157,7 @@
 		369EF0F52EB01EE000AC7A06 /* PrayerWidgets */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				364966252EB56E2F00EC74CF /* Exceptions for "PrayerWidgets" folder in "Prayer Tracker" target */,
 				369EF1072EB01EE100AC7A06 /* Exceptions for "PrayerWidgets" folder in "PrayerWidgetsExtension" target */,
 			);
 			path = PrayerWidgets;

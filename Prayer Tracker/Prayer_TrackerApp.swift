@@ -13,6 +13,7 @@ import ActivityKit
 @main
 struct Prayer_TrackerApp: App {
     @State private var notificationDelegate = NotificationDelegate()
+    @Environment(\.scenePhase) private var scenePhase
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -47,8 +48,86 @@ struct Prayer_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onOpenURL { url in
+                    handleURL(url)
+                }
         }
         .modelContainer(sharedModelContainer)
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                // Process pending check-ins when app becomes active
+                Task {
+                    await processPendingCheckIns()
+                }
+            }
+        }
+    }
+
+    // MARK: - URL Handling
+
+    private func handleURL(_ url: URL) {
+        print("🔗 Received URL: \(url.absoluteString)")
+
+        if url.scheme == "prayertracker" {
+            if url.host == "process-checkins" || url.path.contains("process-checkins") {
+                print("✅ Processing check-ins from URL scheme")
+                Task {
+                    await processPendingCheckIns()
+                }
+            }
+        }
+    }
+
+    // MARK: - Check-In Processing
+
+    @MainActor
+    func processPendingCheckIns() async {
+        print("🔄 processPendingCheckIns() called")
+        let queue = CheckInQueue.getQueue()
+
+        guard !queue.isEmpty else {
+            print("ℹ️ No pending check-ins to process")
+            return
+        }
+
+        print("📝 Processing \(queue.count) pending check-in(s)")
+
+        let context = sharedModelContainer.mainContext
+
+        for checkIn in queue {
+            // Find the prayer
+            var prayer: Prayer? = nil
+            if let uuid = UUID(uuidString: checkIn.prayerID) {
+                let descriptor = FetchDescriptor<Prayer>(
+                    predicate: #Predicate { $0.id == uuid }
+                )
+                prayer = try? context.fetch(descriptor).first
+            }
+
+            // Create the prayer entry
+            let entry = PrayerEntry(timestamp: checkIn.timestamp, prayer: prayer)
+            context.insert(entry)
+
+            if let prayer = prayer {
+                print("✅ Created check-in for: \(prayer.title)")
+            } else {
+                print("✅ Created generic check-in")
+            }
+
+            // End the Live Activity
+            await LiveActivityManager.shared.endActivity(activityID: checkIn.activityID)
+        }
+
+        // Save all entries
+        do {
+            try context.save()
+            print("✅ Saved all check-ins to database")
+        } catch {
+            print("❌ Failed to save check-ins: \(error)")
+        }
+
+        // Clear the queue
+        CheckInQueue.clearQueue()
     }
 }
 
@@ -153,10 +232,13 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
         )
 
         // Create initial content state (warning phase)
+        let durationSeconds = durationMinutes * 60
         let contentState = PrayerActivityAttributes.ContentState(
             phase: .warning,
             startTime: nil,
-            elapsedSeconds: 0,
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
             lastUpdateTime: Date()
         )
 
