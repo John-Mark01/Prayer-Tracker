@@ -180,23 +180,6 @@ struct PrayerDetailView: View {
                             }
                         }
                     }
-
-                    // Delete Button
-                    Button(action: { showingDeleteAlert = true }) {
-                        HStack {
-                            Image(systemName: "trash.fill")
-                            Text("Delete Prayer")
-                                .fontWeight(.semibold)
-                        }
-                        .foregroundStyle(.red)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.red.opacity(0.1))
-                        )
-                    }
-                    .padding(.bottom, 20)
                 }
                 .padding(.horizontal, 20)
             }
@@ -204,13 +187,29 @@ struct PrayerDetailView: View {
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Menu("", systemImage: "ellipsis.circle") {
+                    
+                    //Answered prayer
+                    Button(action: { }) {
+                        Label("Prayer is answered", systemImage: "hands.and.sparkles.fill")
+                    }
+                    
+                    // Delete Button
+                    Button(action: { showingDeleteAlert = true }) {
+                        Label("Delete Prayer", systemImage: "trash.fill")
+                    }
+                }
+            }
+        }
         .alert("Delete Prayer", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) {}
             Button("Delete", role: .destructive) {
                 deletePrayer()
             }
         } message: {
-            Text("Are you sure you want to delete \"\(prayer.title)\"? This will also delete all check-in history.")
+            Text("Are you sure you want to delete \n\"\(prayer.title)\"? \nThis will also delete all check-in history.")
         }
     }
 
