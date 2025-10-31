@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		364965942EB5596100EC74CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
+		364965972EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
+		364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */; };
+		364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
+		364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F82EB55BB100EC74CF /* PrayerCardView.swift */; };
+		364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */; };
+		364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
+		364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F22EB55BB100EC74CF /* PrayerAlarm.swift */; };
+		3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F32EB55BB100EC74CF /* PrayerEntry.swift */; };
+		3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FF2EB55BB100EC74CF /* CalendarView.swift */; };
+		3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966032EB55BB100EC74CF /* TodayView.swift */; };
+		3649660D2EB55BB100EC74CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966002EB55BB100EC74CF /* ContentView.swift */; };
+		3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F72EB55BB100EC74CF /* PixelGridView.swift */; };
+		3649660F2EB55BB100EC74CF /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965EC2EB55BB100EC74CF /* CalendarManager.swift */; };
+		364966102EB55BB100EC74CF /* PrayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966012EB55BB100EC74CF /* PrayerDetailView.swift */; };
+		364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FE2EB55BB100EC74CF /* AlarmsView.swift */; };
+		364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965EE2EB55BB100EC74CF /* NotificationManager.swift */; };
+		364966132EB55BB100EC74CF /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F92EB55BB100EC74CF /* StatCard.swift */; };
+		364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F42EB55BB100EC74CF /* PrayerStatistics.swift */; };
+		364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966022EB55BB100EC74CF /* StatisticsView.swift */; };
+		364966162EB55BB100EC74CF /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F02EB55BB100EC74CF /* Prayer.swift */; };
+		364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */; };
+		364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F62EB55BB100EC74CF /* IconPickerView.swift */; };
+		364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */; };
+		3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F22EB55BB100EC74CF /* PrayerAlarm.swift */; };
+		3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F32EB55BB100EC74CF /* PrayerEntry.swift */; };
+		3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */; };
+		3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F02EB55BB100EC74CF /* Prayer.swift */; };
+		3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F42EB55BB100EC74CF /* PrayerStatistics.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -45,6 +74,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3649657D2EB5596100EC74CF /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		3649657E2EB5596100EC74CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		364965882EB5596100EC74CF /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
+		364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer_TrackerApp.swift; sourceTree = "<group>"; };
+		364965EC2EB55BB100EC74CF /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		364965EE2EB55BB100EC74CF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		364965F02EB55BB100EC74CF /* Prayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer.swift; sourceTree = "<group>"; };
+		364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerActivityAttributes.swift; sourceTree = "<group>"; };
+		364965F22EB55BB100EC74CF /* PrayerAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerAlarm.swift; sourceTree = "<group>"; };
+		364965F32EB55BB100EC74CF /* PrayerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerEntry.swift; sourceTree = "<group>"; };
+		364965F42EB55BB100EC74CF /* PrayerStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerStatistics.swift; sourceTree = "<group>"; };
+		364965F62EB55BB100EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
+		364965F72EB55BB100EC74CF /* PixelGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGridView.swift; sourceTree = "<group>"; };
+		364965F82EB55BB100EC74CF /* PrayerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerCardView.swift; sourceTree = "<group>"; };
+		364965F92EB55BB100EC74CF /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCard.swift; sourceTree = "<group>"; };
+		364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityDebugView.swift; sourceTree = "<group>"; };
+		364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrayerSheet.swift; sourceTree = "<group>"; };
+		364965FE2EB55BB100EC74CF /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
+		364965FF2EB55BB100EC74CF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		364966002EB55BB100EC74CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		364966012EB55BB100EC74CF /* PrayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDetailView.swift; sourceTree = "<group>"; };
+		364966022EB55BB100EC74CF /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		364966032EB55BB100EC74CF /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -78,19 +131,6 @@
 			);
 			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
 		};
-		369EF1912EB148FA00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AppGroup.swift,
-				PixelGridView.swift,
-				Prayer.swift,
-				PrayerActivityAttributes.swift,
-				PrayerAlarm.swift,
-				PrayerEntry.swift,
-				PrayerStatistics.swift,
-			);
-			target = 369EF0F12EB01EE000AC7A06 /* PrayerWidgetsExtension */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -109,14 +149,6 @@
 				369EF1072EB01EE100AC7A06 /* Exceptions for "PrayerWidgets" folder in "PrayerWidgetsExtension" target */,
 			);
 			path = PrayerWidgets;
-			sourceTree = "<group>";
-		};
-		36DD5C872EB0073F00E7A9DC /* Prayer Tracker */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				369EF1912EB148FA00AC7A06 /* Exceptions for "Prayer Tracker" folder in "PrayerWidgetsExtension" target */,
-			);
-			path = "Prayer Tracker";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -148,6 +180,85 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		364965932EB5596100EC74CF /* Prayer Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */,
+				3649657D2EB5596100EC74CF /* AppGroup.swift */,
+				364965F52EB55BB100EC74CF /* Models */,
+				364966052EB55BB100EC74CF /* Views */,
+				364965EF2EB55BB100EC74CF /* Managers */,
+				3649657E2EB5596100EC74CF /* Assets.xcassets */,
+				364965882EB5596100EC74CF /* Prayer Tracker.entitlements */,
+			);
+			path = "Prayer Tracker";
+			sourceTree = "<group>";
+		};
+		364965EF2EB55BB100EC74CF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				364965EC2EB55BB100EC74CF /* CalendarManager.swift */,
+				364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */,
+				364965EE2EB55BB100EC74CF /* NotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		364965F52EB55BB100EC74CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				364965F02EB55BB100EC74CF /* Prayer.swift */,
+				364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */,
+				364965F22EB55BB100EC74CF /* PrayerAlarm.swift */,
+				364965F32EB55BB100EC74CF /* PrayerEntry.swift */,
+				364965F42EB55BB100EC74CF /* PrayerStatistics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		364965FA2EB55BB100EC74CF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				364965F62EB55BB100EC74CF /* IconPickerView.swift */,
+				364965F72EB55BB100EC74CF /* PixelGridView.swift */,
+				364965F82EB55BB100EC74CF /* PrayerCardView.swift */,
+				364965F92EB55BB100EC74CF /* StatCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		364965FC2EB55BB100EC74CF /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		364966042EB55BB100EC74CF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				364966002EB55BB100EC74CF /* ContentView.swift */,
+				364966032EB55BB100EC74CF /* TodayView.swift */,
+				364965FE2EB55BB100EC74CF /* AlarmsView.swift */,
+				364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */,
+				364965FF2EB55BB100EC74CF /* CalendarView.swift */,
+				364966012EB55BB100EC74CF /* PrayerDetailView.swift */,
+				364966022EB55BB100EC74CF /* StatisticsView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		364966052EB55BB100EC74CF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				364966042EB55BB100EC74CF /* Screens */,
+				364965FA2EB55BB100EC74CF /* Components */,
+				364965FC2EB55BB100EC74CF /* Debug */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		369EF0682EB0163800AC7A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +273,7 @@
 			children = (
 				3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */,
 				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
-				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
+				364965932EB5596100EC74CF /* Prayer Tracker */,
 				369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */,
 				369EF0F52EB01EE000AC7A06 /* PrayerWidgets */,
 				369EF0682EB0163800AC7A06 /* Frameworks */,
@@ -242,9 +353,6 @@
 			dependencies = (
 				369EF1022EB01EE100AC7A06 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				36DD5C872EB0073F00E7A9DC /* Prayer Tracker */,
-			);
 			name = "Prayer Tracker";
 			packageProductDependencies = (
 			);
@@ -314,6 +422,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364965942EB5596100EC74CF /* Assets.xcassets in Resources */,
 				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +441,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
+				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
+				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
+				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
+				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
+				3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +454,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364965972EB5596100EC74CF /* AppGroup.swift in Sources */,
+				364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */,
+				364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */,
+				364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */,
+				364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */,
+				3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */,
+				3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */,
+				3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */,
+				3649660D2EB55BB100EC74CF /* ContentView.swift in Sources */,
+				3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */,
+				3649660F2EB55BB100EC74CF /* CalendarManager.swift in Sources */,
+				364966102EB55BB100EC74CF /* PrayerDetailView.swift in Sources */,
+				364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */,
+				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
+				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
+				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
+				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
+				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,
+				364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */,
+				364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */,
+				364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */,
+				364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
