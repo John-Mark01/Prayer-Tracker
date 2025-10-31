@@ -115,7 +115,6 @@ struct IconPickerView: View {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundStyle(.purple)
                 }
             }
         }
@@ -131,18 +130,18 @@ struct IconButton: View {
         Button(action: action) {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? Color.purple.opacity(0.3) : Color.white.opacity(0.08))
+                    .fill(isSelected ? Color.green.opacity(0.3) : Color.white.opacity(0.08))
                     .frame(width: 50, height: 50)
 
                 if isSelected {
                     RoundedRectangle(cornerRadius: 12)
-                        .strokeBorder(Color.purple, lineWidth: 2)
+                        .strokeBorder(Color.green, lineWidth: 2)
                         .frame(width: 50, height: 50)
                 }
 
                 Image(systemName: iconName)
                     .font(.system(size: 24))
-                    .foregroundStyle(isSelected ? .purple : .white)
+                    .foregroundStyle(isSelected ? .green : .white)
             }
         }
     }

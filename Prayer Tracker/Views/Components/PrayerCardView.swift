@@ -85,7 +85,7 @@ struct PrayerCardView: View {
                 color: color,
                 dayCount: 70,
                 pixelSize: 20,
-                vSpacing: 1.5,
+                vSpacing: 3.5,
                 hSpacing: 5
             )
         }

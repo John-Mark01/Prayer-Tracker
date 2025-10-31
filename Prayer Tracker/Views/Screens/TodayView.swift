@@ -83,7 +83,6 @@ struct TodayView: View {
                     Button(action: { showingAddSheet = true }) {
                         Image(systemName: "plus")
                             .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(.purple)
                     }
                 }
             }

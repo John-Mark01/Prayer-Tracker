@@ -21,7 +21,7 @@ struct ContentView: View {
                     Label("Alarms", systemImage: "bell.fill")
                 }
         }
-        .tint(.purple)
+        .tint(.green)
     }
 }
 

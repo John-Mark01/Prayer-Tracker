@@ -132,14 +132,12 @@ struct AddPrayerSheet: View {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundStyle(.white)
                 }
 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         savePrayer()
                     }
-                    .foregroundStyle(.purple)
                     .fontWeight(.semibold)
                     .disabled(!isValid)
                 }
