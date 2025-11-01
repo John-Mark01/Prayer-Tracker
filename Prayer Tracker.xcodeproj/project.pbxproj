@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36019F772EB67AA3003DBCA6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36019F762EB67AA3003DBCA6 /* OnboardingView.swift */; };
+		36019F792EB67ABD003DBCA6 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36019F782EB67ABD003DBCA6 /* OnboardingPageView.swift */; };
 		364965942EB5596100EC74CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
 		364965972EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
 		364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		36019F762EB67AA3003DBCA6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		36019F782EB67ABD003DBCA6 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		3649657D2EB5596100EC74CF /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3649657E2EB5596100EC74CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		364965882EB5596100EC74CF /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 		364965FA2EB55BB100EC74CF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				36019F782EB67ABD003DBCA6 /* OnboardingPageView.swift */,
 				364966212EB55E3D00EC74CF /* ViewRows */,
 				364966512EB614DC00EC74CF /* CircularProgressView 2.swift */,
 				364965F62EB55BB100EC74CF /* IconPickerView.swift */,
@@ -279,6 +284,7 @@
 				364966012EB55BB100EC74CF /* PrayerDetailView.swift */,
 				364966022EB55BB100EC74CF /* StatisticsView.swift */,
 				364966032EB55BB100EC74CF /* TodayView.swift */,
+				36019F762EB67AA3003DBCA6 /* OnboardingView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -529,10 +535,12 @@
 				364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */,
 				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
 				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
+				36019F772EB67AA3003DBCA6 /* OnboardingView.swift in Sources */,
 				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
 				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
+				36019F792EB67ABD003DBCA6 /* OnboardingPageView.swift in Sources */,
 				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
 				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,
 				364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */,

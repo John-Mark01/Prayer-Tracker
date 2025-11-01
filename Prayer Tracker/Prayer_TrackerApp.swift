@@ -12,6 +12,9 @@ import ActivityKit
 
 @main
 struct Prayer_TrackerApp: App {
+    @AppStorage("hasCompletedOnboarding", store: UserDefaults(suiteName: AppGroup.identifier))
+    private var hasCompletedOnboarding = false
+
     @State private var notificationDelegate = NotificationDelegate()
     @State private var activePrayerState = ActivePrayerState()
     @Environment(\.scenePhase) private var scenePhase
@@ -52,11 +55,15 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(activePrayerState)
-                .onOpenURL { url in
-                    handleURL(url)
-                }
+            if hasCompletedOnboarding {
+                ContentView()
+                    .environment(activePrayerState)
+                    .onOpenURL { url in
+                        handleURL(url)
+                    }
+            } else {
+                OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+            }
         }
         .modelContainer(sharedModelContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
