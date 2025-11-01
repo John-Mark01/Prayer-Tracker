@@ -77,7 +77,68 @@ import Foundation
 
     // MARK: - Transitioning Activities
 
+    /// Transition activity from warning to ready phase (when alarm time hits)
+    func transitionToReady(activityID: String) async {
+        guard let activity = findActivity(id: activityID) else {
+            print("⚠️ Activity not found: \(activityID)")
+            return
+        }
+
+        let durationSeconds = activity.attributes.durationMinutes * 60
+
+        // Create updated content state (ready phase - not counting yet)
+        let newState = PrayerActivityAttributes.ContentState(
+            phase: .ready,
+            startTime: nil,  // No start time yet
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
+            lastUpdateTime: Date()
+        )
+
+        // Set stale date to 90 minutes for auto-cancel timeout
+        let staleDate = Date().addingTimeInterval(90 * 60)
+
+        await activity.update(
+            ActivityContent(state: newState, staleDate: staleDate)
+        )
+        print("✅ Transitioned activity to ready: \(activityID)")
+    }
+
+    /// Start prayer countdown - transition from ready to active phase
+    func startPrayerCountdown(activityID: String) async {
+        guard let activity = findActivity(id: activityID) else {
+            print("⚠️ Activity not found: \(activityID)")
+            return
+        }
+
+        let durationSeconds = activity.attributes.durationMinutes * 60
+        let startTime = Date()
+
+        // Create updated content state (active phase)
+        let newState = PrayerActivityAttributes.ContentState(
+            phase: .active,
+            startTime: startTime,
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
+            lastUpdateTime: Date()
+        )
+
+        // Set stale date for when the timer ends
+        let staleDate = startTime.addingTimeInterval(TimeInterval(durationSeconds))
+
+        await activity.update(
+            ActivityContent(state: newState, staleDate: staleDate)
+        )
+        print("✅ Started prayer countdown for activity: \(activityID)")
+
+        // Start the progress update timer
+        startProgressUpdates(activityID: activityID, durationSeconds: durationSeconds)
+    }
+
     /// Transition activity from warning to active phase (when alarm time hits)
+    /// NOTE: This is now deprecated in favor of transitionToReady → startPrayerCountdown flow
     func transitionToActive(activityID: String) async {
         guard let activity = findActivity(id: activityID) else {
             print("⚠️ Activity not found: \(activityID)")

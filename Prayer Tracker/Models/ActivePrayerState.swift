@@ -16,6 +16,9 @@ import SwiftUI
     /// Whether a prayer session is currently active
     var isActive: Bool = false
 
+    /// Whether prayer is in ready state (waiting to start)
+    var isReady: Bool = false
+
     /// Prayer information
     var prayerID: String?
     var prayerTitle: String = ""
@@ -40,9 +43,9 @@ import SwiftUI
 
     // MARK: - Methods
 
-    /// Start a new prayer session from notification data
+    /// Start a new prayer session in ready state (from notification data)
     func startPrayer(from userInfo: [AnyHashable: Any]) {
-        print("🎬 ActivePrayerState: Starting prayer session")
+        print("🎬 ActivePrayerState: Starting prayer session in ready state")
 
         // Extract data from notification
         guard let title = userInfo["alarmTitle"] as? String,
@@ -58,18 +61,38 @@ import SwiftUI
         iconName = userInfo["iconName"] as? String ?? "hands.sparkles.fill"
         colorHex = userInfo["colorHex"] as? String ?? "#9333EA"
 
-        // Set timer information
-        startTime = Date()
+        // Set timer information (but don't start counting yet)
+        startTime = nil  // No start time yet!
         totalSeconds = durationMinutes * 60
         remainingSeconds = totalSeconds
         currentProgress = 0.0
         isCompleted = false
+        isReady = true
         isActive = true
 
-        print("✅ Prayer session started: \(prayerTitle) for \(durationMinutes) minutes")
+        print("✅ Prayer session ready: \(prayerTitle) for \(durationMinutes) minutes")
+        print("⏸️ Waiting for user to tap 'Start Prayer' button")
+
+        // DON'T start the timer yet - wait for beginCountdown()
+    }
+
+    /// Begin the countdown timer (called when user taps "Start Prayer")
+    func beginCountdown() {
+        guard isReady else {
+            print("⚠️ Can't begin countdown - not in ready state")
+            return
+        }
+
+        print("▶️ Beginning prayer countdown")
+
+        // Set the start time NOW
+        startTime = Date()
+        isReady = false
 
         // Start the update timer
         startTimer()
+
+        print("✅ Prayer countdown started!")
     }
 
     /// Set the associated Live Activity ID
@@ -137,6 +160,7 @@ import SwiftUI
 
         // Reset all properties
         isActive = false
+        isReady = false
         prayerID = nil
         prayerTitle = ""
         prayerSubtitle = ""

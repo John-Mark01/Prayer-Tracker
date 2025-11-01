@@ -129,6 +129,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Intents/CheckInPrayerIntent.swift,
+				Intents/StartPrayerIntent.swift,
 			);
 			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
 		};

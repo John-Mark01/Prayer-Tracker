@@ -61,9 +61,10 @@ struct Prayer_TrackerApp: App {
         .modelContainer(sharedModelContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
-                // Process pending check-ins when app becomes active
+                // Process pending operations when app becomes active
                 Task {
                     await processPendingCheckIns()
+                    await processPendingStartPrayer()
                 }
             }
         }
@@ -84,6 +85,39 @@ struct Prayer_TrackerApp: App {
         }
     }
 
+    // MARK: - Start Prayer Processing
+
+    @MainActor
+    func processPendingStartPrayer() async {
+        print("🔄 Checking for pending start prayer signals")
+
+        guard let defaults = UserDefaults(suiteName: AppGroup.identifier) else {
+            return
+        }
+
+        // Check for pending start prayer activity ID
+        guard let activityID = defaults.string(forKey: "pendingStartPrayerActivityID") else {
+            return
+        }
+
+        print("🎬 Found pending start prayer for activity: \(activityID)")
+
+        // Clear the pending signal
+        defaults.removeObject(forKey: "pendingStartPrayerActivityID")
+        defaults.removeObject(forKey: "pendingStartPrayerTimestamp")
+
+        // Start the Live Activity countdown
+        await LiveActivityManager.shared.startPrayerCountdown(activityID: activityID)
+
+        // Start the in-app countdown if modal is showing
+        if activePrayerState.activityID == activityID && activePrayerState.isReady {
+            activePrayerState.beginCountdown()
+            print("✅ In-app timer also started")
+        }
+
+        print("✅ Prayer countdown started from Live Activity button")
+    }
+
     // MARK: - Check-In Processing
 
     @MainActor
@@ -99,6 +133,7 @@ struct Prayer_TrackerApp: App {
         print("📝 Processing \(queue.count) pending check-in(s)")
 
         let context = sharedModelContainer.mainContext
+        var checkedInActivityIDs: [String] = []
 
         for checkIn in queue {
             // Find the prayer
@@ -120,6 +155,9 @@ struct Prayer_TrackerApp: App {
                 print("✅ Created generic check-in")
             }
 
+            // Track activity IDs that were checked in
+            checkedInActivityIDs.append(checkIn.activityID)
+
             // End the Live Activity
             await LiveActivityManager.shared.endActivity(activityID: checkIn.activityID)
         }
@@ -134,6 +172,13 @@ struct Prayer_TrackerApp: App {
 
         // Clear the queue
         CheckInQueue.clearQueue()
+
+        // If the current in-app prayer session was checked in from Live Activity, dismiss it
+        if let currentActivityID = activePrayerState.activityID,
+           checkedInActivityIDs.contains(currentActivityID) {
+            print("🚪 Check-in was for current in-app session - dismissing modal")
+            activePrayerState.reset()
+        }
     }
 }
 
@@ -266,25 +311,25 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
         }
     }
 
-    /// Handle alarm notification - transition Live Activity to active OR start new one
+    /// Handle alarm notification - transition Live Activity to ready state
     private func handleAlarmNotification(userInfo: [AnyHashable: Any]) async {
-        print("🔔 Alarm notification received - checking for Live Activity")
+        print("🔔 Alarm notification received - transitioning to ready state")
 
-        // Find the warning activity and transition it to active
+        // Find the warning activity and transition it to ready
         let activities = Activity<PrayerActivityAttributes>.activities
         var activityID: String?
 
         if let activity = activities.first(where: { $0.content.state.phase == .warning }) {
-            print("✅ Found warning activity: \(activity.id) - transitioning to active")
+            print("✅ Found warning activity: \(activity.id) - transitioning to ready")
 
-            // Transition to active phase
-            await LiveActivityManager.shared.transitionToActive(activityID: activity.id)
+            // Transition to ready phase (NOT active - waiting for user to start)
+            await LiveActivityManager.shared.transitionToReady(activityID: activity.id)
             activityID = activity.id
         } else {
-            print("⚠️ No warning activity found - starting new Live Activity in active phase")
+            print("⚠️ No warning activity found - starting new Live Activity in ready phase")
             print("📊 Total activities: \(activities.count)")
 
-            // Start a new Live Activity directly in active phase
+            // Start a new Live Activity directly in ready phase
             // This handles the case when app was backgrounded during warning notification
             activityID = await startAlarmLiveActivity(userInfo: userInfo)
             for activity in activities {
@@ -292,18 +337,18 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
             }
         }
 
-        // Start in-app prayer timer
+        // Start in-app prayer timer in READY state (not counting yet)
         activePrayerState?.startPrayer(from: userInfo)
 
-        // Set the activity ID so check-in can end the Live Activity
+        // Set the activity ID so we can transition it later
         if let activityID = activityID {
             activePrayerState?.setActivityID(activityID)
         }
     }
 
-    /// Start a Live Activity directly in active phase (when alarm fires without warning)
+    /// Start a Live Activity directly in ready phase (when alarm fires without warning)
     private func startAlarmLiveActivity(userInfo: [AnyHashable: Any]) async -> String? {
-        print("🚀 Starting Live Activity in active phase")
+        print("🚀 Starting Live Activity in ready phase")
 
         guard let prayerTitle = userInfo["alarmTitle"] as? String,
               let durationMinutes = userInfo["durationMinutes"] as? Int,
@@ -343,29 +388,32 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
             durationMinutes: durationMinutes
         )
 
-        // Create content state in ACTIVE phase (start timer immediately)
+        // Create content state in READY phase (waiting for user to start)
         let durationSeconds = durationMinutes * 60
         let contentState = PrayerActivityAttributes.ContentState(
-            phase: .active,
-            startTime: now,
+            phase: .ready,
+            startTime: nil,  // No start time yet
             remainingSeconds: durationSeconds,
             totalSeconds: durationSeconds,
             currentProgress: 0.0,
             lastUpdateTime: now
         )
 
+        // Set stale date to 90 minutes for auto-cancel timeout
+        let staleDate = now.addingTimeInterval(90 * 60)
+
         do {
             // Request the Live Activity
             let activity = try Activity<PrayerActivityAttributes>.request(
                 attributes: attributes,
-                content: .init(state: contentState, staleDate: nil),
+                content: .init(state: contentState, staleDate: staleDate),
                 pushType: nil
             )
 
-            print("✅ Live Activity started in active phase: \(activity.id)")
+            print("✅ Live Activity started in ready phase: \(activity.id)")
+            print("⏸️ Waiting for user to start prayer (90 min timeout)")
 
-            // Start the progress timer immediately
-            await LiveActivityManager.shared.startProgressUpdates(activityID: activity.id, durationSeconds: durationSeconds)
+            // Don't start progress timer yet - wait for user to tap Start Prayer
 
             return activity.id
         } catch {

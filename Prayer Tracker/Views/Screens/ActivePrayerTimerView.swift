@@ -32,94 +32,159 @@ struct ActivePrayerTimerView: View {
             .ignoresSafeArea()
 
             VStack(spacing: 40) {
-                // Header: Prayer info
-                VStack(spacing: 8) {
-                    Image(systemName: prayerState.iconName)
-                        .font(.system(size: 50))
-                        .foregroundStyle(prayerState.color)
+                if prayerState.isReady {
+                    // READY STATE: Show "Are you ready to pray?" screen
+                    VStack(spacing: 24) {
+                        Spacer()
 
-                    Text(prayerState.prayerTitle)
-                        .font(.title.bold())
+                        // Prayer icon
+                        Image(systemName: prayerState.iconName)
+                            .font(.system(size: 80))
+                            .foregroundStyle(prayerState.color)
+                            .padding(.bottom, 16)
 
-                    if !prayerState.prayerSubtitle.isEmpty {
-                        Text(prayerState.prayerSubtitle)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                        // Main message
+                        Text("Are you ready to pray for \(prayerState.prayerTitle)?")
+                            .font(.title.bold())
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+
+                        Spacer()
+
+                        // Bottom message and button
+                        VStack(spacing: 24) {
+                            Text("Let's put everything aside and focus on Jesus")
+                                .font(.body)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
+
+                            Button(action: handleStartPrayer) {
+                                HStack {
+                                    Image(systemName: "play.circle.fill")
+                                    Text("Start Prayer")
+                                }
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(prayerState.color)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
+                            .padding(.horizontal, 40)
+                        }
+                        .padding(.bottom, 40)
                     }
-                }
-                .padding(.top, 40)
-
-                Spacer()
-
-                // Circular progress with timer
-                ZStack {
-                    CircularProgressView(
-                        progress: prayerState.currentProgress,
-                        lineWidth: 20,
-                        color: prayerState.color,
-                        size: 300
-                    )
-
+                } else {
+                    // ACTIVE/COMPLETED STATE: Show timer or completion
+                    // Header: Prayer info
                     VStack(spacing: 8) {
-                        if prayerState.isCompleted {
-                            // Completion state
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 80))
-                                .foregroundStyle(prayerState.color)
-                                .transition(.scale.combined(with: .opacity))
-                        } else {
-                            // Active timer
-                            Text(prayerState.formattedTime)
-                                .font(.system(size: 72, weight: .bold, design: .rounded))
-                                .monospacedDigit()
+                        Image(systemName: prayerState.iconName)
+                            .font(.system(size: 50))
+                            .foregroundStyle(prayerState.color)
 
-                            Text("remaining")
-                                .font(.caption)
+                        Text(prayerState.prayerTitle)
+                            .font(.title.bold())
+
+                        if !prayerState.prayerSubtitle.isEmpty {
+                            Text(prayerState.prayerSubtitle)
+                                .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
                     }
-                }
-                .animation(.spring(response: 0.6, dampingFraction: 0.8), value: prayerState.isCompleted)
+                    .padding(.top, 40)
 
-                Spacer()
+                    Spacer()
 
-                // Bottom section
-                VStack(spacing: 16) {
-                    if prayerState.isCompleted {
-                        // Completion message and check-in button
-                        Text("Prayer Complete!")
-                            .font(.title2.bold())
-                            .foregroundStyle(prayerState.color)
+                    // Circular progress with timer
+                    ZStack {
+                        CircularProgressView(
+                            progress: prayerState.currentProgress,
+                            lineWidth: 20,
+                            color: prayerState.color,
+                            size: 300
+                        )
 
-                        Button(action: handleCheckIn) {
-                            HStack {
+                        VStack(spacing: 8) {
+                            if prayerState.isCompleted {
+                                // Completion state
                                 Image(systemName: "checkmark.circle.fill")
-                                Text("Check In")
+                                    .font(.system(size: 80))
+                                    .foregroundStyle(prayerState.color)
+                                    .transition(.scale.combined(with: .opacity))
+                            } else {
+                                // Active timer
+                                Text(prayerState.formattedTime)
+                                    .font(.system(size: 72, weight: .bold, design: .rounded))
+                                    .monospacedDigit()
+
+                                Text("remaining")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
                             }
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(prayerState.color)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
                         }
-                        .padding(.horizontal, 40)
-                    } else {
-                        // Active timer message
-                        Text("Praying for \(prayerState.totalSeconds / 60) minutes")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
+                    .animation(.spring(response: 0.6, dampingFraction: 0.8), value: prayerState.isCompleted)
+
+                    Spacer()
+
+                    // Bottom section
+                    VStack(spacing: 16) {
+                        if prayerState.isCompleted {
+                            // Completion message and check-in button
+                            Text("Prayer Complete!")
+                                .font(.title2.bold())
+                                .foregroundStyle(prayerState.color)
+
+                            Button(action: handleCheckIn) {
+                                HStack {
+                                    Image(systemName: "checkmark.circle.fill")
+                                    Text("Check In")
+                                }
+                                .font(.headline)
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(prayerState.color)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
+                            .padding(.horizontal, 40)
+                        } else {
+                            // Active timer message
+                            Text("Praying for \(prayerState.totalSeconds / 60) minutes")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.bottom, 40)
                 }
-                .padding(.bottom, 40)
             }
         }
-        .interactiveDismissDisabled(!prayerState.isCompleted)
+        .interactiveDismissDisabled(!prayerState.isCompleted && !prayerState.isReady)
         .confettiCannon(trigger: $prayerState.isCompleted)
         .sensoryFeedback(.pathComplete, trigger: prayerState.isCompleted)
     }
 
     // MARK: - Actions
+
+    private func handleStartPrayer() {
+        print("▶️ Start Prayer button tapped")
+
+        guard let activityID = prayerState.activityID else {
+            print("⚠️ No activity ID found")
+            return
+        }
+
+        // Transition Live Activity from .ready to .active
+        Task {
+            await LiveActivityManager.shared.startPrayerCountdown(activityID: activityID)
+        }
+
+        // Begin the countdown in-app
+        prayerState.beginCountdown()
+
+        print("✅ Prayer started - Live Activity and in-app timer now counting down")
+    }
 
     private func handleCheckIn() {
         print("📝 Handling check-in from ActivePrayerTimerView")

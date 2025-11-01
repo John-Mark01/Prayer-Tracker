@@ -46,6 +46,14 @@ struct PrayerLiveActivity: Widget {
                                 .foregroundStyle(.green)
                         }
                         .buttonStyle(.plain)
+                    } else if context.state.phase == .ready {
+                        // Show start prayer button
+                        Button(intent: StartPrayerIntent(activityID: context.activityID)) {
+                            Image(systemName: "play.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(Color(hex: context.attributes.colorHex))
+                        }
+                        .buttonStyle(.plain)
                     } else {
                         // Show time info
                         VStack(alignment: .trailing, spacing: 2) {
@@ -71,6 +79,10 @@ struct PrayerLiveActivity: Widget {
                         Text("Prayer starts soon")
                             .font(.caption)
                             .foregroundStyle(.secondary)
+                    } else if context.state.phase == .ready {
+                        Text("Ready to pray?")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     } else if context.state.phase == .completed {
                         Text("Prayer completed")
                             .font(.caption)
@@ -93,6 +105,11 @@ struct PrayerLiveActivity: Widget {
                         // Warning phase - show just the time
                         Text(context.attributes.alarmTime, style: .time)
                             .font(.system(size: 14, weight: .medium, design: .rounded))
+                    } else if context.state.phase == .ready {
+                        // Ready phase - show play icon
+                        Image(systemName: "play.circle.fill")
+                            .font(.system(size: 16))
+                            .foregroundStyle(Color(hex: context.attributes.colorHex))
                     } else {
                         // Completed phase
                         Image(systemName: "checkmark.circle.fill")
@@ -143,6 +160,21 @@ struct LockScreenLiveActivityView: View {
                         HStack(spacing: 4) {
                             Image(systemName: "checkmark.circle.fill")
                             Text("Check In")
+                        }
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(hex: context.attributes.colorHex))
+                        .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                } else if context.state.phase == .ready {
+                    // Show start prayer button
+                    Button(intent: StartPrayerIntent(activityID: context.activityID)) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "play.circle.fill")
+                            Text("Start")
                         }
                         .font(.subheadline.bold())
                         .foregroundStyle(.white)
@@ -207,6 +239,11 @@ struct LockScreenLiveActivityView: View {
                         .foregroundStyle(.secondary)
                         .monospacedDigit()
                 }
+            } else if context.state.phase == .ready {
+                Text("Are you ready to pray?")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
             } else if context.state.phase == .warning {
                 Text("Prayer will begin at \(context.attributes.alarmTime.formatted(date: .omitted, time: .shortened))")
                     .font(.caption)

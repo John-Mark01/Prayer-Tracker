@@ -55,8 +55,11 @@ struct PrayerActivityAttributes: ActivityAttributes {
 
 /// Represents the different phases of a prayer activity
 enum ActivityPhase: String, Codable, Hashable {
-    /// 5-minute warning before prayer starts
+    /// Warning before prayer starts (if reminder enabled)
     case warning
+
+    /// Alarm fired, waiting for user to start prayer
+    case ready
 
     /// Prayer timer is actively running
     case active
