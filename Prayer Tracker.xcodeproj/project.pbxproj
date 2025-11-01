@@ -38,6 +38,13 @@
 		3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F42EB55BB100EC74CF /* PrayerStatistics.swift */; };
 		364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */; };
 		364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966222EB55E4000EC74CF /* AlarmRow.swift */; };
+		3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649664E2EB614B700EC74CF /* ActivePrayerState.swift */; };
+		364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649664E2EB614B700EC74CF /* ActivePrayerState.swift */; };
+		364966522EB614DC00EC74CF /* CircularProgressView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966512EB614DC00EC74CF /* CircularProgressView 2.swift */; };
+		364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966532EB614FD00EC74CF /* IconPickerView.swift */; };
+		364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */; };
+		364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
+		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -102,6 +109,11 @@
 		364966032EB55BB100EC74CF /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		364966222EB55E4000EC74CF /* AlarmRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRow.swift; sourceTree = "<group>"; };
+		3649664E2EB614B700EC74CF /* ActivePrayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerState.swift; sourceTree = "<group>"; };
+		364966512EB614DC00EC74CF /* CircularProgressView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircularProgressView 2.swift"; sourceTree = "<group>"; };
+		364966532EB614FD00EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
+		364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
+		364966572EB615F500EC74CF /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -200,6 +212,7 @@
 				364965F52EB55BB100EC74CF /* Models */,
 				364966052EB55BB100EC74CF /* Views */,
 				364965EF2EB55BB100EC74CF /* Managers */,
+				3649665A2EB6160D00EC74CF /* Extensions */,
 				3649657E2EB5596100EC74CF /* Assets.xcassets */,
 				364965882EB5596100EC74CF /* Prayer Tracker.entitlements */,
 			);
@@ -220,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				364965F02EB55BB100EC74CF /* Prayer.swift */,
+				3649664E2EB614B700EC74CF /* ActivePrayerState.swift */,
 				364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */,
 				364965F22EB55BB100EC74CF /* PrayerAlarm.swift */,
 				364965F32EB55BB100EC74CF /* PrayerEntry.swift */,
@@ -232,10 +246,12 @@
 			isa = PBXGroup;
 			children = (
 				364966212EB55E3D00EC74CF /* ViewRows */,
+				364966512EB614DC00EC74CF /* CircularProgressView 2.swift */,
 				364965F62EB55BB100EC74CF /* IconPickerView.swift */,
 				364965F72EB55BB100EC74CF /* PixelGridView.swift */,
 				364965F82EB55BB100EC74CF /* PrayerCardView.swift */,
 				364965F92EB55BB100EC74CF /* StatCard.swift */,
+				364966532EB614FD00EC74CF /* IconPickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -251,14 +267,15 @@
 		364966042EB55BB100EC74CF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				364966002EB55BB100EC74CF /* ContentView.swift */,
-				364966032EB55BB100EC74CF /* TodayView.swift */,
-				364965FE2EB55BB100EC74CF /* AlarmsView.swift */,
+				364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */,
 				3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */,
 				364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */,
+				364965FE2EB55BB100EC74CF /* AlarmsView.swift */,
 				364965FF2EB55BB100EC74CF /* CalendarView.swift */,
+				364966002EB55BB100EC74CF /* ContentView.swift */,
 				364966012EB55BB100EC74CF /* PrayerDetailView.swift */,
 				364966022EB55BB100EC74CF /* StatisticsView.swift */,
+				364966032EB55BB100EC74CF /* TodayView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -279,6 +296,14 @@
 				364966222EB55E4000EC74CF /* AlarmRow.swift */,
 			);
 			path = ViewRows;
+			sourceTree = "<group>";
+		};
+		3649665A2EB6160D00EC74CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				364966572EB615F500EC74CF /* Extensions + Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		369EF0682EB0163800AC7A06 /* Frameworks */ = {
@@ -465,9 +490,11 @@
 			files = (
 				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
 				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
+				364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
 				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
+				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
 				3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,11 +508,15 @@
 				364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */,
 				364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */,
 				364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */,
+				364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */,
 				3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */,
 				3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */,
+				364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */,
 				3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */,
+				364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */,
 				3649660D2EB55BB100EC74CF /* ContentView.swift in Sources */,
 				3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */,
+				364966522EB614DC00EC74CF /* CircularProgressView 2.swift in Sources */,
 				3649660F2EB55BB100EC74CF /* CalendarManager.swift in Sources */,
 				364966102EB55BB100EC74CF /* PrayerDetailView.swift in Sources */,
 				364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */,
@@ -493,6 +524,7 @@
 				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
 				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
+				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
 				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
 				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,

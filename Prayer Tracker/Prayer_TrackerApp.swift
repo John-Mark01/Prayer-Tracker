@@ -13,6 +13,7 @@ import ActivityKit
 @main
 struct Prayer_TrackerApp: App {
     @State private var notificationDelegate = NotificationDelegate()
+    @State private var activePrayerState = ActivePrayerState()
     @Environment(\.scenePhase) private var scenePhase
 
     var sharedModelContainer: ModelContainer = {
@@ -43,11 +44,16 @@ struct Prayer_TrackerApp: App {
     init() {
         // Set up notification delegate
         UNUserNotificationCenter.current().delegate = notificationDelegate
+
+        // Pass activePrayerState reference to notification delegate
+        // Note: Using _wrappedValue to access @State in init
+        notificationDelegate.activePrayerState = _activePrayerState.wrappedValue
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(activePrayerState)
                 .onOpenURL { url in
                     handleURL(url)
                 }
@@ -135,6 +141,9 @@ struct Prayer_TrackerApp: App {
 
 @MainActor
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observable {
+    /// Reference to active prayer state for in-app timer
+    var activePrayerState: ActivePrayerState?
+
     /// Called when a notification is delivered while the app is in the foreground
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
@@ -280,6 +289,9 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
                 print("  - Activity \(activity.id): phase = \(activity.content.state.phase)")
             }
         }
+
+        // Start in-app prayer timer
+        activePrayerState?.startPrayer(from: userInfo)
     }
 
     /// Start a Live Activity directly in active phase (when alarm fires without warning)
