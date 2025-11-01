@@ -15,7 +15,7 @@ struct PrayerCardView: View {
     let onTap: () -> Void
 
     private var color: Color {
-        Color(hex: prayer.colorHex) ?? .purple
+        Color(hex: prayer.colorHex)
     }
 
     var body: some View {

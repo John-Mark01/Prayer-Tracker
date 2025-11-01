@@ -96,6 +96,28 @@ struct PrayerDetailView: View {
                     // Statistics Page
                     ScrollView {
                         VStack(spacing: 16) {
+                            // Most important stats - Top row
+                            HStack(spacing: 16) {
+                                
+                                StatCard(
+                                    title: "Today",
+                                    value: "\(stats.todayCount())",
+                                    subtitle: "prayers",
+                                    icon: "calendar.day.timeline.left",
+                                    color: .blue
+                                )
+                                
+                                StatCard(
+                                    title: "All time",
+                                    value: "\(prayerEntries.count)",
+                                    subtitle: "prayers",
+                                    icon: "calendar",
+                                    color: color
+                                )
+
+                            }
+
+                            // Streaks row
                             HStack(spacing: 16) {
                                 StatCard(
                                     title: "Current Streak",
@@ -114,14 +136,24 @@ struct PrayerDetailView: View {
                                 )
                             }
 
-                            StatCard(
-                                title: "Total",
-                                value: "\(prayerEntries.count)",
-                                subtitle: "all time",
-                                icon: "chart.bar.fill",
-                                color: color,
-                                isWide: true
-                            )
+                            // Period stats row
+                            HStack(spacing: 16) {
+                                StatCard(
+                                    title: "This Week",
+                                    value: "\(stats.thisWeekCount())",
+                                    subtitle: "prayers",
+                                    icon: "calendar.badge.clock",
+                                    color: .green
+                                )
+
+                                StatCard(
+                                    title: "This Month",
+                                    value: "\(stats.thisMonthCount())",
+                                    subtitle: "prayers",
+                                    icon: "calendar.circle.fill",
+                                    color: .indigo
+                                )
+                            }
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
