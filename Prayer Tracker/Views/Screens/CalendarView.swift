@@ -130,12 +130,16 @@ struct CalendarView: View {
 
     private func previousMonth() {
         guard let newMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth) else { return }
-        selectedMonth = newMonth
+        withAnimation(.easeOut) {
+            selectedMonth = newMonth
+        }
     }
 
     private func nextMonth() {
         guard let newMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth) else { return }
-        selectedMonth = newMonth
+        withAnimation(.easeIn) {
+            selectedMonth = newMonth
+        }
     }
 }
 

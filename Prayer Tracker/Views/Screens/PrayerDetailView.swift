@@ -27,7 +27,7 @@ struct PrayerDetailView: View {
     }
 
     private var color: Color {
-        Color(hex: prayer.colorHex) ?? .purple
+        Color(hex: prayer.colorHex)
     }
 
     private var monthYearString: String {
@@ -63,125 +63,130 @@ struct PrayerDetailView: View {
             Color(white: 0.05)
                 .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 32) {
-                    // Header
-                    VStack(spacing: 12) {
-                        ZStack {
-                            Circle()
-                                .fill(color.opacity(0.2))
-                                .frame(width: 80, height: 80)
+            VStack(spacing: 0) {
+                // Header
+                VStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(color.opacity(0.2))
+                            .frame(width: 80, height: 80)
 
-                            Image(systemName: prayer.iconName)
-                                .font(.system(size: 40))
-                                .foregroundStyle(color)
-                        }
-
-                        Text(prayer.title)
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-
-                        if !prayer.subtitle.isEmpty {
-                            Text(prayer.subtitle)
-                                .font(.system(size: 16, weight: .medium, design: .rounded))
-                                .foregroundStyle(.white.opacity(0.6))
-                                .frame(maxWidth: 220)
-                                .multilineTextAlignment(.center)
-                        }
-                    }
-                    .padding(.top, 20)
-
-                    // Statistics
-                    VStack(spacing: 16) {
-                        HStack(spacing: 16) {
-                            StatCard(
-                                title: "Current Streak",
-                                value: "\(stats.currentStreak())",
-                                subtitle: "days",
-                                icon: "flame.fill",
-                                color: .orange
-                            )
-
-                            StatCard(
-                                title: "Longest Streak",
-                                value: "\(stats.longestStreak())",
-                                subtitle: "days",
-                                icon: "trophy.fill",
-                                color: .yellow
-                            )
-                        }
-
-                        StatCard(
-                            title: "Total",
-                            value: "\(prayerEntries.count)",
-                            subtitle: "all time",
-                            icon: "chart.bar.fill",
-                            color: color,
-                            isWide: true
-                        )
+                        Image(systemName: prayer.iconName)
+                            .font(.system(size: 40))
+                            .foregroundStyle(color)
                     }
 
-                    // Calendar Section
-                    VStack(spacing: 16) {
-                        Text("Calendar")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(prayer.title)
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
 
-                        // Month Navigator
-                        HStack {
-                            Button(action: previousMonth) {
-                                Image(systemName: "chevron.left")
-                                    .font(.title2)
-                                    .foregroundStyle(.white)
-                            }
-
-                            Spacer()
-
-                            Text(monthYearString)
-                                .font(.title3.bold())
-                                .foregroundStyle(.white)
-
-                            Spacer()
-
-                            Button(action: nextMonth) {
-                                Image(systemName: "chevron.right")
-                                    .font(.title2)
-                                    .foregroundStyle(.white)
-                            }
-                        }
-                        .padding(.horizontal, 20)
-
-                        // Weekday Headers
-                        HStack(spacing: 0) {
-                            ForEach(weekdaySymbols, id: \.self) { symbol in
-                                Text(symbol)
-                                    .font(.caption.bold())
-                                    .foregroundStyle(.white.opacity(0.5))
-                                    .frame(maxWidth: .infinity)
-                            }
-                        }
-                        .padding(.horizontal, 20)
-
-                        // Calendar Grid
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 7), spacing: 8) {
-                            ForEach(Array(daysInMonth.enumerated()), id: \.offset) { _, date in
-                                if let date = date {
-                                    PrayerDayCell(
-                                        date: date,
-                                        count: stats.entryCount(for: date),
-                                        color: color,
-                                        isToday: calendar.isDateInToday(date)
-                                    )
-                                } else {
-                                    Color.clear
-                                        .aspectRatio(1, contentMode: .fit)
-                                }
-                            }
-                        }
+                    if !prayer.subtitle.isEmpty {
+                        Text(prayer.subtitle)
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.6))
+                            .frame(maxWidth: 220)
+                            .multilineTextAlignment(.center)
                     }
                 }
-                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 20)
+
+                // TabView for Stats and Calendar
+                TabView {
+                    // Statistics Page
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            HStack(spacing: 16) {
+                                StatCard(
+                                    title: "Current Streak",
+                                    value: "\(stats.currentStreak())",
+                                    subtitle: "days",
+                                    icon: "flame.fill",
+                                    color: .orange
+                                )
+
+                                StatCard(
+                                    title: "Longest Streak",
+                                    value: "\(stats.longestStreak())",
+                                    subtitle: "days",
+                                    icon: "trophy.fill",
+                                    color: .yellow
+                                )
+                            }
+
+                            StatCard(
+                                title: "Total",
+                                value: "\(prayerEntries.count)",
+                                subtitle: "all time",
+                                icon: "chart.bar.fill",
+                                color: color,
+                                isWide: true
+                            )
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
+                    }
+
+                    // Calendar Page
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            // Month Navigator
+                            HStack {
+                                Button(action: previousMonth) {
+                                    Image(systemName: "chevron.left")
+                                        .font(.title2)
+                                        .foregroundStyle(.white)
+                                }
+
+                                Spacer()
+
+                                Text(monthYearString)
+                                    .font(.title3.bold())
+                                    .foregroundStyle(.white)
+
+                                Spacer()
+
+                                Button(action: nextMonth) {
+                                    Image(systemName: "chevron.right")
+                                        .font(.title2)
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                            .padding(.horizontal, 20)
+
+                            // Weekday Headers
+                            HStack(spacing: 0) {
+                                ForEach(weekdaySymbols, id: \.self) { symbol in
+                                    Text(symbol)
+                                        .font(.caption.bold())
+                                        .foregroundStyle(.white.opacity(0.5))
+                                        .frame(maxWidth: .infinity)
+                                }
+                            }
+                            .padding(.horizontal, 20)
+
+                            // Calendar Grid
+                            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 7), spacing: 8) {
+                                ForEach(Array(daysInMonth.enumerated()), id: \.offset) { _, date in
+                                    if let date = date {
+                                        PrayerDayCell(
+                                            date: date,
+                                            count: stats.entryCount(for: date),
+                                            color: color,
+                                            isToday: calendar.isDateInToday(date)
+                                        )
+                                    } else {
+                                        Color.clear
+                                            .aspectRatio(1, contentMode: .fit)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                        .padding(.top, 20)
+                    }
+                }
+                .tabViewStyle(.page(indexDisplayMode: .always))
             }
         }
         .navigationTitle("")
