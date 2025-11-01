@@ -16,7 +16,7 @@ struct AddAlarmView: View {
 
     @State private var selectedPrayer: Prayer?
     @State private var selectedTime = Date()
-    @State private var durationMinutes = 5
+    @State private var durationMinutes = 1
     @State private var addToCalendar = false
 
     var body: some View {

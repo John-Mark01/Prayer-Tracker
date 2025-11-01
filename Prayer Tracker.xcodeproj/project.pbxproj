@@ -45,6 +45,7 @@
 		364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */; };
 		364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
+		3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -198,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +404,7 @@
 			);
 			name = "Prayer Tracker";
 			packageProductDependencies = (
+				3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */,
 			);
 			productName = "Prayer Tracker";
 			productReference = 36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */;
@@ -438,6 +441,9 @@
 			);
 			mainGroup = 36DD5C7C2EB0073F00E7A9DC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3649665B2EB61AE500EC74CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 36DD5C862EB0073F00E7A9DC /* Products */;
 			projectDirPath = "";
@@ -888,6 +894,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3649665B2EB61AE500EC74CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3649665B2EB61AE500EC74CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 36DD5C7D2EB0073F00E7A9DC /* Project object */;
 }

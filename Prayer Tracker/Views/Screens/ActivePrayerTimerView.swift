@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ConfettiSwiftUI
 
 /// Full-screen modal showing active prayer timer with circular progress
 struct ActivePrayerTimerView: View {
@@ -114,6 +115,8 @@ struct ActivePrayerTimerView: View {
             }
         }
         .interactiveDismissDisabled(!prayerState.isCompleted)
+        .confettiCannon(trigger: $prayerState.isCompleted)
+        .sensoryFeedback(.pathComplete, trigger: prayerState.isCompleted)
     }
 
     // MARK: - Actions
