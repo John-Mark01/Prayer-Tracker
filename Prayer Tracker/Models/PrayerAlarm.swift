@@ -20,9 +20,11 @@ final class PrayerAlarm {
     var calendarIdentifier: String?
     var liveActivityId: String?
     var addToCalendar: Bool
+    var hasReminder: Bool
+    var reminderMinutesBefore: Int
     var prayer: Prayer?
 
-    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true, prayer: Prayer? = nil, addToCalendar: Bool = false) {
+    init(title: String, hour: Int, minute: Int, durationMinutes: Int = 5, isEnabled: Bool = true, prayer: Prayer? = nil, addToCalendar: Bool = false, hasReminder: Bool = false, reminderMinutesBefore: Int = 5) {
         self.title = title
         self.hour = hour
         self.minute = minute
@@ -33,6 +35,8 @@ final class PrayerAlarm {
         self.calendarIdentifier = nil
         self.liveActivityId = nil
         self.addToCalendar = addToCalendar
+        self.hasReminder = hasReminder
+        self.reminderMinutesBefore = reminderMinutesBefore
         self.prayer = prayer
     }
 

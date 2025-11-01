@@ -18,6 +18,8 @@ struct AddAlarmView: View {
     @State private var selectedTime = Date()
     @State private var durationMinutes = 1
     @State private var addToCalendar = false
+    @State private var hasReminder = false
+    @State private var reminderMinutesBefore = 5
 
     var body: some View {
         NavigationStack {
@@ -44,13 +46,14 @@ struct AddAlarmView: View {
                     }
                 } else {
                     Form {
+                        //Main section
                         Section {
                             Picker("Prayer", selection: $selectedPrayer) {
                                 Text("Select Prayer").tag(nil as Prayer?)
                                 ForEach(prayers) { prayer in
                                     HStack {
                                         Image(systemName: prayer.iconName)
-                                            .foregroundStyle(Color(hex: prayer.colorHex) ?? .green)
+                                            .foregroundStyle(Color(hex: prayer.colorHex))
                                         Text(prayer.title)
                                     }
                                     .tag(prayer as Prayer?)
@@ -60,6 +63,7 @@ struct AddAlarmView: View {
                             Text("Which Prayer")
                         }
 
+                        //Time - when to trigger the alarm
                         Section {
                             DatePicker("Time", selection: $selectedTime, displayedComponents: .hourAndMinute)
                                 .datePickerStyle(.wheel)
@@ -67,19 +71,47 @@ struct AddAlarmView: View {
                             Text("When")
                         }
 
+                        //Duration
                         Section {
                             Picker("Duration", selection: $durationMinutes) {
                                 Text("1 minute").tag(1)
+                                Text("2 minute").tag(2)
+                                Text("5 minute").tag(5)
                                 Text("10 minutes").tag(10)
                                 Text("15 minutes").tag(15)
                                 Text("20 minutes").tag(20)
                                 Text("30 minutes").tag(30)
+                                Text("45 minutes").tag(45)
+                                Text("60 minutes").tag(60)
                             }
                             .pickerStyle(.wheel)
                         } header: {
                             Text("Duration")
                         }
 
+                        //Remind Me
+                        Section {
+                            Toggle("Remind Me", isOn: $hasReminder)
+
+                            if hasReminder {
+                                Picker("Reminder Time", selection: $reminderMinutesBefore) {
+                                    Text("1 minute before").tag(1)
+                                    Text("2 minutes before").tag(2)
+                                    Text("5 minutes before").tag(5)
+                                    Text("10 minutes before").tag(10)
+                                    Text("30 minutes before").tag(30)
+                                }
+                            }
+                        } header: {
+                            Text("Reminder")
+                        } footer: {
+                            if hasReminder {
+                                Text("You'll receive a notification \(reminderMinutesBefore) minutes before the prayer starts")
+                                    .font(.caption)
+                            }
+                        }
+                        
+                        //Add to Calendar
                         Section {
                             Toggle("Add to Calendar", isOn: $addToCalendar)
                         } header: {
@@ -127,7 +159,9 @@ struct AddAlarmView: View {
             durationMinutes: durationMinutes,
             isEnabled: true,
             prayer: prayer,
-            addToCalendar: addToCalendar
+            addToCalendar: addToCalendar,
+            hasReminder: hasReminder,
+            reminderMinutesBefore: reminderMinutesBefore
         )
 
         modelContext.insert(alarm)
@@ -145,9 +179,11 @@ struct AddAlarmView: View {
 
             // Schedule notifications if enabled
             if alarm.isEnabled {
-                // Schedule warning notification (5 min before)
-                if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
-                    alarm.warningNotificationIdentifier = identifier
+                // Schedule warning notification (only if reminder is enabled)
+                if alarm.hasReminder {
+                    if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
+                        alarm.warningNotificationIdentifier = identifier
+                    }
                 }
 
                 // Schedule alarm notification
@@ -155,7 +191,7 @@ struct AddAlarmView: View {
                     alarm.notificationIdentifier = identifier
                 }
 
-                // Note: Live Activity will be started when warning notification fires
+                // Note: Live Activity will be started when warning notification fires (if reminder is enabled)
             }
 
             // 2. Handle calendar integration (only if user opted in)

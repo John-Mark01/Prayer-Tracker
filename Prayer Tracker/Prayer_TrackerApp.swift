@@ -272,19 +272,21 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
 
         // Find the warning activity and transition it to active
         let activities = Activity<PrayerActivityAttributes>.activities
+        var activityID: String?
 
         if let activity = activities.first(where: { $0.content.state.phase == .warning }) {
             print("✅ Found warning activity: \(activity.id) - transitioning to active")
 
             // Transition to active phase
             await LiveActivityManager.shared.transitionToActive(activityID: activity.id)
+            activityID = activity.id
         } else {
             print("⚠️ No warning activity found - starting new Live Activity in active phase")
             print("📊 Total activities: \(activities.count)")
 
             // Start a new Live Activity directly in active phase
             // This handles the case when app was backgrounded during warning notification
-            await startAlarmLiveActivity(userInfo: userInfo)
+            activityID = await startAlarmLiveActivity(userInfo: userInfo)
             for activity in activities {
                 print("  - Activity \(activity.id): phase = \(activity.content.state.phase)")
             }
@@ -292,10 +294,15 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
 
         // Start in-app prayer timer
         activePrayerState?.startPrayer(from: userInfo)
+
+        // Set the activity ID so check-in can end the Live Activity
+        if let activityID = activityID {
+            activePrayerState?.setActivityID(activityID)
+        }
     }
 
     /// Start a Live Activity directly in active phase (when alarm fires without warning)
-    private func startAlarmLiveActivity(userInfo: [AnyHashable: Any]) async {
+    private func startAlarmLiveActivity(userInfo: [AnyHashable: Any]) async -> String? {
         print("🚀 Starting Live Activity in active phase")
 
         guard let prayerTitle = userInfo["alarmTitle"] as? String,
@@ -303,7 +310,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
               let hour = userInfo["hour"] as? Int,
               let minute = userInfo["minute"] as? Int else {
             print("⚠️ Missing data in alarm notification")
-            return
+            return nil
         }
 
         // Extract prayer data
@@ -322,7 +329,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
 
         guard let alarmTime = calendar.date(from: components) else {
             print("⚠️ Failed to calculate alarm time")
-            return
+            return nil
         }
 
         // Create attributes
@@ -359,8 +366,11 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
 
             // Start the progress timer immediately
             await LiveActivityManager.shared.startProgressUpdates(activityID: activity.id, durationSeconds: durationSeconds)
+
+            return activity.id
         } catch {
             print("⚠️ Could not start Live Activity: \(error.localizedDescription)")
+            return nil
         }
     }
 }

@@ -12,6 +12,9 @@ struct AddPrayerSheet: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var allPrayers: [Prayer]
+    
+    @FocusState private var titleIsFocused: Bool
+    @FocusState private var subtitleIsFocused: Bool
 
     @State private var title = ""
     @State private var subtitle = ""
@@ -57,6 +60,8 @@ struct AddPrayerSheet: View {
 
                                 TextField("e.g., Morning Prayer", text: $title)
                                     .textFieldStyle(CustomTextFieldStyle())
+                                    .focused($titleIsFocused)
+                                    .onTapGesture { titleIsFocused = true }
                             }
 
                             // Subtitle
@@ -67,6 +72,8 @@ struct AddPrayerSheet: View {
 
                                 TextField("e.g., Start the day with gratitude", text: $subtitle)
                                     .textFieldStyle(CustomTextFieldStyle())
+                                    .focused($subtitleIsFocused)
+                                    .onTapGesture { subtitleIsFocused = true }
                             }
 
                             // Icon Selector
@@ -131,6 +138,7 @@ struct AddPrayerSheet: View {
                     .padding(.bottom, 20)
                 }
             }
+            .onSubmit { handleSubmit() }
             .navigationTitle("New Prayer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -166,6 +174,16 @@ struct AddPrayerSheet: View {
         )
         modelContext.insert(prayer)
         dismiss()
+    }
+    
+    private func handleSubmit() {
+        Task {
+            await MainActor.run {
+                if titleIsFocused {
+                    subtitleIsFocused = true
+                }
+            }
+        }
     }
 }
 

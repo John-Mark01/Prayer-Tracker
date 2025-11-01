@@ -15,7 +15,7 @@ struct AlarmRow: View {
 
     private var prayerColor: Color {
         if let prayer = alarm.prayer {
-            return Color(hex: prayer.colorHex) ?? .purple
+            return Color(hex: prayer.colorHex)
         }
         return .purple
     }
@@ -44,7 +44,7 @@ struct AlarmRow: View {
                     .font(.system(size: 16, weight: .medium))
                     .foregroundStyle(.white.opacity(0.8))
 
-                Text("\(alarm.durationMinutes) min")
+                Text("Prayer duration: \(alarm.durationMinutes) min")
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white.opacity(0.5))
             }
@@ -61,12 +61,14 @@ struct AlarmRow: View {
                         if newValue {
                             // Toggled ON - schedule notifications and calendar
 
-                            // 1. Schedule warning notification (5 min before)
-                            if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
-                                alarm.warningNotificationIdentifier = identifier
+                            // 1. Schedule warning notification (only if reminder is enabled)
+                            if alarm.hasReminder {
+                                if let identifier = await NotificationManager.shared.scheduleWarningNotification(for: alarm) {
+                                    alarm.warningNotificationIdentifier = identifier
+                                }
                             }
 
-                            // 2. Schedule alarm notification
+                            // 2. Schedule alarm notification (always scheduled)
                             if let identifier = await NotificationManager.shared.scheduleAlarmNotification(for: alarm) {
                                 alarm.notificationIdentifier = identifier
                             }

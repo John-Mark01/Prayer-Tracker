@@ -17,6 +17,7 @@ import SwiftUI
     var isActive: Bool = false
 
     /// Prayer information
+    var prayerID: String?
     var prayerTitle: String = ""
     var prayerSubtitle: String = ""
     var iconName: String = "hands.sparkles.fill"
@@ -51,6 +52,7 @@ import SwiftUI
         }
 
         // Set prayer information
+        prayerID = userInfo["prayerID"] as? String
         prayerTitle = title
         prayerSubtitle = userInfo["prayerSubtitle"] as? String ?? ""
         iconName = userInfo["iconName"] as? String ?? "hands.sparkles.fill"
@@ -68,6 +70,12 @@ import SwiftUI
 
         // Start the update timer
         startTimer()
+    }
+
+    /// Set the associated Live Activity ID
+    func setActivityID(_ id: String) {
+        activityID = id
+        print("🆔 Activity ID set: \(id)")
     }
 
     /// Start the timer that updates progress every second
@@ -129,6 +137,7 @@ import SwiftUI
 
         // Reset all properties
         isActive = false
+        prayerID = nil
         prayerTitle = ""
         prayerSubtitle = ""
         iconName = "hands.sparkles.fill"

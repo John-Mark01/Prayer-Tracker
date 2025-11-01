@@ -65,7 +65,7 @@ struct ActivePrayerTimerView: View {
                             // Completion state
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 80))
-                                .foregroundStyle(.green)
+                                .foregroundStyle(prayerState.color)
                                 .transition(.scale.combined(with: .opacity))
                         } else {
                             // Active timer
@@ -89,7 +89,7 @@ struct ActivePrayerTimerView: View {
                         // Completion message and check-in button
                         Text("Prayer Complete!")
                             .font(.title2.bold())
-                            .foregroundStyle(.green)
+                            .foregroundStyle(prayerState.color)
 
                         Button(action: handleCheckIn) {
                             HStack {
@@ -124,15 +124,20 @@ struct ActivePrayerTimerView: View {
     private func handleCheckIn() {
         print("📝 Handling check-in from ActivePrayerTimerView")
 
-        // Create prayer entry
-        let entry = PrayerEntry(timestamp: Date(), prayer: nil)
-        modelContext.insert(entry)
+        // Use the same queue-based approach as Live Activity
+        guard let prayerID = prayerState.prayerID,
+              let activityID = prayerState.activityID else {
+            print("⚠️ Missing prayer ID or activity ID")
+            return
+        }
 
-        do {
-            try modelContext.save()
-            print("✅ Prayer entry saved")
-        } catch {
-            print("❌ Failed to save prayer entry: \(error)")
+        // Queue the check-in
+        CheckInQueue.enqueue(prayerID: prayerID, activityID: activityID)
+        print("✅ Check-in queued successfully")
+
+        // Process the check-in immediately (we're already in the app)
+        Task { @MainActor in
+            await processCheckIn(prayerID: prayerID, activityID: activityID)
         }
 
         // Call the completion callback
@@ -141,6 +146,45 @@ struct ActivePrayerTimerView: View {
         // Reset state and dismiss
         prayerState.reset()
         dismiss()
+    }
+
+    /// Process the check-in (same logic as Prayer_TrackerApp.processPendingCheckIns)
+    @MainActor
+    private func processCheckIn(prayerID: String, activityID: String) async {
+        print("🔄 Processing check-in for prayer: \(prayerID)")
+
+        // Find the prayer
+        var prayer: Prayer? = nil
+        if let uuid = UUID(uuidString: prayerID) {
+            let descriptor = FetchDescriptor<Prayer>(
+                predicate: #Predicate { $0.id == uuid }
+            )
+            prayer = try? modelContext.fetch(descriptor).first
+        }
+
+        // Create the prayer entry
+        let entry = PrayerEntry(timestamp: Date(), prayer: prayer)
+        modelContext.insert(entry)
+
+        if let prayer = prayer {
+            print("✅ Created check-in for: \(prayer.title)")
+        } else {
+            print("✅ Created generic check-in")
+        }
+
+        // Save the entry
+        do {
+            try modelContext.save()
+            print("✅ Saved check-in to database")
+        } catch {
+            print("❌ Failed to save check-in: \(error)")
+        }
+
+        // End the Live Activity
+        await LiveActivityManager.shared.endActivity(activityID: activityID)
+
+        // Clear the queue
+        CheckInQueue.clearQueue()
     }
 }
 

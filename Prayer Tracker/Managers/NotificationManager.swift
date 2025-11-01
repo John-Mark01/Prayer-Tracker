@@ -55,9 +55,10 @@ import Foundation
             cancelNotification(identifier: existingIdentifier)
         }
 
-        // Calculate warning time (5 minutes before alarm)
+        // Calculate warning time (X minutes before alarm based on user preference)
+        let minutesBefore = alarm.reminderMinutesBefore
         var warningHour = alarm.hour
-        var warningMinute = alarm.minute - 5
+        var warningMinute = alarm.minute - minutesBefore
 
         // Handle negative minutes
         if warningMinute < 0 {
@@ -71,7 +72,7 @@ import Foundation
         // Create notification content
         let content = UNMutableNotificationContent()
         content.title = "Upcoming: \(alarm.displayTitle)"
-        content.body = "Prayer time in 5 minutes"
+        content.body = "Prayer time in \(minutesBefore) minute\(minutesBefore == 1 ? "" : "s")"
         content.sound = .default
         content.categoryIdentifier = "PRAYER_WARNING"
 
