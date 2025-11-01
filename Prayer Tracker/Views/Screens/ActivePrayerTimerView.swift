@@ -44,7 +44,7 @@ struct ActivePrayerTimerView: View {
                             .padding(.bottom, 16)
 
                         // Main message
-                        Text("Are you ready to pray for \(prayerState.prayerTitle)?")
+                        Text("Are you ready to pray for:  \(prayerState.prayerTitle)?")
                             .font(.title.bold())
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 32)
@@ -92,6 +92,7 @@ struct ActivePrayerTimerView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                    .lineLimit(4)
                     .padding(.top, 40)
 
                     Spacer()
@@ -117,6 +118,7 @@ struct ActivePrayerTimerView: View {
                                 Text(prayerState.formattedTime)
                                     .font(.system(size: 72, weight: .bold, design: .rounded))
                                     .monospacedDigit()
+                                    .contentTransition(.numericText(countsDown: true))
 
                                 Text("remaining")
                                     .font(.caption)
@@ -151,7 +153,7 @@ struct ActivePrayerTimerView: View {
                             .padding(.horizontal, 40)
                         } else {
                             // Active timer message
-                            Text("Praying for \(prayerState.totalSeconds / 60) minutes")
+                            Text("Praying will continue for \(prayerState.totalSeconds / 60) minutes")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
@@ -161,11 +163,11 @@ struct ActivePrayerTimerView: View {
             }
         }
         .interactiveDismissDisabled(!prayerState.isCompleted && !prayerState.isReady)
+        .sensoryFeedback(.success, trigger: prayerState.isCompleted)
         .confettiCannon(trigger: $prayerState.isCompleted)
-        .sensoryFeedback(.pathComplete, trigger: prayerState.isCompleted)
     }
 
-    // MARK: - Actions
+// MARK: - Actions
 
     private func handleStartPrayer() {
         print("▶️ Start Prayer button tapped")

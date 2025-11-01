@@ -48,8 +48,9 @@ struct AlarmRow: View {
                     .font(.system(size: 14, weight: .regular))
                     .foregroundStyle(.white.opacity(0.5))
             }
-
-            Spacer()
+            .lineLimit(3)
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
 
             Toggle("", isOn: Binding(
                 get: { alarm.isEnabled },
@@ -136,3 +137,19 @@ struct AlarmRow: View {
         .opacity(alarm.isEnabled ? 1.0 : 0.6)
     }
 }
+
+#Preview {
+    @Previewable @Environment(\.modelContext) var modelContext
+    VStack {
+        AlarmRow(
+            alarm: .init(
+                title: "Here is a long titled alarm for testing",
+                hour: 10,
+                minute: 90
+            ),
+            modelContext: modelContext
+        )
+    }
+    .modelContainer(for: PrayerAlarm.self, inMemory: true)
+}
+

@@ -75,10 +75,12 @@ struct AlarmsView: View {
                                 if let prayer = group.prayer {
                                     HStack(spacing: 8) {
                                         Image(systemName: prayer.iconName)
-                                            .foregroundStyle(Color(hex: prayer.colorHex) ?? .purple)
+                                            .foregroundStyle(Color(hex: prayer.colorHex))
                                         Text(prayer.title)
                                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                                     }
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.leading)
                                     .foregroundStyle(.white)
                                     .textCase(nil)
                                 } else {

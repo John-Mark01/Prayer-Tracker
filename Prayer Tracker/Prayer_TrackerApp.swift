@@ -90,13 +90,16 @@ struct Prayer_TrackerApp: App {
     @MainActor
     func processPendingStartPrayer() async {
         print("🔄 Checking for pending start prayer signals")
+        print("📍 Using App Group: \(AppGroup.identifier)")
 
         guard let defaults = UserDefaults(suiteName: AppGroup.identifier) else {
+            print("❌ Failed to access App Group UserDefaults")
             return
         }
 
         // Check for pending start prayer activity ID
         guard let activityID = defaults.string(forKey: "pendingStartPrayerActivityID") else {
+            print("ℹ️ No pending start prayer signal found")
             return
         }
 
@@ -107,12 +110,17 @@ struct Prayer_TrackerApp: App {
         defaults.removeObject(forKey: "pendingStartPrayerTimestamp")
 
         // Start the Live Activity countdown
+        print("▶️ Starting Live Activity countdown...")
         await LiveActivityManager.shared.startPrayerCountdown(activityID: activityID)
 
         // Start the in-app countdown if modal is showing
+        print("🔍 Checking in-app state - activityID: \(activePrayerState.activityID ?? "nil"), isReady: \(activePrayerState.isReady)")
         if activePrayerState.activityID == activityID && activePrayerState.isReady {
+            print("▶️ Starting in-app countdown...")
             activePrayerState.beginCountdown()
             print("✅ In-app timer also started")
+        } else {
+            print("ℹ️ In-app timer not in ready state or different activity")
         }
 
         print("✅ Prayer countdown started from Live Activity button")

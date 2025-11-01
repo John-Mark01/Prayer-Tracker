@@ -11,7 +11,7 @@ import Foundation
 
 // Ensure AppGroup is accessible
 fileprivate struct AppGroupAccess {
-    static let identifier = "group.johnmark.Prayer-Tracker"
+    static let identifier = "group.johnmark.PrayerTracker"
 }
 
 /// App Intent for starting a prayer from the Live Activity
@@ -43,7 +43,16 @@ struct StartPrayerIntent: LiveActivityIntent {
                 defaults.set(activityID, forKey: "pendingStartPrayerActivityID")
                 defaults.set(Date(), forKey: "pendingStartPrayerTimestamp")
                 defaults.synchronize()  // Force immediate write
-                print("✅ Start prayer signal stored in App Group")
+                print("✅ Start prayer signal stored in App Group: \(AppGroupAccess.identifier)")
+                print("✅ Stored activity ID: \(activityID)")
+
+                // Verify it was written
+                if let readBack = defaults.string(forKey: "pendingStartPrayerActivityID") {
+                    print("✅ Verified: Read back activity ID: \(readBack)")
+                } else {
+                    print("⚠️ WARNING: Could not read back the activity ID!")
+                }
+
                 print("✅ App will open and start countdown due to openAppWhenRun = true")
             } else {
                 print("❌ Failed to access App Group UserDefaults")
