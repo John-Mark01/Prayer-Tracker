@@ -37,7 +37,7 @@ struct WidgetPixelGridView: View {
 
                         Text(month.label)
                             .font(.system(size: 10, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.5))
+                            .foregroundStyle(Color.tertiaryText)
                             .frame(width: width, alignment: .leading)
 
                         if month.endCol < columns - 1 {
@@ -222,5 +222,5 @@ struct WidgetPixelCell: View {
         .frame(height: 200)
     }
     .padding()
-    .background(Color(white: 0.05))
+    .background(Color.appBackground)
 }

@@ -39,14 +39,14 @@ struct MediumPrayerWidget: View {
                         // Title
                         Text(prayer.title)
                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.primaryText)
                             .lineLimit(2)
                             .multilineTextAlignment(.leading)
-                        
+
                         //Description
                         Text(prayer.subtitle)
                             .font(.system(size: 12, weight: .light, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                             .lineLimit(1, reservesSpace: true)
                             .multilineTextAlignment(.leading)
                     }
@@ -64,23 +64,29 @@ struct MediumPrayerWidget: View {
                                 Circle()
                                     .fill(color.opacity(entry.todayCount > 0 ? 1.0 : 0.2))
                                     .frame(width: 40, height: 40)
-                                
+                                    .scaleEffect(entry.todayCount > 0 ? 1.05 : 1.0)
+                                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: entry.todayCount)
+
                                 if entry.todayCount > 0 {
                                     Text("\(entry.todayCount)")
                                         .font(.system(size: 20, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(Color.primaryText)
+                                        .contentTransition(.numericText(value: Double(entry.todayCount)))
+                                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: entry.todayCount)
                                 } else {
                                     Image(systemName: "checkmark")
                                         .font(.system(size: 20, weight: .semibold))
                                         .foregroundStyle(color)
+                                        .symbolEffect(.bounce.up, value: entry.todayCount)
                                 }
                             }
                         }
                         .buttonStyle(.plain)
+                        .sensoryFeedback(.success, trigger: entry.todayCount)
                         
                         Text("Check-In")
                             .font(.system(size: 10, weight: .regular, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                     }
                     .frame(alignment: .trailing)
                 }
@@ -103,11 +109,11 @@ struct MediumPrayerWidget: View {
             VStack(spacing: 8) {
                 Image(systemName: "hands.sparkles.fill")
                     .font(.system(size: 32))
-                    .foregroundStyle(.white.opacity(0.3))
-                
+                    .foregroundStyle(Color.tertiaryText)
+
                 Text("Select Prayer")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(Color.tertiaryText)
             }
         }
     }

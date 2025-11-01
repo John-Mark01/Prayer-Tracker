@@ -60,7 +60,7 @@ struct PrayerDetailView: View {
 
     var body: some View {
         ZStack {
-            Color(white: 0.05)
+            Color.appBackground
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
@@ -78,12 +78,12 @@ struct PrayerDetailView: View {
 
                     Text(prayer.title)
                         .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
 
                     if !prayer.subtitle.isEmpty {
                         Text(prayer.subtitle)
                             .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                             .frame(maxWidth: 220)
                             .multilineTextAlignment(.center)
                     }

@@ -74,7 +74,7 @@ struct SmallPrayerWidget: View {
                         HStack(spacing: 4) {
                             Text("\(dayStreak)")
                                 .font(.system(size: 32, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.primaryText)
                                 .contentTransition(.numericText())
                             
                             Text("🔥")
@@ -83,45 +83,52 @@ struct SmallPrayerWidget: View {
                         
                         Text("DAYS")
                             .font(.system(size: 10, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.4))
+                            .foregroundStyle(Color.tertiaryText)
                             .tracking(0.5)
                     }
                     
                     Spacer()
                     
-                    // Check button
+                    // Check button with animations
                     Button(intent: {
                         let intent = CheckInIntent()
                         intent.prayerId = entry.prayer?.id.uuidString
                         return intent
                     }()) {
                         ZStack {
+                            // Animated circle background
                             Circle()
                                 .fill(color)
                                 .frame(width: 44, height: 44)
+                                .scaleEffect(entry.todayCount > 0 ? 1.05 : 1.0)
+                                .animation(.spring(response: 0.3, dampingFraction: 0.6), value: entry.todayCount)
                             
                             if entry.todayCount > 0 {
                                 Text("\(entry.todayCount)")
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color.primaryText)
+                                    .contentTransition(.numericText(value: Double(entry.todayCount)))
+                                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: entry.todayCount)
                             } else {
                                 Image(systemName: "checkmark")
                                     .font(.system(size: 20, weight: .bold))
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color.primaryText)
+                                    .symbolEffect(.bounce.up, value: entry.todayCount)
                             }
                         }
                     }
                     .buttonStyle(.plain)
+                    .sensoryFeedback(.success, trigger: entry.todayCount)
                 }
                 .padding(.top, 8)
                 
                 // Prayer title
                 Text(prayer.title)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                 
-            
+                
                 // Week circles and fraction
                 HStack(alignment: .bottom, spacing: 0) {
                     // Week day circles
@@ -136,14 +143,14 @@ struct SmallPrayerWidget: View {
                                     // Today indicator - ring around the circle
                                     if day.isToday {
                                         Circle()
-                                            .strokeBorder(Color.white, lineWidth: 1.5)
+                                            .strokeBorder(Color.primaryText, lineWidth: 1.5)
                                             .frame(width: 17, height: 17)
                                     }
                                 }
                                 
                                 Text(day.dayLetter)
                                     .font(.system(size: 8, weight: .medium, design: .rounded))
-                                    .foregroundStyle(day.isToday ? .white.opacity(0.9) : .white.opacity(0.4))
+                                    .foregroundStyle(day.isToday ? Color.primaryText.opacity(0.9) : Color.tertiaryText)
                             }
                         }
                     }
@@ -157,16 +164,16 @@ struct SmallPrayerWidget: View {
             VStack(spacing: 8) {
                 Image(systemName: "hands.sparkles.fill")
                     .font(.system(size: 32))
-                    .foregroundStyle(.white.opacity(0.3))
+                    .foregroundStyle(Color.tertiaryText)
                 
                 Text("Select Prayer")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(Color.tertiaryText)
             }
         }
     }
 }
-
+    
 #Preview(as: .systemSmall) {
     PrayerWidget()
 } timeline: {

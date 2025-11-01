@@ -107,7 +107,7 @@ struct PrayerWidget: Widget {
             PrayerWidgetView(entry: entry)
                 .containerRelativeFrame(.vertical)
                 .containerRelativeFrame(.horizontal)
-                .containerBackground(.black, for: .widget)
+                .containerBackground(Color.widgetBackground, for: .widget)
             
         }
         .configurationDisplayName("Prayer Tracker")

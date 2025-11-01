@@ -39,7 +39,7 @@ struct TodayView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(white: 0.05)
+                Color.appBackground
                     .ignoresSafeArea()
 
                 if prayers.isEmpty {
@@ -47,15 +47,15 @@ struct TodayView: View {
                     VStack(spacing: 16) {
                         Image(systemName: "hands.sparkles")
                             .font(.system(size: 60))
-                            .foregroundStyle(.white.opacity(0.3))
+                            .foregroundStyle(Color.tertiaryText)
 
                         Text("No prayers yet")
                             .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.primaryText)
 
                         Text("Tap + to add your first prayer")
                             .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                     }
                 } else {
                     // Prayer List

@@ -42,7 +42,7 @@ struct StatisticsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(white: 0.05)
+                Color.appBackground
                     .ignoresSafeArea()
 
                 ScrollView {

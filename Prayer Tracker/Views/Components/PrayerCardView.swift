@@ -37,15 +37,15 @@ struct PrayerCardView: View {
                     // Title
                     Text(prayer.title)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    
+
                     // Subtitle
                     if !prayer.subtitle.isEmpty {
                         Text(prayer.subtitle)
                             .font(.system(size: 14, weight: .regular, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                             .lineLimit(2)
                             .multilineTextAlignment(.leading)
                     }
@@ -68,7 +68,7 @@ struct PrayerCardView: View {
                             if todayCount > 0 {
                                 Text("\(todayCount)")
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color.primaryText)
                             } else {
                                 Image(systemName: "checkmark")
                                     .font(.system(size: 20, weight: .semibold))
@@ -80,7 +80,7 @@ struct PrayerCardView: View {
                     if todayCount > 0 {
                         Text("Today")
                             .font(.system(size: 14, weight: .regular, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.secondaryText)
                     }
                 }
                 .frame(alignment: .trailing)
@@ -101,7 +101,7 @@ struct PrayerCardView: View {
         .frame(minHeight: 110)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.08))
+                .fill(Color.cardBackground)
         )
         .contentShape(Rectangle())
         .onTapGesture {
@@ -143,5 +143,5 @@ struct PrayerCardView: View {
         )
     }
     .padding()
-    .background(Color(white: 0.05))
+    .background(Color.appBackground)
 }

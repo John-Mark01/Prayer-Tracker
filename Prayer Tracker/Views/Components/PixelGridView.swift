@@ -63,7 +63,7 @@ struct PixelGridView: View {
                         // Month label
                         Text(month.monthLabel)
                             .font(.system(size: 10, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.5))
+                            .foregroundStyle(Color.tertiaryText)
                             .frame(height: 14)
 
                         // Grid for this month's days - show 4 weeks (28 days)
@@ -161,5 +161,5 @@ struct PixelCell: View {
         .frame(width: 350)
     }
     .padding()
-    .background(Color(white: 0.05))
+    .background(Color.appBackground)
 }

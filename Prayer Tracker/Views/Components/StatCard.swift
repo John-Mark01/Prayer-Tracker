@@ -28,22 +28,22 @@ struct StatCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(value)
                     .font(.system(size: isWide ? 48 : 40, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
 
                 Text(subtitle)
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.secondaryText)
             }
 
             Text(title)
                 .font(.system(size: 16, weight: .semibold, design: .rounded))
-                .foregroundStyle(.white.opacity(0.9))
+                .foregroundStyle(Color.primaryText)
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.08))
+                .fill(Color.cardBackground)
         )
     }
 }
@@ -68,5 +68,5 @@ struct StatCard: View {
         )
     }
     .padding()
-    .background(Color(white: 0.05))
+    .background(Color.appBackground)
 }
