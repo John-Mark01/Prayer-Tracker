@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		36019FA52EB67E22003DBCA6 /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F72EB55BB100EC74CF /* PixelGridView.swift */; };
 		364965942EB5596100EC74CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
 		364965972EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
 		364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */; };
@@ -498,7 +497,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
-				36019FA52EB67E22003DBCA6 /* PixelGridView.swift in Sources */,
 				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
 				364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
