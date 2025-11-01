@@ -112,7 +112,7 @@ import Foundation
     // MARK: - Active Progress Updates
 
     /// Start a timer that updates the activity state every second
-    private func startProgressUpdates(activityID: String, durationSeconds: Int) {
+    func startProgressUpdates(activityID: String, durationSeconds: Int) {
         // Cancel any existing timer for this activity
         stopProgressUpdates(activityID: activityID)
 

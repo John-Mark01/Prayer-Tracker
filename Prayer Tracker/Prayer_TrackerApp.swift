@@ -257,24 +257,98 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
         }
     }
 
-    /// Handle alarm notification - transition Live Activity to active
+    /// Handle alarm notification - transition Live Activity to active OR start new one
     private func handleAlarmNotification(userInfo: [AnyHashable: Any]) async {
-        print("🔔 Alarm notification received - transitioning Live Activity to active")
+        print("🔔 Alarm notification received - checking for Live Activity")
 
         // Find the warning activity and transition it to active
         let activities = Activity<PrayerActivityAttributes>.activities
 
         if let activity = activities.first(where: { $0.content.state.phase == .warning }) {
-            print("✅ Found warning activity: \(activity.id)")
+            print("✅ Found warning activity: \(activity.id) - transitioning to active")
 
             // Transition to active phase
             await LiveActivityManager.shared.transitionToActive(activityID: activity.id)
         } else {
-            print("⚠️ No warning activity found to transition")
+            print("⚠️ No warning activity found - starting new Live Activity in active phase")
             print("📊 Total activities: \(activities.count)")
+
+            // Start a new Live Activity directly in active phase
+            // This handles the case when app was backgrounded during warning notification
+            await startAlarmLiveActivity(userInfo: userInfo)
             for activity in activities {
                 print("  - Activity \(activity.id): phase = \(activity.content.state.phase)")
             }
+        }
+    }
+
+    /// Start a Live Activity directly in active phase (when alarm fires without warning)
+    private func startAlarmLiveActivity(userInfo: [AnyHashable: Any]) async {
+        print("🚀 Starting Live Activity in active phase")
+
+        guard let prayerTitle = userInfo["alarmTitle"] as? String,
+              let durationMinutes = userInfo["durationMinutes"] as? Int,
+              let hour = userInfo["hour"] as? Int,
+              let minute = userInfo["minute"] as? Int else {
+            print("⚠️ Missing data in alarm notification")
+            return
+        }
+
+        // Extract prayer data
+        let prayerID = userInfo["prayerID"] as? String
+        let prayerSubtitle = userInfo["prayerSubtitle"] as? String ?? ""
+        let iconName = userInfo["iconName"] as? String ?? "hands.sparkles.fill"
+        let colorHex = userInfo["colorHex"] as? String ?? "#9333EA"
+
+        // Calculate alarm time
+        let calendar = Calendar.current
+        let now = Date()
+        var components = calendar.dateComponents([.year, .month, .day], from: now)
+        components.hour = hour
+        components.minute = minute
+        components.second = 0
+
+        guard let alarmTime = calendar.date(from: components) else {
+            print("⚠️ Failed to calculate alarm time")
+            return
+        }
+
+        // Create attributes
+        let attributes = PrayerActivityAttributes(
+            prayerID: prayerID,
+            prayerTitle: prayerTitle,
+            prayerSubtitle: prayerSubtitle,
+            iconName: iconName,
+            colorHex: colorHex,
+            alarmTime: alarmTime,
+            durationMinutes: durationMinutes
+        )
+
+        // Create content state in ACTIVE phase (start timer immediately)
+        let durationSeconds = durationMinutes * 60
+        let contentState = PrayerActivityAttributes.ContentState(
+            phase: .active,
+            startTime: now,
+            remainingSeconds: durationSeconds,
+            totalSeconds: durationSeconds,
+            currentProgress: 0.0,
+            lastUpdateTime: now
+        )
+
+        do {
+            // Request the Live Activity
+            let activity = try Activity<PrayerActivityAttributes>.request(
+                attributes: attributes,
+                content: .init(state: contentState, staleDate: nil),
+                pushType: nil
+            )
+
+            print("✅ Live Activity started in active phase: \(activity.id)")
+
+            // Start the progress timer immediately
+            await LiveActivityManager.shared.startProgressUpdates(activityID: activity.id, durationSeconds: durationSeconds)
+        } catch {
+            print("⚠️ Could not start Live Activity: \(error.localizedDescription)")
         }
     }
 }

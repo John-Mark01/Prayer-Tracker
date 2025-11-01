@@ -132,14 +132,17 @@ import Foundation
         content.badge = NSNumber(value: 1)
         content.categoryIdentifier = "PRAYER_ALARM"
 
-        // Add prayer metadata for future use
+        // Add prayer metadata for future use (including Live Activity data)
         content.userInfo = [
             "notificationType": "alarm",
             "alarmTitle": alarm.displayTitle,
             "durationMinutes": alarm.durationMinutes,
             "hour": alarm.hour,
             "minute": alarm.minute,
-            "prayerID": alarm.prayer?.id.uuidString ?? ""
+            "prayerID": alarm.prayer?.id.uuidString ?? "",
+            "prayerSubtitle": alarm.prayer?.subtitle ?? "",
+            "iconName": alarm.prayer?.iconName ?? "hands.sparkles.fill",
+            "colorHex": alarm.prayer?.colorHex ?? "#9333EA"
         ]
 
         // Create daily repeating trigger
