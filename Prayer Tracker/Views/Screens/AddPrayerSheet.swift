@@ -16,11 +16,11 @@ struct AddPrayerSheet: View {
     @State private var title = ""
     @State private var subtitle = ""
     @State private var selectedIcon = "hands.sparkles.fill"
-    @State private var selectedColor = Color.purple
+    @State private var selectedColor = Color.green
     @State private var showingIconPicker = false
 
     private let availableColors: [Color] = [
-        .purple, .blue, .green, .orange, .red,
+        .green, .purple, .blue, .orange, .red,
         .pink, .yellow, .cyan, .indigo, .mint
     ]
 
@@ -104,9 +104,10 @@ struct AddPrayerSheet: View {
                                 Text("Color")
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.white.opacity(0.7))
-
+                                
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
+                                        
                                         ForEach(availableColors, id: \.description) { color in
                                             ColorButton(
                                                 color: color,
@@ -114,6 +115,12 @@ struct AddPrayerSheet: View {
                                                 action: { selectedColor = color }
                                             )
                                         }
+                                        
+                                        ColorPicker("",selection: $selectedColor)
+                                            .scaleEffect(CGSize(width: 1.6, height: 1.6))
+                                            .labelsHidden()
+                                            .padding(.horizontal, 5)
+                                        
                                     }
                                     .padding(.horizontal, 4)
                                 }
