@@ -102,7 +102,7 @@ struct StatisticsView: View {
                                 subtitle: "prayers per week",
                                 icon: "chart.line.uptrend.xyaxis",
                                 color: .pink,
-                                isWide: true
+                                isWide: false
                             )
                         }
                         .padding(.horizontal)

@@ -97,45 +97,7 @@ struct PrayerDetailView: View {
                     ScrollView {
                         VStack(spacing: 16) {
                             // Most important stats - Top row
-                            HStack(spacing: 16) {
-                                
-                                StatCard(
-                                    title: "Today",
-                                    value: "\(stats.todayCount())",
-                                    subtitle: "prayers",
-                                    icon: "calendar.day.timeline.left",
-                                    color: .blue
-                                )
-                                
-                                StatCard(
-                                    title: "All time",
-                                    value: "\(prayerEntries.count)",
-                                    subtitle: "prayers",
-                                    icon: "calendar",
-                                    color: color
-                                )
-
-                            }
-
-                            // Streaks row
-                            HStack(spacing: 16) {
-                                StatCard(
-                                    title: "Current Streak",
-                                    value: "\(stats.currentStreak())",
-                                    subtitle: "days",
-                                    icon: "flame.fill",
-                                    color: .orange
-                                )
-
-                                StatCard(
-                                    title: "Longest Streak",
-                                    value: "\(stats.longestStreak())",
-                                    subtitle: "days",
-                                    icon: "trophy.fill",
-                                    color: .yellow
-                                )
-                            }
-
+                            
                             // Period stats row
                             HStack(spacing: 16) {
                                 StatCard(
@@ -154,6 +116,41 @@ struct PrayerDetailView: View {
                                     color: .indigo
                                 )
                             }
+                            HStack(spacing: 16) {
+                                StatCard(
+                                    title: "Weekly Average",
+                                    value: String(format: "%.1f", stats.weeklyAverage()),
+                                    subtitle: "prayers per week",
+                                    icon: "chart.line.uptrend.xyaxis",
+                                    color: .pink
+                                )
+                                
+                                StatCard(
+                                    title: "Longest Streak",
+                                    value: "\(stats.longestStreak())",
+                                    subtitle: "days",
+                                    icon: "trophy.fill",
+                                    color: .yellow
+                                )
+                            }
+//                            // Streaks row
+//                            HStack(spacing: 16) {
+//                                StatCard(
+//                                    title: "Current Streak",
+//                                    value: "\(stats.currentStreak())",
+//                                    subtitle: "days",
+//                                    icon: "flame.fill",
+//                                    color: .orange
+//                                )
+//
+//                                StatCard(
+//                                    title: "Longest Streak",
+//                                    value: "\(stats.longestStreak())",
+//                                    subtitle: "days",
+//                                    icon: "trophy.fill",
+//                                    color: .yellow
+//                                )
+//                            }
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
@@ -225,18 +222,28 @@ struct PrayerDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
         .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                Menu("", systemImage: "ellipsis.circle") {
-                    
-                    //Answered prayer
-                    Button(action: { }) {
-                        Label("Prayer is answered", systemImage: "hands.and.sparkles.fill")
+            ToolbarItemGroup(placement: .topBarLeading) {
+                // Current Streak
+                Button(action: {}) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "flame.fill")
+                            .font(.system(size: 14))
+                            .foregroundStyle(.orange)
+                        Text("\(stats.currentStreak())")
+                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.white)
                     }
-                    
-                    // Delete Button
-                    Button(action: { showingDeleteAlert = true }) {
-                        Label("Delete Prayer", systemImage: "trash.fill")
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                // Delete Button
+                Button(action: { showingDeleteAlert = true }) {
+                    HStack {
+                        Image(systemName: "trash")
+                            .fontWeight(.semibold)
                     }
+                    .foregroundStyle(.red)
                 }
             }
         }
@@ -246,7 +253,7 @@ struct PrayerDetailView: View {
                 deletePrayer()
             }
         } message: {
-            Text("Are you sure you want to delete \n\"\(prayer.title)\"? \nThis will also delete all check-in history.")
+            Text("Are you sure you want to delete \"\(prayer.title)\"? \nThis will also delete all check-in history.")
         }
     }
 

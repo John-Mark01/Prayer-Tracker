@@ -54,25 +54,33 @@ struct PrayerCardView: View {
                 
                 
                 // Check-in Button
-                Button(action: {
-                    onCheckIn()
-                    let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
-                }) {
-                    ZStack {
-                        Circle()
-                            .fill(color.opacity(todayCount > 0 ? 1.0 : 0.2))
-                            .frame(width: 40, height: 40)
-                        
-                        if todayCount > 0 {
-                            Text("\(todayCount)")
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                        } else {
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundStyle(color)
+                VStack {
+                    Button(action: {
+                        onCheckIn()
+                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        generator.impactOccurred()
+                    }) {
+                        ZStack {
+                            Circle()
+                                .fill(color.opacity(todayCount > 0 ? 1.0 : 0.2))
+                                .frame(width: 40, height: 40)
+                            
+                            if todayCount > 0 {
+                                Text("\(todayCount)")
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.white)
+                            } else {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 20, weight: .semibold))
+                                    .foregroundStyle(color)
+                            }
                         }
+                    }
+                    
+                    if todayCount > 0 {
+                        Text("Today")
+                            .font(.system(size: 14, weight: .regular, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.6))
                     }
                 }
                 .frame(alignment: .trailing)
