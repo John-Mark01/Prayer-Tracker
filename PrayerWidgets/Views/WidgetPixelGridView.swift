@@ -169,7 +169,7 @@ struct WidgetPixelCell: View {
             .frame(width: size, height: size)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .strokeBorder(isToday ? color : Color.clear, lineWidth: 2.5)
+                    .strokeBorder(isToday ? color : Color.clear, lineWidth: 1.5)
             )
     }
 }

@@ -42,6 +42,13 @@ struct MediumPrayerWidget: View {
                             .foregroundStyle(.white)
                             .lineLimit(2)
                             .multilineTextAlignment(.leading)
+                        
+                        //Description
+                        Text(prayer.subtitle)
+                            .font(.system(size: 12, weight: .light, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.6))
+                            .lineLimit(1, reservesSpace: true)
+                            .multilineTextAlignment(.leading)
                     }
                     
                     Spacer()
@@ -56,15 +63,15 @@ struct MediumPrayerWidget: View {
                             ZStack {
                                 Circle()
                                     .fill(color.opacity(entry.todayCount > 0 ? 1.0 : 0.2))
-                                    .frame(width: 35, height: 35)
+                                    .frame(width: 40, height: 40)
                                 
                                 if entry.todayCount > 0 {
                                     Text("\(entry.todayCount)")
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .font(.system(size: 20, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
                                 } else {
                                     Image(systemName: "checkmark")
-                                        .font(.system(size: 16, weight: .semibold))
+                                        .font(.system(size: 20, weight: .semibold))
                                         .foregroundStyle(color)
                                 }
                             }
