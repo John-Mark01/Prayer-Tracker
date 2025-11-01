@@ -36,29 +36,34 @@ struct ActivePrayerTimerView: View {
                     // READY STATE: Show "Are you ready to pray?" screen
                     VStack(spacing: 24) {
                         Spacer()
-
+                        
                         // Prayer icon
                         Image(systemName: prayerState.iconName)
                             .font(.system(size: 80))
                             .foregroundStyle(prayerState.color)
                             .padding(.bottom, 16)
-
+                        
                         // Main message
-                        Text("Are you ready to pray for:  \(prayerState.prayerTitle)?")
+                        Text("Are you ready to pray for:\n\n\(prayerState.prayerTitle)?")
                             .font(.title.bold())
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 32)
-
+                        
                         Spacer()
-
+                        
                         // Bottom message and button
-                        VStack(spacing: 24) {
-                            Text("Let's put everything aside and focus on Jesus")
-                                .font(.body)
-                                .foregroundStyle(.secondary)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 32)
-
+                        VStack(alignment: .leading, spacing: 24) {
+                            Group {
+                                Text("Let's put everything aside and focus our minds on Jesus, as He has promised:")
+                                
+                                Text("“And whatever you ask in prayer, you will receive, if you have faith.” — Matthew 6:9")
+                                    .underline()
+                            }
+                            .foregroundStyle(.secondary)
+                            .font(.body)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                            
                             Button(action: handleStartPrayer) {
                                 HStack {
                                     Image(systemName: "play.circle.fill")
@@ -93,7 +98,9 @@ struct ActivePrayerTimerView: View {
                         }
                     }
                     .lineLimit(4)
+                    .multilineTextAlignment(.center)
                     .padding(.top, 40)
+                    .padding(.horizontal, 16)
 
                     Spacer()
 
@@ -258,13 +265,15 @@ struct ActivePrayerTimerView: View {
 #Preview {
     let state = ActivePrayerState()
     state.isActive = true
-    state.prayerTitle = "Morning Prayer"
+    state.prayerTitle = "Morning Prayer is a very long title that has a potential to drop lines very quickly"
     state.prayerSubtitle = "Start your day"
     state.iconName = "sunrise.fill"
     state.colorHex = "#FF6B35"
     state.totalSeconds = 1200 // 20 minutes
     state.remainingSeconds = 720 // 12 minutes left
     state.currentProgress = 0.4
+    state.isReady = false
+    state.isCompleted = true
 
     return ActivePrayerTimerView(prayerState: state) {
         print("Check-in completed")
