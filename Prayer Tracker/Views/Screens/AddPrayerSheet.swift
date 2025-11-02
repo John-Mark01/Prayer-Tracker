@@ -123,7 +123,7 @@ struct AddPrayerSheet: View {
                                             )
                                         }
                                         
-                                        ColorPicker("",selection: $selectedColor)
+                                        ColorPicker("", selection: $selectedColor, supportsOpacity: false)
                                             .scaleEffect(CGSize(width: 1.6, height: 1.6))
                                             .labelsHidden()
                                             .padding(.horizontal, 5)

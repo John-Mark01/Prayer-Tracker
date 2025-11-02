@@ -183,5 +183,17 @@ struct WeekPixel: View {
 #Preview(as: .systemLarge) {
     PrayerWidget()
 } timeline: {
-    PrayerWidgetEntry(date: Date(), entries: [], todayCount: 5, currentStreak: 118)
+    PrayerWidgetEntry(
+        date: Date(),
+        prayer: WidgetPrayerEntity(
+            id: UUID(),
+            title: "Prayer",
+            subtitle: "Daily prayer practice",
+            iconName: "hands.sparkles.fill",
+            colorHex: "#9333EA"
+        ),
+        entries: [],
+        todayCount: 5,
+        currentStreak: 118
+    )
 }

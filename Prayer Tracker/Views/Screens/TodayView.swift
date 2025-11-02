@@ -69,6 +69,10 @@ struct TodayView: View {
                                     onCheckIn: { checkIn(for: prayer) },
                                     onTap: { selectedPrayer = prayer }
                                 )
+                                //TODO: Left here to track colors when needed to copy their HEX Value
+//                                .onAppear {
+//                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
+//                                }
                             }
                         }
                         .padding(20)

@@ -11,45 +11,57 @@ import SwiftData
 
 struct PrayerWidgetEntry: TimelineEntry {
     let date: Date
+    let prayer: WidgetPrayerEntity?
     let entries: [PrayerEntry]
     let todayCount: Int
     let currentStreak: Int
 }
 
-struct PrayerWidgetProvider: TimelineProvider {
+struct PrayerWidgetProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> PrayerWidgetEntry {
-        PrayerWidgetEntry(date: Date(), entries: [], todayCount: 0, currentStreak: 0)
+        PrayerWidgetEntry(date: Date(), prayer: nil, entries: [], todayCount: 0, currentStreak: 0)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (PrayerWidgetEntry) -> Void) {
-        let entry = createEntry()
-        completion(entry)
+    func snapshot(for configuration: WidgetPrayerConfigurationIntent, in context: Context) async -> PrayerWidgetEntry {
+        return createEntry(for: configuration)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<PrayerWidgetEntry>) -> Void) {
-        let entry = createEntry()
+    func timeline(for configuration: WidgetPrayerConfigurationIntent, in context: Context) async -> Timeline<PrayerWidgetEntry> {
+        let entry = createEntry(for: configuration)
 
         // Update every 15 minutes
         let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
 
-        completion(timeline)
+        return timeline
     }
 
-    private func createEntry() -> PrayerWidgetEntry {
-        let entries = fetchPrayerEntries()
+    private func createEntry(for configuration: WidgetPrayerConfigurationIntent) -> PrayerWidgetEntry {
+        guard let selectedPrayer = configuration.prayer else {
+            // If no prayer is selected, return empty entry
+            return PrayerWidgetEntry(
+                date: Date(),
+                prayer: nil,
+                entries: [],
+                todayCount: 0,
+                currentStreak: 0
+            )
+        }
+
+        let entries = fetchPrayerEntries(for: selectedPrayer.id)
         let stats = PrayerStatistics(entries: entries)
 
         return PrayerWidgetEntry(
             date: Date(),
+            prayer: selectedPrayer,
             entries: entries,
             todayCount: stats.todayCount(),
             currentStreak: stats.currentStreak()
         )
     }
 
-    private func fetchPrayerEntries() -> [PrayerEntry] {
-        let schema = Schema([PrayerEntry.self, PrayerAlarm.self])
+    private func fetchPrayerEntries(for prayerId: UUID) -> [PrayerEntry] {
+        let schema = Schema([Prayer.self, PrayerEntry.self, PrayerAlarm.self])
 
         do {
             let container: ModelContainer
@@ -63,9 +75,16 @@ struct PrayerWidgetProvider: TimelineProvider {
             }
 
             let context = ModelContext(container)
-            let descriptor = FetchDescriptor<PrayerEntry>(sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)])
 
-            return try context.fetch(descriptor)
+            // Fetch entries for this prayer
+            let entriesDescriptor = FetchDescriptor<PrayerEntry>(
+                predicate: #Predicate<PrayerEntry> { entry in
+                    entry.prayer?.id == prayerId
+                },
+                sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)]
+            )
+
+            return try context.fetch(entriesDescriptor)
         } catch {
             print("Failed to fetch entries in widget: \(error)")
             return []
@@ -77,14 +96,23 @@ struct PrayerWidget: Widget {
     let kind: String = "PrayerWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: PrayerWidgetProvider()) { entry in
+        AppIntentConfiguration(kind: kind, intent: WidgetPrayerConfigurationIntent.self, provider: PrayerWidgetProvider()) { entry in
+            
+            let color = if let colorHex = entry.prayer?.colorHex {
+                Color(hex: colorHex)
+            } else {
+                Color(hex: "#FAFAFA")
+            }
+
             PrayerWidgetView(entry: entry)
+                .containerRelativeFrame(.vertical)
                 .containerRelativeFrame(.horizontal)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.black, for: .widget)
+            
         }
         .configurationDisplayName("Prayer Tracker")
         .description("Track your daily prayers and streaks")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
@@ -109,17 +137,35 @@ struct PrayerWidgetView: View {
 #Preview(as: .systemSmall) {
     PrayerWidget()
 } timeline: {
-    PrayerWidgetEntry(date: Date(), entries: [], todayCount: 3, currentStreak: 7)
+    PrayerWidgetEntry(
+        date: Date(),
+        prayer: WidgetPrayerEntity(
+            id: UUID(),
+            title: "Read",
+            subtitle: "Daily scripture reading",
+            iconName: "book.fill",
+            colorHex: "#9333EA"
+        ),
+        entries: [],
+        todayCount: 3,
+        currentStreak: 7
+    )
 }
 
 #Preview(as: .systemMedium) {
     PrayerWidget()
 } timeline: {
-    PrayerWidgetEntry(date: Date(), entries: [], todayCount: 3, currentStreak: 7)
-}
-
-#Preview(as: .systemLarge) {
-    PrayerWidget()
-} timeline: {
-    PrayerWidgetEntry(date: Date(), entries: [], todayCount: 3, currentStreak: 7)
+    PrayerWidgetEntry(
+        date: Date(),
+        prayer: WidgetPrayerEntity(
+            id: UUID(),
+            title: "Read",
+            subtitle: "Daily scripture reading",
+            iconName: "book.fill",
+            colorHex: "#9333EA"
+        ),
+        entries: [],
+        todayCount: 3,
+        currentStreak: 7
+    )
 }
