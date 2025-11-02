@@ -9,7 +9,9 @@
       "Bash(xcrun simctl:*)",
       "WebSearch",
       "WebFetch(domain:medium.com)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Read(//Users/johnkata/**)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []

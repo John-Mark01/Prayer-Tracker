@@ -43,3 +43,46 @@ struct OnboardingPageView: View {
     )
     .background(Color(white: 0.05))
 }
+
+
+struct OnboardingPageWelcome: View {
+    let title: String
+    let message: String
+    
+    var body: some View {
+        VStack(spacing: 32) {
+            Spacer()
+
+            // Icon
+            Image("Onboarding/praying_woman")
+                .resizable()
+                .frame(width: 300, height: 300)
+                .clipShape(Circle())
+
+            // Title
+            Text(title)
+                .font(.system(size: 32, weight: .bold, design: .rounded))
+                .foregroundStyle(Color("Onboarding/textPrimary"))
+                .multilineTextAlignment(.center)
+
+            // Message
+            Text(message)
+                .font(.system(size: 20, weight: .regular, design: .rounded))
+                .foregroundStyle(Color("Onboarding/textSecondary"))
+                .multilineTextAlignment(.center)
+                .lineSpacing(4)
+//                .padding(.horizontal, 40)
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+#Preview("OnboardingPageWelcome") {
+    OnboardingPageWelcome(
+        title: "Hello There! 👋",
+        message: "Welcome to Prayer Tracker. An app designed for christians to help them build the habit of Prayer."
+    )
+    .background(Color("Onboarding/background"))
+}
