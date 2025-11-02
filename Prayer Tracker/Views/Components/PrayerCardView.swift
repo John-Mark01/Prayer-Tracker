@@ -86,7 +86,7 @@ struct PrayerCardView: View {
                 .frame(alignment: .trailing)
 
             }
-            
+
             // Pixel Grid
             PixelGridView(
                 entries: entries,

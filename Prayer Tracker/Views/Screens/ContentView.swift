@@ -26,7 +26,7 @@ struct ContentView: View {
                 }
                 .tag(1)
         }
-        .tint(.green)
+        .tint(.appTint)
         .sheet(isPresented: Binding(
             get: { activePrayerState.isActive },
             set: { if !$0 { activePrayerState.reset() } }
