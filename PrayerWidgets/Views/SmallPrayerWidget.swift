@@ -77,8 +77,9 @@ struct SmallPrayerWidget: View {
                                 .foregroundStyle(.white)
                                 .contentTransition(.numericText())
                             
-                            Text("🔥")
-                                .font(.system(size: 18))
+                            Image(systemName: "flame.fill")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.orange)
                         }
                         
                         Text("DAYS")

@@ -39,14 +39,16 @@ struct AlarmRow: View {
                 Text(alarm.timeString)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
-
-                Text(alarm.displayTitle)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.8))
-
+                
                 Text("Prayer duration: \(alarm.durationMinutes) min")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundStyle(.white.opacity(0.8))
+                
+                if alarm.hasReminder {
+                    Text("Reminder: \(alarm.reminderMinutesBefore) minutes before")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.5))
+                }
             }
             .lineLimit(3)
             .multilineTextAlignment(.leading)
