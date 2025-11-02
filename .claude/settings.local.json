@@ -11,7 +11,8 @@
       "WebFetch(domain:medium.com)",
       "Bash(git mv:*)",
       "Read(//Users/johnkata/**)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:www.revenuecat.com)"
     ],
     "deny": [],
     "ask": []

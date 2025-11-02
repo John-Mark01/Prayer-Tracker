@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import UserNotifications
 import ActivityKit
+import RevenueCat
 
 @main
 struct Prayer_TrackerApp: App {
@@ -51,6 +52,10 @@ struct Prayer_TrackerApp: App {
         // Pass activePrayerState reference to notification delegate
         // Note: Using _wrappedValue to access @State in init
         notificationDelegate.activePrayerState = _activePrayerState.wrappedValue
+
+        // Configure RevenueCat
+        // TODO: Replace with your actual RevenueCat API key from the dashboard
+        SubscriptionManager.shared.configure(apiKey: AppConstants.RVN_API_KEY_TEST)
     }
 
     var body: some Scene {

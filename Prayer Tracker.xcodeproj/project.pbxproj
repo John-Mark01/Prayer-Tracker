@@ -49,6 +49,11 @@
 		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */; };
 		3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
+		3654AD942EB7E30700BCB19E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654AD932EB7E30300BCB19E /* Constants.swift */; };
+		3654AD952EB7E30700BCB19E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654AD932EB7E30300BCB19E /* Constants.swift */; };
+		3654AD982EB7E41600BCB19E /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 3654AD972EB7E41600BCB19E /* RevenueCat */; };
+		3654AD9A2EB7E41600BCB19E /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3654AD992EB7E41600BCB19E /* RevenueCatUI */; };
+		3654AD9C2EB7E55100BCB19E /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3654AD9B2EB7E55100BCB19E /* SubscriptionManager.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -120,6 +125,8 @@
 		364966532EB614FD00EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
 		364966572EB615F500EC74CF /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
+		3654AD932EB7E30300BCB19E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3654AD9B2EB7E55100BCB19E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -206,7 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3654AD982EB7E41600BCB19E /* RevenueCat in Frameworks */,
 				3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */,
+				3654AD9A2EB7E41600BCB19E /* RevenueCatUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +225,7 @@
 		364965932EB5596100EC74CF /* Prayer Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				3654AD932EB7E30300BCB19E /* Constants.swift */,
 				364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */,
 				3649657D2EB5596100EC74CF /* AppGroup.swift */,
 				364965F52EB55BB100EC74CF /* Models */,
@@ -232,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				364965EC2EB55BB100EC74CF /* CalendarManager.swift */,
+				3654AD9B2EB7E55100BCB19E /* SubscriptionManager.swift */,
 				364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */,
 				364965EE2EB55BB100EC74CF /* NotificationManager.swift */,
 			);
@@ -414,6 +425,8 @@
 			name = "Prayer Tracker";
 			packageProductDependencies = (
 				3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */,
+				3654AD972EB7E41600BCB19E /* RevenueCat */,
+				3654AD992EB7E41600BCB19E /* RevenueCatUI */,
 			);
 			productName = "Prayer Tracker";
 			productReference = 36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */;
@@ -452,6 +465,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3649665B2EB61AE500EC74CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				3654AD962EB7E41600BCB19E /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 36DD5C862EB0073F00E7A9DC /* Products */;
@@ -510,6 +524,7 @@
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
 				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
+				3654AD942EB7E30700BCB19E /* Constants.swift in Sources */,
 				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
 				3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */,
 			);
@@ -538,6 +553,7 @@
 				364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */,
 				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
 				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
+				3654AD9C2EB7E55100BCB19E /* SubscriptionManager.swift in Sources */,
 				36019F772EB67AA3003DBCA6 /* OnboardingView.swift in Sources */,
 				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
@@ -550,6 +566,7 @@
 				364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */,
 				364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */,
+				3654AD952EB7E30700BCB19E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,6 +933,14 @@
 				minimumVersion = 2.0.3;
 			};
 		};
+		3654AD962EB7E41600BCB19E /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.46.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -923,6 +948,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3649665B2EB61AE500EC74CF /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		3654AD972EB7E41600BCB19E /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3654AD962EB7E41600BCB19E /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		3654AD992EB7E41600BCB19E /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3654AD962EB7E41600BCB19E /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
