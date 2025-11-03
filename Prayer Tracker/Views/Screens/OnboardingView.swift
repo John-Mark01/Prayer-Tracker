@@ -15,35 +15,40 @@ struct OnboardingView: View {
             // Pages
             TabView(selection: $currentPage) {
                 // Page 1: Welcome
-                OnboardingPageWelcome(
+                OnboardingPageView(
+                    icon: "Onboarding/happy",
                     title: "Hello There! 👋",
                     message: "Welcome to Prayer Tracker. An app designed for christians to help them build the habit of Prayer."
                 )
                 .tag(0)
                 
                 // Page 2: Problem Identification
-                OnboardingPageWelcome(
+                OnboardingPageView(
+                    icon: "Onboarding/struggle",
                     title: "Struggling to Pray Daily?",
                     message: "In a world full of distractions we sometimes forget what is most important for christians — Prayer!"
                 )
                 .tag(1)
                 
                 // Page 3: Social Proof
-                OnboardingPageWelcome(
+                OnboardingPageView(
+                    icon: "Onboarding/depressed",
                     title: "You are not alone",
                     message: "Did you know that only 16% of pastors in the US are NOT satisfied with their prayer life, and more than 35% of christians don't pray daily!"
                 )
                 .tag(2)
                 
                 // Page 4: Core Features
-                OnboardingPageWelcome(
+                OnboardingPageView(
+                    icon: "Onboarding/support",
                     title: "Stay on Track",
                     message: "Prayer Tracker will help you track your prayer life, set reminders, and help you stay focused on what's most important to you."
                 )
                 .tag(3)
                 
                 // Page 5: Advanced Features
-                OnboardingPageWelcome(
+                OnboardingPageView(
+                    icon: "Onboarding/praying_woman",
                     title: "Prayer Made Easy",
                     message: "Get Live Activity notifications, add Widgets to your home screen, and share your data across all of your devices."
                 )

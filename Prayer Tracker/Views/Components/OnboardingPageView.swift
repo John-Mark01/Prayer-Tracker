@@ -10,51 +10,7 @@ struct OnboardingPageView: View {
             Spacer()
 
             // Icon
-            Image(systemName: icon)
-                .font(.system(size: 90))
-                .foregroundStyle(.orange.opacity(0.9))
-                .symbolEffect(.bounce, value: icon)
-
-            // Title
-            Text(title)
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-                .multilineTextAlignment(.center)
-
-            // Message
-            Text(message)
-                .font(.system(size: 17, weight: .regular, design: .rounded))
-                .foregroundStyle(.white.opacity(0.7))
-                .multilineTextAlignment(.center)
-                .lineSpacing(4)
-                .padding(.horizontal, 40)
-
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-#Preview {
-    OnboardingPageView(
-        icon: "hands.sparkles",
-        title: "Welcome to Prayer Tracker",
-        message: "Build a lasting habit of daily prayer"
-    )
-    .background(Color(white: 0.05))
-}
-
-
-struct OnboardingPageWelcome: View {
-    let title: String
-    let message: String
-    
-    var body: some View {
-        VStack(spacing: 32) {
-            Spacer()
-
-            // Icon
-            Image("Onboarding/praying_woman")
+            Image(icon)
                 .resizable()
                 .frame(width: 300, height: 300)
                 .clipShape(Circle())
@@ -75,14 +31,16 @@ struct OnboardingPageWelcome: View {
 
             Spacer()
         }
+        .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-#Preview("OnboardingPageWelcome") {
-    OnboardingPageWelcome(
-        title: "Hello There! 👋",
-        message: "Welcome to Prayer Tracker. An app designed for christians to help them build the habit of Prayer."
+#Preview {
+    OnboardingPageView(
+        icon: "hands.sparkles",
+        title: "Welcome to Prayer Tracker",
+        message: "Build a lasting habit of daily prayer"
     )
     .background(Color("Onboarding/background"))
 }
