@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppGroup {
-    static let identifier = "group.johnmark.PrayerTracker"
+    static let identifier = "group.com.johnmark.prayertracker"
 
     static var containerURL: URL? {
         FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)

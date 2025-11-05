@@ -616,13 +616,14 @@
 				INFOPLIST_FILE = PrayerWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PrayerWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerWidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnmark.prayertracker.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -647,13 +648,14 @@
 				INFOPLIST_FILE = PrayerWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PrayerWidgets;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker.PrayerWidgets";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnmark.prayertracker.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -792,6 +794,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Prayer Tracker/Prayer Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S6ZFW3NA3K;
@@ -800,6 +803,8 @@
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -810,8 +815,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnmark.prayertracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -828,6 +834,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Prayer Tracker/Prayer Tracker.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S6ZFW3NA3K;
@@ -836,6 +843,8 @@
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -846,8 +855,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "johnmark.Prayer-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnmark.prayertracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
