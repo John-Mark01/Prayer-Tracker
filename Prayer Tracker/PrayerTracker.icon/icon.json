@@ -1,0 +1,68 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.30742,0.67192,0.72027,1.00000",
+      "display-p3:1.00000,0.84425,0.36672,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "blend-mode" : "hard-light",
+      "blur-material" : 1,
+      "layers" : [
+        {
+          "blend-mode-specializations" : [
+            {
+              "value" : "plus-lighter"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "overlay"
+            }
+          ],
+          "fill-specializations" : [
+            {
+              "value" : "none"
+            },
+            {
+              "appearance" : "dark",
+              "value" : "none"
+            }
+          ],
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Prayer Tracker (1).svg",
+          "name" : "Prayer Tracker (1)",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "hidden" : true,
+          "image-name" : "Prayer Tracker (4).svg",
+          "name" : "Prayer Tracker (4)"
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

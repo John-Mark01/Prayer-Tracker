@@ -47,6 +47,8 @@
 		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */; };
 		3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
+		3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
+		3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -116,6 +118,7 @@
 		364966532EB614FD00EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
 		364966572EB615F500EC74CF /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
+		3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -220,6 +223,7 @@
 				3649665A2EB6160D00EC74CF /* Extensions */,
 				3649657E2EB5596100EC74CF /* Assets.xcassets */,
 				364965882EB5596100EC74CF /* Prayer Tracker.entitlements */,
+				3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */,
 			);
 			path = "Prayer Tracker";
 			sourceTree = "<group>";
@@ -472,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */,
+				3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */,
 				364965942EB5596100EC74CF /* Assets.xcassets in Resources */,
 				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
@@ -791,7 +797,7 @@
 		36DD5C932EB0074000E7A9DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PrayerTracker;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Prayer Tracker/Prayer Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -801,6 +807,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -831,7 +838,7 @@
 		36DD5C942EB0074000E7A9DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = PrayerTracker;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Prayer Tracker/Prayer Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -841,6 +848,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Prayer-Tracker-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Prayer Tracker needs full calendar access to create and manage recurring\n     prayer time events.";
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "Prayer Tracker needs access to your calendar to create recurring prayer\n     time events when you enable calendar integration for your alarms.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
