@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "7AE59A22-F095-4B57-B185-348CF9342878",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Prayer Tracker.xcodeproj",
+        "identifier" : "369EF0E12EB01C5D00AC7A06",
+        "name" : "PrayerTrackerTests"
+      }
+    }
+  ],
+  "version" : 1
+}

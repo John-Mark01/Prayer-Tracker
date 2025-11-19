@@ -1,0 +1,21 @@
+{
+  "" : {
+    "const-values" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary.swiftconstvalues",
+    "dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary.d",
+    "diagnostics" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary.dia",
+    "emit-module-dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary-emit-module.dia",
+    "pch" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests-primary.swiftdeps"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerTrackerTests/PrayerStatisticsTests.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerStatisticsTests.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerStatisticsTests.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerStatisticsTests.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerTrackerTests/PrayerTrackerTests.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerTrackerTests.build/Objects-normal/x86_64/PrayerTrackerTests.o"
+  }
+}

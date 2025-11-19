@@ -1,0 +1,24 @@
+{
+  "source": "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/WidgetPixelGridView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Medium Widget Size (329x155)",
+        "location": {
+          "startingColumn": 1,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Different pixel size",
+        "location": {
+          "startingColumn": 1,
+          "startingLine": 177
+        }
+      }
+    ]
+  },
+  "version": 1
+}

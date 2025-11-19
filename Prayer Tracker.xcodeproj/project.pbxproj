@@ -46,6 +46,9 @@
 		364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */; };
+		364FCAFB2ECE6DEB00563843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; platformFilter = ios; };
+		364FCAFC2ECE6DEB00563843 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		364FCAFF2ECE6E1600563843 /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFE2ECE6E1600563843 /* SwiftData.framework */; };
 		3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
 		3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
 		3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
@@ -73,6 +76,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		364FCAFD2ECE6DEB00563843 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				364FCAFC2ECE6DEB00563843 /* XCTest.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		369EF07E2EB0163900AC7A06 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,6 +132,9 @@
 		364966532EB614FD00EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
 		364966572EB615F500EC74CF /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
+		364FCAF92ECE6DA200563843 /* Prayer Tracker.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prayer Tracker.xctestplan"; sourceTree = "<group>"; };
+		364FCAFA2ECE6DEB00563843 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		364FCAFE2ECE6E1600563843 /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk/System/Library/Frameworks/SwiftData.framework; sourceTree = DEVELOPER_DIR; };
 		3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -141,7 +158,6 @@
 		369EF0EB2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "Prayer Tracker" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				PrayerStatisticsTests.swift,
 				README.md,
 			);
 			target = 36DD5C842EB0073F00E7A9DC /* Prayer Tracker */;
@@ -149,7 +165,6 @@
 		369EF0ED2EB01C6600AC7A06 /* Exceptions for "PrayerTrackerTests" folder in "PrayerTrackerTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				PrayerStatisticsTests.swift,
 				README.md,
 			);
 			target = 369EF0E12EB01C5D00AC7A06 /* PrayerTrackerTests */;
@@ -189,6 +204,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				364FCAFF2ECE6E1600563843 /* SwiftData.framework in Frameworks */,
+				364FCAFB2ECE6DEB00563843 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +335,8 @@
 		369EF0682EB0163800AC7A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				364FCAFE2ECE6E1600563843 /* SwiftData.framework */,
+				364FCAFA2ECE6DEB00563843 /* XCTest.framework */,
 				369EF0692EB0163800AC7A06 /* WidgetKit.framework */,
 				369EF06B2EB0163800AC7A06 /* SwiftUI.framework */,
 			);
@@ -327,6 +346,7 @@
 		36DD5C7C2EB0073F00E7A9DC = {
 			isa = PBXGroup;
 			children = (
+				364FCAF92ECE6DA200563843 /* Prayer Tracker.xctestplan */,
 				3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */,
 				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
 				364965932EB5596100EC74CF /* Prayer Tracker */,
@@ -357,6 +377,7 @@
 				369EF0DE2EB01C5D00AC7A06 /* Sources */,
 				369EF0DF2EB01C5D00AC7A06 /* Frameworks */,
 				369EF0E02EB01C5D00AC7A06 /* Resources */,
+				364FCAFD2ECE6DEB00563843 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

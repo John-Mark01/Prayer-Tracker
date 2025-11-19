@@ -33,8 +33,18 @@ struct PrayerStatistics {
     // MARK: - Streak Calculation
 
     func currentStreak() -> Int {
-        var streak = 0
-        var checkDate = Date()
+        let today = calendar.startOfDay(for: Date())
+        let todayHasEntry = entries.contains { entry in
+            calendar.isDate(entry.timestamp, inSameDayAs: today)
+        }
+
+        // If today has entry, include it in streak and check from yesterday
+        // If today is empty, we still have time to maintain streak - start from yesterday
+        var streak = todayHasEntry ? 1 : 0
+        guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else {
+            return streak
+        }
+        var checkDate = yesterday
 
         while true {
             let dayStart = calendar.startOfDay(for: checkDate)

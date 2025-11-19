@@ -1,0 +1,40 @@
+{
+  "source": "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/CheckInPrayerIntent.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Check In Prayer",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "Record a prayer check-in from Live Activity",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Prayer ID"
+      },
+      {
+        "comment": "",
+        "key": "Activity ID"
+      },
+      {
+        "comment": "",
+        "key": "Prayer ID"
+      },
+      {
+        "comment": "",
+        "key": "Activity ID"
+      }
+    ]
+  },
+  "version": 1
+}

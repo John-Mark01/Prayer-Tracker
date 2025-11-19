@@ -1,0 +1,48 @@
+{
+  "source": "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/WidgetPrayerConfiguration.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Prayer",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Select Prayer",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose which prayer to track in the widget",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 73
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,116 @@
+{
+  "" : {
+    "const-values" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary.swiftconstvalues",
+    "dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary.d",
+    "diagnostics" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary.dia",
+    "emit-module-dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary-emit-module.dia",
+    "pch" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsExtension-primary.swiftdeps"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/AppGroup.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/AppGroup.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/AppGroup.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/AppGroup.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Extensions/Extensions + Color.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Extensions + Color.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Extensions + Color.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Extensions + Color.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/ActivePrayerState.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/ActivePrayerState.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/ActivePrayerState.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/ActivePrayerState.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/Prayer.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Prayer.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Prayer.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/Prayer.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/PrayerActivityAttributes.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerActivityAttributes.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerActivityAttributes.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerActivityAttributes.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/PrayerAlarm.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerAlarm.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerAlarm.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerAlarm.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/PrayerEntry.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerEntry.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerEntry.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerEntry.o"
+  },
+  "/Users/johnkata/Prayer Tracker/Prayer Tracker/Models/PrayerStatistics.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerStatistics.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerStatistics.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerStatistics.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Controls/PrayerWidgetsControl.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsControl.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsControl.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsControl.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/CheckInIntent.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInIntent.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInIntent.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInIntent.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/CheckInPrayerIntent.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInPrayerIntent.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInPrayerIntent.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/CheckInPrayerIntent.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/StartPrayerIntent.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/StartPrayerIntent.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/StartPrayerIntent.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/StartPrayerIntent.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Intents/WidgetPrayerConfiguration.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPrayerConfiguration.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPrayerConfiguration.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPrayerConfiguration.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/PrayerWidgetsBundle.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsBundle.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsBundle.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidgetsBundle.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/LargePrayerWidget.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/LargePrayerWidget.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/LargePrayerWidget.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/LargePrayerWidget.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/MediumPrayerWidget.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/MediumPrayerWidget.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/MediumPrayerWidget.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/MediumPrayerWidget.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/PrayerLiveActivity.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerLiveActivity.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerLiveActivity.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerLiveActivity.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/PrayerWidget.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidget.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidget.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/PrayerWidget.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/SmallPrayerWidget.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/SmallPrayerWidget.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/SmallPrayerWidget.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/SmallPrayerWidget.o"
+  },
+  "/Users/johnkata/Prayer Tracker/PrayerWidgets/Views/WidgetPixelGridView.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPixelGridView.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPixelGridView.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/WidgetPixelGridView.o"
+  },
+  "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/johnkata/Prayer Tracker/build/Prayer Tracker.build/Release-iphonesimulator/PrayerWidgetsExtension.build/Objects-normal/x86_64/GeneratedAssetSymbols.o"
+  }
+}
