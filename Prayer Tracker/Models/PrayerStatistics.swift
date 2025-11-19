@@ -34,33 +34,48 @@ struct PrayerStatistics {
 
     func currentStreak() -> Int {
         let today = calendar.startOfDay(for: Date())
+
+        print("🔥 [Streak Debug] Starting streak calculation")
+        print("🔥 [Streak Debug] Total entries: \(entries.count)")
+        print("🔥 [Streak Debug] Today's date: \(today)")
+
         let todayHasEntry = entries.contains { entry in
-            calendar.isDate(entry.timestamp, inSameDayAs: today)
+            let entryDay = calendar.startOfDay(for: entry.timestamp)
+            return calendar.isDate(entryDay, inSameDayAs: today)
         }
+
+        print("🔥 [Streak Debug] Today has entry: \(todayHasEntry)")
 
         // If today has entry, include it in streak and check from yesterday
         // If today is empty, we still have time to maintain streak - start from yesterday
         var streak = todayHasEntry ? 1 : 0
         guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else {
+            print("🔥 [Streak Debug] Could not calculate yesterday, returning: \(streak)")
             return streak
         }
         var checkDate = yesterday
 
+        print("🔥 [Streak Debug] Starting from yesterday: \(yesterday)")
+
         while true {
-            let dayStart = calendar.startOfDay(for: checkDate)
             let hasEntry = entries.contains { entry in
-                calendar.isDate(entry.timestamp, inSameDayAs: dayStart)
+                let entryDay = calendar.startOfDay(for: entry.timestamp)
+                return calendar.isDate(entryDay, inSameDayAs: checkDate)
             }
+
+            print("🔥 [Streak Debug] Checking date: \(checkDate), has entry: \(hasEntry)")
 
             if hasEntry {
                 streak += 1
                 guard let previousDay = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
                 checkDate = previousDay
             } else {
+                print("🔥 [Streak Debug] No entry found, breaking loop")
                 break
             }
         }
 
+        print("🔥 [Streak Debug] Final streak: \(streak)")
         return streak
     }
 

@@ -27,10 +27,19 @@ struct PrayerWidgetProvider: AppIntentTimelineProvider {
     }
 
     func timeline(for configuration: WidgetPrayerConfigurationIntent, in context: Context) async -> Timeline<PrayerWidgetEntry> {
+        let calendar = Calendar.current
+        let now = Date()
         let entry = createEntry(for: configuration)
 
-        // Update every 15 minutes
-        let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
+        // Calculate next midnight (when day changes - important for streak display)
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now))!
+
+        // Calculate next 15-minute update
+        let next15Min = calendar.date(byAdding: .minute, value: 15, to: now)!
+
+        // Use whichever comes first (midnight or 15 minutes)
+        let nextUpdate = min(tomorrow, next15Min)
+
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
 
         return timeline
