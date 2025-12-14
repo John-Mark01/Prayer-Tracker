@@ -56,6 +56,11 @@
 		368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
 		368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
+		368AD5FA2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
+		368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
+		368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
+		368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
+		368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -142,6 +147,8 @@
 		3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
+		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistanceContainer.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -238,6 +245,8 @@
 		364965932EB5596100EC74CF /* Prayer Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */,
+				368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */,
 				364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */,
 				3649657D2EB5596100EC74CF /* AppGroup.swift */,
 				364965F52EB55BB100EC74CF /* Models */,
@@ -563,9 +572,12 @@
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
 				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
+				368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
 				368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */,
 				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
+				368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */,
 				368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */,
+				368AD5FA2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */,
 				3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,6 +608,8 @@
 				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
 				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
 				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
+				368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
+				368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */,
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
 				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
