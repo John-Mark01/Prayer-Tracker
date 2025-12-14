@@ -14,13 +14,13 @@ struct TabBarScreen: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationView {
+            NavigationStack {
                 TodayView()
             }
             .tag(0)
             .tabItem { Label("Today", systemImage: "house.fill") }
             
-            NavigationView {
+            NavigationStack {
                 AlarmsView()
             }
             .tag(1)
@@ -31,7 +31,6 @@ struct TabBarScreen: View {
             set: { if !$0 { activePrayerState.reset() } }
         )) {
             ActivePrayerTimerView(prayerState: activePrayerState) {
-                // Navigate to Today tab after check-in
                 selectedTab = 0
             }
         }
