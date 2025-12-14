@@ -37,12 +37,28 @@ struct TodayView: View {
     }
 
     var body: some View {
-        ZStack {
-            Color(white: 0.05)
-                .ignoresSafeArea()
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(prayers) { prayer in
+                    PrayerCardView(
+                        prayer: prayer,
+                        entries: prayer.entries,
+                        todayCount: todayCount(for: prayer),
+                        onCheckIn: { checkIn(for: prayer) },
+                        onTap: { selectedPrayer = prayer }
+                    )
+                    //TODO: Left here to track colors when needed to copy their HEX Value
+                    //                                .onAppear {
+                    //                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
+                    //                                }
+                }
+            }
+            .padding(20)
+        }
+        .overlay {
             
+            // Empty State
             if prayers.isEmpty {
-                // Empty State
                 VStack(spacing: 16) {
                     Image(systemName: "hands.sparkles")
                         .font(.system(size: 60))
@@ -56,28 +72,9 @@ struct TodayView: View {
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.white.opacity(0.6))
                 }
-            } else {
-                // Prayer List
-                ScrollView {
-                    LazyVStack(spacing: 16) {
-                        ForEach(prayers) { prayer in
-                            PrayerCardView(
-                                prayer: prayer,
-                                entries: prayer.entries,
-                                todayCount: todayCount(for: prayer),
-                                onCheckIn: { checkIn(for: prayer) },
-                                onTap: { selectedPrayer = prayer }
-                            )
-                            //TODO: Left here to track colors when needed to copy their HEX Value
-                            //                                .onAppear {
-                            //                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
-                            //                                }
-                        }
-                    }
-                    .padding(20)
-                }
             }
         }
+        .background(Color(white: 0.05).ignoresSafeArea())
         .navigationTitle("Today")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
