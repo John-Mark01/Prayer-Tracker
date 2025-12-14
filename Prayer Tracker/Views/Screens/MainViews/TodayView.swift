@@ -37,66 +37,64 @@ struct TodayView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color(white: 0.05)
-                    .ignoresSafeArea()
-
-                if prayers.isEmpty {
-                    // Empty State
-                    VStack(spacing: 16) {
-                        Image(systemName: "hands.sparkles")
-                            .font(.system(size: 60))
-                            .foregroundStyle(.white.opacity(0.3))
-
-                        Text("No prayers yet")
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-
-                        Text("Tap + to add your first prayer")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
-                    }
-                } else {
-                    // Prayer List
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            ForEach(prayers) { prayer in
-                                PrayerCardView(
-                                    prayer: prayer,
-                                    entries: prayer.entries,
-                                    todayCount: todayCount(for: prayer),
-                                    onCheckIn: { checkIn(for: prayer) },
-                                    onTap: { selectedPrayer = prayer }
-                                )
-                                //TODO: Left here to track colors when needed to copy their HEX Value
-//                                .onAppear {
-//                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
-//                                }
-                            }
+        ZStack {
+            Color(white: 0.05)
+                .ignoresSafeArea()
+            
+            if prayers.isEmpty {
+                // Empty State
+                VStack(spacing: 16) {
+                    Image(systemName: "hands.sparkles")
+                        .font(.system(size: 60))
+                        .foregroundStyle(.white.opacity(0.3))
+                    
+                    Text("No prayers yet")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                    
+                    Text("Tap + to add your first prayer")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.6))
+                }
+            } else {
+                // Prayer List
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(prayers) { prayer in
+                            PrayerCardView(
+                                prayer: prayer,
+                                entries: prayer.entries,
+                                todayCount: todayCount(for: prayer),
+                                onCheckIn: { checkIn(for: prayer) },
+                                onTap: { selectedPrayer = prayer }
+                            )
+                            //TODO: Left here to track colors when needed to copy their HEX Value
+                            //                                .onAppear {
+                            //                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
+                            //                                }
                         }
-                        .padding(20)
                     }
+                    .padding(20)
                 }
             }
-            .navigationTitle("Today")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: { showingAddSheet = true }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 18, weight: .semibold))
-                    }
+        }
+        .navigationTitle("Today")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: { showingAddSheet = true }) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 18, weight: .semibold))
                 }
             }
-            .sheet(isPresented: $showingAddSheet) {
-                AddPrayerSheet()
-            }
-            .sheet(item: $selectedPrayer) { prayer in
-                NavigationStack {
-                    PrayerDetailView(prayer: prayer)
-                }
+        }
+        .sheet(isPresented: $showingAddSheet) {
+            AddPrayerSheet()
+        }
+        .sheet(item: $selectedPrayer) { prayer in
+            NavigationStack {
+                PrayerDetailView(prayer: prayer)
             }
         }
     }

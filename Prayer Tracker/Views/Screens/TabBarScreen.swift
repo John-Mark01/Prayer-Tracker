@@ -14,19 +14,18 @@ struct TabBarScreen: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            TodayView()
-                .tabItem {
-                    Label("Today", systemImage: "house.fill")
-                }
-                .tag(0)
-
-            AlarmsView()
-                .tabItem {
-                    Label("Alarms", systemImage: "bell.fill")
-                }
-                .tag(1)
+            NavigationView {
+                TodayView()
+            }
+            .tag(0)
+            .tabItem { Label("Today", systemImage: "house.fill") }
+            
+            NavigationView {
+                AlarmsView()
+            }
+            .tag(1)
+            .tabItem { Label("Alarms", systemImage: "bell.fill") }
         }
-        .tint(.appTint)
         .sheet(isPresented: Binding(
             get: { activePrayerState.isActive },
             set: { if !$0 { activePrayerState.reset() } }

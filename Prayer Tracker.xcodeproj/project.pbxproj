@@ -61,6 +61,7 @@
 		368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
 		368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
 		368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
+		368AD6012EEEBE9600103C43 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6002EEEBE9600103C43 /* Router.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
@@ -149,6 +150,7 @@
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistanceContainer.swift; sourceTree = "<group>"; };
+		368AD6002EEEBE9600103C43 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -325,6 +327,7 @@
 				364966042EB55BB100EC74CF /* Screens */,
 				364965FA2EB55BB100EC74CF /* Components */,
 				364965FC2EB55BB100EC74CF /* Debug */,
+				368AD6002EEEBE9600103C43 /* Router.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */,
 				364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */,
 				364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */,
+				368AD6012EEEBE9600103C43 /* Router.swift in Sources */,
 				3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */,
 				3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */,
 				364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */,

@@ -26,11 +26,11 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabBarScreen()
-                .environment(activePrayerState)
-                .onOpenURL { url in
-                    handleURL(url)
-                }
+            AppCompositionRoot()
+            .environment(activePrayerState)
+            .onOpenURL { url in
+                handleURL(url)
+            }
         }
         .modelContainer(localPersistanceContainer.sharedModelContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -66,7 +66,7 @@ struct Prayer_TrackerApp: App {
         print("🔄 Checking for pending start prayer signals")
         print("📍 Using App Group: \(AppGroup.identifier)")
 
-        guard let defaults = UserDefaults(suiteName: AppGroup.identifier) else {
+        guard let defaults = AppGroup.userDefaults else {
             print("❌ Failed to access App Group UserDefaults")
             return
         }
