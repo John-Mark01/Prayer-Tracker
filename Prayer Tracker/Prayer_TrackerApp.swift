@@ -10,13 +10,13 @@ import SwiftData
 
 @main
 struct Prayer_TrackerApp: App {
+    @State private var router = Router()
     @State private var notificationDelegate = NotificationDelegate()
     @State private var activePrayerState = ActivePrayerState()
     @State private var localPersistanceContainer = LocalPersistanceContainer()
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
-        // Set up notification delegate
         UNUserNotificationCenter.current().delegate = notificationDelegate
 
         // Pass activePrayerState reference to notification delegate
@@ -26,7 +26,16 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppCompositionRoot()
+            NavigationStack(path: $router.navigationPath) {
+                Group { //TODO: - Add onboarding view's logic here
+                    TabBarScreen()
+                }
+                .navigationDestination(for: Destination.self) { dest in
+                    router.view(for: dest)
+                }
+            }
+            .tint(.appTint)
+            .environment(router)
             .environment(activePrayerState)
             .onOpenURL { url in
                 handleURL(url)

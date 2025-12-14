@@ -8,25 +8,8 @@
 import SwiftUI
 
 enum Destination: Hashable {
-    case today
+    case home
 }
-
-struct AppCompositionRoot: View {
-    @State private var router = Router()
-    @State private var localPersistanceContainer = LocalPersistanceContainer()
-    
-    var body: some View {
-        NavigationStack(path: $router.navigationPath) {
-            TabBarScreen()
-                .navigationDestination(for: Destination.self) { dest in
-                    router.view(for: dest)
-                }
-        }
-        .tint(.appTint)
-        .environment(router)
-    }
-}
-
 
 @MainActor
 @Observable final class Router {
@@ -36,8 +19,8 @@ struct AppCompositionRoot: View {
     
     @ViewBuilder func view(for destination: Destination) -> some View {
         switch destination {
-        case .today:
-            TodayView()
+        case .home:
+            TabBarScreen()
         }
     }
     
@@ -50,6 +33,12 @@ struct AppCompositionRoot: View {
     func popBack() {
         self.navigationPath.removeLast()
         self.stack.removeLast()
+    }
+    
+    func popToRoot() {
+        let count = navigationPath.count
+        self.navigationPath.removeLast(count)
+        self.stack.removeAll()
     }
 }
   
