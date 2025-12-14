@@ -129,7 +129,7 @@ struct PrayerLiveActivity: Widget {
     }
 }
 
-/// Lock screen Live Activity view
+//MARK: Lock Screen Live Activity
 struct LockScreenLiveActivityView: View {
     let context: ActivityViewContext<PrayerActivityAttributes>
 
@@ -252,7 +252,7 @@ struct LockScreenLiveActivityView: View {
             }
         }
         .padding(16)
-        .activityBackgroundTint(Color(hex: context.attributes.colorHex).opacity(0.1))
+        .activityBackgroundTint(Color(hex: context.attributes.colorHex).opacity(0.3))
         .activitySystemActionForegroundColor(Color(hex: context.attributes.colorHex))
     }
 }

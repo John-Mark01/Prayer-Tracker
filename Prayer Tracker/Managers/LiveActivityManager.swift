@@ -17,14 +17,14 @@ import Foundation
 
     private init() {}
 
-    // MARK: - Authorization
+// MARK: - Authorization
 
     /// Check if Live Activities are enabled
     func areActivitiesEnabled() -> Bool {
         return ActivityAuthorizationInfo().areActivitiesEnabled
     }
 
-    // MARK: - Starting Activities
+// MARK: - Starting Activities
 
     /// Start a warning Live Activity 5 minutes before prayer time
     /// Returns the activity ID if successful
@@ -75,7 +75,7 @@ import Foundation
         }
     }
 
-    // MARK: - Transitioning Activities
+// MARK: - Transitioning Activities
 
     /// Transition activity from warning to ready phase (when alarm time hits)
     func transitionToReady(activityID: String) async {
@@ -170,7 +170,7 @@ import Foundation
         startProgressUpdates(activityID: activityID, durationSeconds: durationSeconds)
     }
 
-    // MARK: - Active Progress Updates
+// MARK: - Active Progress Updates
 
     /// Start a timer that updates the activity state every second
     func startProgressUpdates(activityID: String, durationSeconds: Int) {
@@ -249,7 +249,7 @@ import Foundation
         }
     }
 
-    // MARK: - Completion
+// MARK: - Completion
 
     /// Transition activity to completed phase (when timer finishes)
     private func transitionToCompleted(activityID: String) async {
@@ -282,7 +282,7 @@ import Foundation
         scheduleAutoDismissal(activityID: activityID, delayMinutes: 5)
     }
 
-    // MARK: - Auto-dismissal
+// MARK: - Auto-dismissal
 
     /// Schedule automatic dismissal of the activity after a delay
     private func scheduleAutoDismissal(activityID: String, delayMinutes: Int) {
@@ -295,7 +295,7 @@ import Foundation
         }
     }
 
-    // MARK: - Ending Activities
+// MARK: - Ending Activities
 
     /// End a Live Activity
     func endActivity(activityID: String, dismissalPolicy: ActivityUIDismissalPolicy = .immediate) async {

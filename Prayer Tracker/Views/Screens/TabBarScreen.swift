@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct TabBarScreen: View {
     @Environment(ActivePrayerState.self) private var activePrayerState
     @State private var selectedTab = 0
 
@@ -40,6 +40,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    TabBarScreen()
         .modelContainer(for: Prayer.self, inMemory: true)
 }

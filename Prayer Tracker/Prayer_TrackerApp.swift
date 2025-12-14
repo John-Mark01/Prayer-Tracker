@@ -52,7 +52,7 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBarScreen()
                 .environment(activePrayerState)
                 .onOpenURL { url in
                     handleURL(url)
