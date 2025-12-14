@@ -27,7 +27,8 @@ struct Prayer_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navigationPath) {
-                Group { //TODO: - Add onboarding view's logic here
+                //TODO: - Add onboarding view's logic here
+                Group {
                     TabBarScreen()
                 }
                 .navigationDestination(for: Destination.self) { dest in
