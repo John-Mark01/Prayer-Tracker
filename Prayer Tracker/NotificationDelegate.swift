@@ -24,20 +24,22 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
         print("📦 Notification userInfo: \(userInfo)")
 
         // Check notification type
-        if let notificationType = userInfo["notificationType"] as? String {
+        if let string = userInfo["notificationType"] as? String,
+           let notificationType = NotificationType(rawValue: string) {
             print("🏷️ Notification type: \(notificationType)")
-            if notificationType == "warning" {
+            if notificationType == .warning {
                 // Warning notification - start Live Activity
                 await handleWarningNotification(userInfo: userInfo)
 
                 // Still show the notification banner
                 return [.banner, .sound]
-            } else if notificationType == "alarm" {
+                
+            } else if notificationType == .alarm {
                 // Alarm notification - transition to active
                 await handleAlarmNotification(userInfo: userInfo)
 
                 // Still show the notification
-                return [.banner, .sound, .badge]
+                return [.banner, .sound]
             }
         }
 
@@ -52,11 +54,12 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
         let userInfo = response.notification.request.content.userInfo
 
         // Check notification type
-        if let notificationType = userInfo["notificationType"] as? String {
-            if notificationType == "warning" {
+        if let string = userInfo["notificationType"] as? String,
+           let notificationType = NotificationType(rawValue: string) {
+            if notificationType == .warning {
                 // Warning tapped - start Live Activity
                 await handleWarningNotification(userInfo: userInfo)
-            } else if notificationType == "alarm" {
+            } else if notificationType == .alarm {
                 // Alarm tapped - transition to active
                 await handleAlarmNotification(userInfo: userInfo)
             }
@@ -139,13 +142,16 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Observab
     /// Handle alarm notification - transition Live Activity to ready state
     private func handleAlarmNotification(userInfo: [AnyHashable: Any]) async {
         print("🔔 Alarm notification received - transitioning to ready state")
+        
+        let prayer = userInfo["alarmTitle"] as? String ?? ""
+        let prayerID = userInfo["prayerID"] as? String ?? ""
 
         // Find the warning activity and transition it to ready
         let activities = Activity<PrayerActivityAttributes>.activities
         var activityID: String?
 
-        if let activity = activities.first(where: { $0.content.state.phase == .warning }) {
-            print("✅ Found warning activity: \(activity.id) - transitioning to ready")
+        if let activity = activities.first(where: { $0.attributes.prayerID == prayerID }) {
+            print("✅ Found active activity: \(activity.id) for prayer: \(prayer) - transitioning to ready")
 
             // Transition to ready phase (NOT active - waiting for user to start)
             await LiveActivityManager.shared.transitionToReady(activityID: activity.id)

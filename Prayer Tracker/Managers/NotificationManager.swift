@@ -78,7 +78,7 @@ import Foundation
 
         // Add metadata
         content.userInfo = [
-            "notificationType": "warning",
+            "notificationType": NotificationType.warning.rawValue,
             "alarmTitle": alarm.displayTitle,
             "hour": alarm.hour,
             "minute": alarm.minute,
@@ -135,7 +135,7 @@ import Foundation
 
         // Add prayer metadata for future use (including Live Activity data)
         content.userInfo = [
-            "notificationType": "alarm",
+            "notificationType": NotificationType.alarm.rawValue,
             "alarmTitle": alarm.displayTitle,
             "durationMinutes": alarm.durationMinutes,
             "hour": alarm.hour,
@@ -186,20 +186,20 @@ import Foundation
     private func setupNotificationCategories() {
         // Define notification actions for future Live Activity integration
         let startTimerAction = UNNotificationAction(
-            identifier: "START_TIMER",
+            identifier: NotificationCategory.startTimer.rawValue,
             title: "Start Prayer Timer",
             options: [.foreground]
         )
 
         let snoozeAction = UNNotificationAction(
-            identifier: "SNOOZE",
+            identifier: NotificationCategory.snooze.rawValue,
             title: "Snooze 5 min",
             options: []
         )
 
         // Warning notification category (5 minutes before)
         let warningCategory = UNNotificationCategory(
-            identifier: "PRAYER_WARNING",
+            identifier: NotificationCategory.warning.rawValue,
             actions: [],
             intentIdentifiers: [],
             options: .customDismissAction
@@ -207,7 +207,7 @@ import Foundation
 
         // Alarm notification category (at prayer time)
         let alarmCategory = UNNotificationCategory(
-            identifier: "PRAYER_ALARM",
+            identifier: NotificationCategory.alarm.rawValue,
             actions: [startTimerAction, snoozeAction],
             intentIdentifiers: [],
             options: .customDismissAction
