@@ -1,0 +1,71 @@
+//
+//  PrayerService.swift
+//  Prayer Tracker
+//
+//  Created by John-Mark Iliev on 3.3.26.
+//
+
+import Foundation
+
+@MainActor
+final class PrayerService: PrayerServiceProtocol {
+    private let prayerRepository: PrayerRepositoryProtocol
+    private let entryRepository: EntryRepositoryProtocol
+
+    init(
+        prayerRepository: PrayerRepositoryProtocol,
+        entryRepository: EntryRepositoryProtocol
+    ) {
+        self.prayerRepository = prayerRepository
+        self.entryRepository = entryRepository
+    }
+
+    nonisolated func fetchAllPrayers() async throws -> [Prayer] {
+        try await prayerRepository.fetchAll()
+    }
+
+    nonisolated func fetchPrayer(byId id: UUID) async throws -> Prayer? {
+        try await prayerRepository.fetchById(id)
+    }
+
+    nonisolated func createPrayer(
+        title: String,
+        subtitle: String,
+        iconName: String,
+        colorHex: String
+    ) async throws -> Prayer {
+        let sortOrder = try await prayerRepository.getMaxSortOrder() + 1
+        let prayer = Prayer(
+            title: title.trimmingCharacters(in: .whitespacesAndNewlines),
+            subtitle: subtitle.trimmingCharacters(in: .whitespacesAndNewlines),
+            iconName: iconName,
+            colorHex: colorHex,
+            sortOrder: sortOrder
+        )
+        try await prayerRepository.insert(prayer)
+        return prayer
+    }
+
+    nonisolated func updatePrayer(_ prayer: Prayer) async throws {
+        try await prayerRepository.update(prayer)
+    }
+
+    nonisolated func deletePrayer(_ prayer: Prayer) async throws {
+        try await prayerRepository.delete(prayer)
+    }
+
+    nonisolated func checkIn(for prayer: Prayer, at timestamp: Date) async throws -> PrayerEntry {
+        let entry = PrayerEntry(timestamp: timestamp, prayer: prayer)
+        try await entryRepository.insert(entry)
+        return entry
+    }
+
+    nonisolated func fetchTodayEntries(for prayer: Prayer) async throws -> [PrayerEntry] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today) ?? Date()
+
+        return try await entryRepository.fetchByDateRange(from: today, to: tomorrow)
+            .filter { $0.prayer?.id == prayer.id }
+    }
+}

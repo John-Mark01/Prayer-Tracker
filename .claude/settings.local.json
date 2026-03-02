@@ -12,7 +12,8 @@
       "Bash(git mv:*)",
       "Read(//Users/johnkata/**)",
       "Bash(tee:*)",
-      "Bash(swift -frontend -typecheck:*)"
+      "Bash(swift -frontend -typecheck:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
