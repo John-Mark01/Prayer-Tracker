@@ -15,7 +15,7 @@ final class LiveActivityService: LiveActivityServiceProtocol {
         self.manager = manager
     }
 
-    nonisolated func areActivitiesEnabled() -> Bool {
+    func areActivitiesEnabled() -> Bool {
         manager.areActivitiesEnabled()
     }
 
@@ -39,7 +39,7 @@ final class LiveActivityService: LiveActivityServiceProtocol {
         await manager.endAllActivities()
     }
 
-    nonisolated func activeActivityCount() -> Int {
+    func activeActivityCount() -> Int {
         manager.activeActivityCount()
     }
 }

@@ -7,67 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		364965942EB5596100EC74CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
-		364965972EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
-		364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */; };
-		364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
-		364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F82EB55BB100EC74CF /* PrayerCardView.swift */; };
-		364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */; };
-		364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
-		364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F22EB55BB100EC74CF /* PrayerAlarm.swift */; };
-		3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F32EB55BB100EC74CF /* PrayerEntry.swift */; };
-		3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FF2EB55BB100EC74CF /* CalendarView.swift */; };
-		3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966032EB55BB100EC74CF /* TodayView.swift */; };
-		3649660D2EB55BB100EC74CF /* TabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966002EB55BB100EC74CF /* TabBarScreen.swift */; };
-		3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F72EB55BB100EC74CF /* PixelGridView.swift */; };
-		3649660F2EB55BB100EC74CF /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965EC2EB55BB100EC74CF /* CalendarManager.swift */; };
-		364966102EB55BB100EC74CF /* PrayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966012EB55BB100EC74CF /* PrayerDetailView.swift */; };
-		364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FE2EB55BB100EC74CF /* AlarmsView.swift */; };
-		364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965EE2EB55BB100EC74CF /* NotificationManager.swift */; };
-		364966132EB55BB100EC74CF /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F92EB55BB100EC74CF /* StatCard.swift */; };
-		364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F42EB55BB100EC74CF /* PrayerStatistics.swift */; };
-		364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966022EB55BB100EC74CF /* StatisticsView.swift */; };
-		364966162EB55BB100EC74CF /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F02EB55BB100EC74CF /* Prayer.swift */; };
-		364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */; };
-		364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F62EB55BB100EC74CF /* IconPickerView.swift */; };
-		364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */; };
-		3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F22EB55BB100EC74CF /* PrayerAlarm.swift */; };
-		3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F32EB55BB100EC74CF /* PrayerEntry.swift */; };
-		3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */; };
-		3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F02EB55BB100EC74CF /* Prayer.swift */; };
-		3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F42EB55BB100EC74CF /* PrayerStatistics.swift */; };
-		364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */; };
-		364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966222EB55E4000EC74CF /* AlarmRow.swift */; };
-		3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649664E2EB614B700EC74CF /* ActivePrayerState.swift */; };
-		364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649664E2EB614B700EC74CF /* ActivePrayerState.swift */; };
-		364966522EB614DC00EC74CF /* CircularProgressView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966512EB614DC00EC74CF /* CircularProgressView 2.swift */; };
-		364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966532EB614FD00EC74CF /* IconPickerView.swift */; };
-		364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */; };
-		364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
-		364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966572EB615F500EC74CF /* Extensions + Color.swift */; };
 		3649665D2EB61AE500EC74CF /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3649665C2EB61AE500EC74CF /* ConfettiSwiftUI */; };
 		364FCAFB2ECE6DEB00563843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; platformFilter = ios; };
 		364FCAFC2ECE6DEB00563843 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		364FCAFF2ECE6E1600563843 /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFE2ECE6E1600563843 /* SwiftData.framework */; };
-		3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
-		3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
-		3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
-		368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
-		368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
-		368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
-		368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
-		368AD5FA2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
-		368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
-		368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
-		368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
-		368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
-		368AD6012EEEBE9600103C43 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6002EEEBE9600103C43 /* Router.swift */; };
-		368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
-		368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
 		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
 		369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		36BC8D952F565A7900EC46D1 /* CalendarServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D4E2F565A7900EC46D1 /* CalendarServiceProtocol.swift */; };
+		36BC8D962F565A7900EC46D1 /* EntryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D4A2F565A7900EC46D1 /* EntryRepositoryProtocol.swift */; };
+		36BC8D972F565A7900EC46D1 /* PrayerRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D4B2F565A7900EC46D1 /* PrayerRepositoryProtocol.swift */; };
+		36BC8D982F565A7900EC46D1 /* ActivePrayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D622F565A7900EC46D1 /* ActivePrayerState.swift */; };
+		36BC8D992F565A7900EC46D1 /* LiveActivityDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D7D2F565A7900EC46D1 /* LiveActivityDebugView.swift */; };
+		36BC8D9A2F565A7900EC46D1 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5D2F565A7900EC46D1 /* LiveActivityManager.swift */; };
+		36BC8D9B2F565A7900EC46D1 /* PrayerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D7A2F565A7900EC46D1 /* PrayerCardView.swift */; };
+		36BC8D9C2F565A7900EC46D1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */; };
+		36BC8D9D2F565A7900EC46D1 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5B2F565A7900EC46D1 /* CalendarManager.swift */; };
+		36BC8D9E2F565A7900EC46D1 /* AlarmRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D742F565A7900EC46D1 /* AlarmRow.swift */; };
+		36BC8D9F2F565A7900EC46D1 /* AlarmRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D492F565A7900EC46D1 /* AlarmRepositoryProtocol.swift */; };
+		36BC8DA02F565A7900EC46D1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D6D2F565A7900EC46D1 /* NotificationService.swift */; };
+		36BC8DA22F565A7900EC46D1 /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D652F565A7900EC46D1 /* PrayerActivityAttributes.swift */; };
+		36BC8DA32F565A7900EC46D1 /* AlarmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D712F565A7900EC46D1 /* AlarmsViewModel.swift */; };
+		36BC8DA42F565A7900EC46D1 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D7F2F565A7900EC46D1 /* AddAlarmView.swift */; };
+		36BC8DA52F565A7900EC46D1 /* AddPrayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D842F565A7900EC46D1 /* AddPrayerSheet.swift */; };
+		36BC8DA62F565A7900EC46D1 /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */; };
+		36BC8DA72F565A7900EC46D1 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5E2F565A7900EC46D1 /* NotificationManager.swift */; };
+		36BC8DA82F565A7900EC46D1 /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D662F565A7900EC46D1 /* PrayerAlarm.swift */; };
+		36BC8DA92F565A7900EC46D1 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D472F565A7900EC46D1 /* AppContainer.swift */; };
+		36BC8DAA2F565A7900EC46D1 /* PrayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D862F565A7900EC46D1 /* PrayerDetailView.swift */; };
+		36BC8DAB2F565A7900EC46D1 /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D792F565A7900EC46D1 /* PixelGridView.swift */; };
+		36BC8DAC2F565A7900EC46D1 /* EntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D552F565A7900EC46D1 /* EntryRepository.swift */; };
+		36BC8DAD2F565A7900EC46D1 /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D6C2F565A7900EC46D1 /* LiveActivityService.swift */; };
+		36BC8DAE2F565A7900EC46D1 /* NotificationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D502F565A7900EC46D1 /* NotificationServiceProtocol.swift */; };
+		36BC8DAF2F565A7900EC46D1 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D722F565A7900EC46D1 /* TodayViewModel.swift */; };
+		36BC8DB02F565A7900EC46D1 /* PrayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D6E2F565A7900EC46D1 /* PrayerService.swift */; };
+		36BC8DB12F565A7900EC46D1 /* LiveActivityServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D4F2F565A7900EC46D1 /* LiveActivityServiceProtocol.swift */; };
+		36BC8DB22F565A7900EC46D1 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D852F565A7900EC46D1 /* CalendarView.swift */; };
+		36BC8DB32F565A7900EC46D1 /* ActivePrayerTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D892F565A7900EC46D1 /* ActivePrayerTimerView.swift */; };
+		36BC8DB42F565A7900EC46D1 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D8F2F565A7900EC46D1 /* LocalPersistanceContainer.swift */; };
+		36BC8DB52F565A7900EC46D1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D762F565A7900EC46D1 /* CircularProgressView.swift */; };
+		36BC8DB62F565A7900EC46D1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D602F565A7900EC46D1 /* Router.swift */; };
+		36BC8DB72F565A7900EC46D1 /* AddPrayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D702F565A7900EC46D1 /* AddPrayerViewModel.swift */; };
+		36BC8DB82F565A7900EC46D1 /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D642F565A7900EC46D1 /* Prayer.swift */; };
+		36BC8DB92F565A7900EC46D1 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D632F565A7900EC46D1 /* PendingCheckIn.swift */; };
+		36BC8DBA2F565A7900EC46D1 /* TabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D8A2F565A7900EC46D1 /* TabBarScreen.swift */; };
+		36BC8DBB2F565A7900EC46D1 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D822F565A7900EC46D1 /* TodayView.swift */; };
+		36BC8DBC2F565A7900EC46D1 /* PrayerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D562F565A7900EC46D1 /* PrayerRepository.swift */; };
+		36BC8DBD2F565A7900EC46D1 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5C2F565A7900EC46D1 /* CheckInQueue.swift */; };
+		36BC8DBE2F565A7900EC46D1 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D6B2F565A7900EC46D1 /* CalendarService.swift */; };
+		36BC8DBF2F565A7900EC46D1 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D6A2F565A7900EC46D1 /* AlarmService.swift */; };
+		36BC8DC02F565A7900EC46D1 /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D682F565A7900EC46D1 /* PrayerStatistics.swift */; };
+		36BC8DC12F565A7900EC46D1 /* PrayerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D512F565A7900EC46D1 /* PrayerServiceProtocol.swift */; };
+		36BC8DC22F565A7900EC46D1 /* AlarmServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D4D2F565A7900EC46D1 /* AlarmServiceProtocol.swift */; };
+		36BC8DC32F565A7900EC46D1 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5F2F565A7900EC46D1 /* NotificationType.swift */; };
+		36BC8DC42F565A7900EC46D1 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D872F565A7900EC46D1 /* StatisticsView.swift */; };
+		36BC8DC52F565A7900EC46D1 /* AlarmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D542F565A7900EC46D1 /* AlarmRepository.swift */; };
+		36BC8DC62F565A7900EC46D1 /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D782F565A7900EC46D1 /* IconPickerView.swift */; };
+		36BC8DC72F565A7900EC46D1 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D902F565A7900EC46D1 /* NotificationDelegate.swift */; };
+		36BC8DC82F565A7900EC46D1 /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D812F565A7900EC46D1 /* AlarmsView.swift */; };
+		36BC8DC92F565A7900EC46D1 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D7B2F565A7900EC46D1 /* StatCard.swift */; };
+		36BC8DCA2F565A7900EC46D1 /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D672F565A7900EC46D1 /* PrayerEntry.swift */; };
+		36BC8DCB2F565A7900EC46D1 /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D592F565A7900EC46D1 /* Extensions + Color.swift */; };
+		36BC8DCC2F565A7900EC46D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36BC8D8E2F565A7900EC46D1 /* Assets.xcassets */; };
+		36BC8DCD2F565A7900EC46D1 /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 36BC8D932F565A7900EC46D1 /* PrayerTracker.icon */; };
+		36BC8DCE2F565AB600EC46D1 /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D642F565A7900EC46D1 /* Prayer.swift */; };
+		36BC8DCF2F565ABB00EC46D1 /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D662F565A7900EC46D1 /* PrayerAlarm.swift */; };
+		36BC8DD02F565AC600EC46D1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */; };
+		36BC8DD12F565AD800EC46D1 /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D672F565A7900EC46D1 /* PrayerEntry.swift */; };
+		36BC8DD22F565AF600EC46D1 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D5C2F565A7900EC46D1 /* CheckInQueue.swift */; };
+		36BC8DD32F565AFF00EC46D1 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D632F565A7900EC46D1 /* PendingCheckIn.swift */; };
+		36BC8DD42F565B1300EC46D1 /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D682F565A7900EC46D1 /* PrayerStatistics.swift */; };
+		36BC8DD52F565BA600EC46D1 /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D592F565A7900EC46D1 /* Extensions + Color.swift */; };
+		36BC8DD62F565BB500EC46D1 /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D652F565A7900EC46D1 /* PrayerActivityAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,53 +125,72 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3649657D2EB5596100EC74CF /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		3649657E2EB5596100EC74CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		364965882EB5596100EC74CF /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
-		364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer_TrackerApp.swift; sourceTree = "<group>"; };
-		364965EC2EB55BB100EC74CF /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
-		364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
-		364965EE2EB55BB100EC74CF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		364965F02EB55BB100EC74CF /* Prayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer.swift; sourceTree = "<group>"; };
-		364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerActivityAttributes.swift; sourceTree = "<group>"; };
-		364965F22EB55BB100EC74CF /* PrayerAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerAlarm.swift; sourceTree = "<group>"; };
-		364965F32EB55BB100EC74CF /* PrayerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerEntry.swift; sourceTree = "<group>"; };
-		364965F42EB55BB100EC74CF /* PrayerStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerStatistics.swift; sourceTree = "<group>"; };
-		364965F62EB55BB100EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
-		364965F72EB55BB100EC74CF /* PixelGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGridView.swift; sourceTree = "<group>"; };
-		364965F82EB55BB100EC74CF /* PrayerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerCardView.swift; sourceTree = "<group>"; };
-		364965F92EB55BB100EC74CF /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCard.swift; sourceTree = "<group>"; };
-		364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityDebugView.swift; sourceTree = "<group>"; };
-		364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrayerSheet.swift; sourceTree = "<group>"; };
-		364965FE2EB55BB100EC74CF /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
-		364965FF2EB55BB100EC74CF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		364966002EB55BB100EC74CF /* TabBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreen.swift; sourceTree = "<group>"; };
-		364966012EB55BB100EC74CF /* PrayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDetailView.swift; sourceTree = "<group>"; };
-		364966022EB55BB100EC74CF /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		364966032EB55BB100EC74CF /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
-		3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
-		364966222EB55E4000EC74CF /* AlarmRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRow.swift; sourceTree = "<group>"; };
-		3649664E2EB614B700EC74CF /* ActivePrayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerState.swift; sourceTree = "<group>"; };
-		364966512EB614DC00EC74CF /* CircularProgressView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircularProgressView 2.swift"; sourceTree = "<group>"; };
-		364966532EB614FD00EC74CF /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
-		364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
-		364966572EB615F500EC74CF /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
 		364FCAF92ECE6DA200563843 /* Prayer Tracker.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Prayer Tracker.xctestplan"; sourceTree = "<group>"; };
 		364FCAFA2ECE6DEB00563843 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		364FCAFE2ECE6E1600563843 /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk/System/Library/Frameworks/SwiftData.framework; sourceTree = DEVELOPER_DIR; };
-		3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
-		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
-		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
-		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
-		368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistanceContainer.swift; sourceTree = "<group>"; };
-		368AD6002EEEBE9600103C43 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		368AD6022EEF0DE100103C43 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
 		369EF0692EB0163800AC7A06 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		369EF06B2EB0163800AC7A06 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		369EF0E22EB01C5D00AC7A06 /* PrayerTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrayerTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrayerWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrayerWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		36BC8D472F565A7900EC46D1 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		36BC8D492F565A7900EC46D1 /* AlarmRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRepositoryProtocol.swift; sourceTree = "<group>"; };
+		36BC8D4A2F565A7900EC46D1 /* EntryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepositoryProtocol.swift; sourceTree = "<group>"; };
+		36BC8D4B2F565A7900EC46D1 /* PrayerRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRepositoryProtocol.swift; sourceTree = "<group>"; };
+		36BC8D4D2F565A7900EC46D1 /* AlarmServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmServiceProtocol.swift; sourceTree = "<group>"; };
+		36BC8D4E2F565A7900EC46D1 /* CalendarServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarServiceProtocol.swift; sourceTree = "<group>"; };
+		36BC8D4F2F565A7900EC46D1 /* LiveActivityServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityServiceProtocol.swift; sourceTree = "<group>"; };
+		36BC8D502F565A7900EC46D1 /* NotificationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceProtocol.swift; sourceTree = "<group>"; };
+		36BC8D512F565A7900EC46D1 /* PrayerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerServiceProtocol.swift; sourceTree = "<group>"; };
+		36BC8D542F565A7900EC46D1 /* AlarmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRepository.swift; sourceTree = "<group>"; };
+		36BC8D552F565A7900EC46D1 /* EntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepository.swift; sourceTree = "<group>"; };
+		36BC8D562F565A7900EC46D1 /* PrayerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRepository.swift; sourceTree = "<group>"; };
+		36BC8D592F565A7900EC46D1 /* Extensions + Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Color.swift"; sourceTree = "<group>"; };
+		36BC8D5B2F565A7900EC46D1 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		36BC8D5C2F565A7900EC46D1 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
+		36BC8D5D2F565A7900EC46D1 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		36BC8D5E2F565A7900EC46D1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		36BC8D5F2F565A7900EC46D1 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		36BC8D602F565A7900EC46D1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		36BC8D622F565A7900EC46D1 /* ActivePrayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerState.swift; sourceTree = "<group>"; };
+		36BC8D632F565A7900EC46D1 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
+		36BC8D642F565A7900EC46D1 /* Prayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer.swift; sourceTree = "<group>"; };
+		36BC8D652F565A7900EC46D1 /* PrayerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerActivityAttributes.swift; sourceTree = "<group>"; };
+		36BC8D662F565A7900EC46D1 /* PrayerAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerAlarm.swift; sourceTree = "<group>"; };
+		36BC8D672F565A7900EC46D1 /* PrayerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerEntry.swift; sourceTree = "<group>"; };
+		36BC8D682F565A7900EC46D1 /* PrayerStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerStatistics.swift; sourceTree = "<group>"; };
+		36BC8D6A2F565A7900EC46D1 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
+		36BC8D6B2F565A7900EC46D1 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		36BC8D6C2F565A7900EC46D1 /* LiveActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityService.swift; sourceTree = "<group>"; };
+		36BC8D6D2F565A7900EC46D1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		36BC8D6E2F565A7900EC46D1 /* PrayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerService.swift; sourceTree = "<group>"; };
+		36BC8D702F565A7900EC46D1 /* AddPrayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrayerViewModel.swift; sourceTree = "<group>"; };
+		36BC8D712F565A7900EC46D1 /* AlarmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewModel.swift; sourceTree = "<group>"; };
+		36BC8D722F565A7900EC46D1 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		36BC8D742F565A7900EC46D1 /* AlarmRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRow.swift; sourceTree = "<group>"; };
+		36BC8D762F565A7900EC46D1 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		36BC8D782F565A7900EC46D1 /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
+		36BC8D792F565A7900EC46D1 /* PixelGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGridView.swift; sourceTree = "<group>"; };
+		36BC8D7A2F565A7900EC46D1 /* PrayerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerCardView.swift; sourceTree = "<group>"; };
+		36BC8D7B2F565A7900EC46D1 /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCard.swift; sourceTree = "<group>"; };
+		36BC8D7D2F565A7900EC46D1 /* LiveActivityDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityDebugView.swift; sourceTree = "<group>"; };
+		36BC8D7F2F565A7900EC46D1 /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
+		36BC8D812F565A7900EC46D1 /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
+		36BC8D822F565A7900EC46D1 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		36BC8D842F565A7900EC46D1 /* AddPrayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPrayerSheet.swift; sourceTree = "<group>"; };
+		36BC8D852F565A7900EC46D1 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		36BC8D862F565A7900EC46D1 /* PrayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDetailView.swift; sourceTree = "<group>"; };
+		36BC8D872F565A7900EC46D1 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		36BC8D892F565A7900EC46D1 /* ActivePrayerTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivePrayerTimerView.swift; sourceTree = "<group>"; };
+		36BC8D8A2F565A7900EC46D1 /* TabBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreen.swift; sourceTree = "<group>"; };
+		36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		36BC8D8E2F565A7900EC46D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36BC8D8F2F565A7900EC46D1 /* LocalPersistanceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistanceContainer.swift; sourceTree = "<group>"; };
+		36BC8D902F565A7900EC46D1 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		36BC8D912F565A7900EC46D1 /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
+		36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer_TrackerApp.swift; sourceTree = "<group>"; };
+		36BC8D932F565A7900EC46D1 /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
 		36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prayer Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -247,139 +278,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		364965932EB5596100EC74CF /* Prayer Tracker */ = {
-			isa = PBXGroup;
-			children = (
-				368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */,
-				368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */,
-				364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */,
-				3649657D2EB5596100EC74CF /* AppGroup.swift */,
-				364965F52EB55BB100EC74CF /* Models */,
-				364966052EB55BB100EC74CF /* Views */,
-				364965EF2EB55BB100EC74CF /* Managers */,
-				3649665A2EB6160D00EC74CF /* Extensions */,
-				3649657E2EB5596100EC74CF /* Assets.xcassets */,
-				364965882EB5596100EC74CF /* Prayer Tracker.entitlements */,
-				3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */,
-			);
-			path = "Prayer Tracker";
-			sourceTree = "<group>";
-		};
-		364965EF2EB55BB100EC74CF /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				368AD6002EEEBE9600103C43 /* Router.swift */,
-				364965EC2EB55BB100EC74CF /* CalendarManager.swift */,
-				364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */,
-				364965EE2EB55BB100EC74CF /* NotificationManager.swift */,
-				368AD6022EEF0DE100103C43 /* NotificationType.swift */,
-				368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		364965F52EB55BB100EC74CF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				364965F02EB55BB100EC74CF /* Prayer.swift */,
-				3649664E2EB614B700EC74CF /* ActivePrayerState.swift */,
-				364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */,
-				364965F22EB55BB100EC74CF /* PrayerAlarm.swift */,
-				364965F32EB55BB100EC74CF /* PrayerEntry.swift */,
-				364965F42EB55BB100EC74CF /* PrayerStatistics.swift */,
-				368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		364965FA2EB55BB100EC74CF /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				364966212EB55E3D00EC74CF /* ViewRows */,
-				364966512EB614DC00EC74CF /* CircularProgressView 2.swift */,
-				364965F62EB55BB100EC74CF /* IconPickerView.swift */,
-				364965F72EB55BB100EC74CF /* PixelGridView.swift */,
-				364965F82EB55BB100EC74CF /* PrayerCardView.swift */,
-				364965F92EB55BB100EC74CF /* StatCard.swift */,
-				364966532EB614FD00EC74CF /* IconPickerView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		364965FC2EB55BB100EC74CF /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				364965FB2EB55BB100EC74CF /* LiveActivityDebugView.swift */,
-			);
-			path = Debug;
-			sourceTree = "<group>";
-		};
-		364966042EB55BB100EC74CF /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				364966002EB55BB100EC74CF /* TabBarScreen.swift */,
-				368AD5F52EEEB58300103C43 /* MainViews */,
-				368AD5F82EEEB63000103C43 /* PrayerViews */,
-				368AD5F62EEEB5A600103C43 /* AlarmViews */,
-				364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		364966052EB55BB100EC74CF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				364966042EB55BB100EC74CF /* Screens */,
-				364965FA2EB55BB100EC74CF /* Components */,
-				364965FC2EB55BB100EC74CF /* Debug */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		364966212EB55E3D00EC74CF /* ViewRows */ = {
-			isa = PBXGroup;
-			children = (
-				364966222EB55E4000EC74CF /* AlarmRow.swift */,
-			);
-			path = ViewRows;
-			sourceTree = "<group>";
-		};
-		3649665A2EB6160D00EC74CF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				364966572EB615F500EC74CF /* Extensions + Color.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		368AD5F52EEEB58300103C43 /* MainViews */ = {
-			isa = PBXGroup;
-			children = (
-				364966032EB55BB100EC74CF /* TodayView.swift */,
-				364965FE2EB55BB100EC74CF /* AlarmsView.swift */,
-			);
-			path = MainViews;
-			sourceTree = "<group>";
-		};
-		368AD5F62EEEB5A600103C43 /* AlarmViews */ = {
-			isa = PBXGroup;
-			children = (
-				3649661F2EB55DAB00EC74CF /* AddAlarmView.swift */,
-			);
-			path = AlarmViews;
-			sourceTree = "<group>";
-		};
-		368AD5F82EEEB63000103C43 /* PrayerViews */ = {
-			isa = PBXGroup;
-			children = (
-				364966012EB55BB100EC74CF /* PrayerDetailView.swift */,
-				364965FF2EB55BB100EC74CF /* CalendarView.swift */,
-				364966022EB55BB100EC74CF /* StatisticsView.swift */,
-				364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */,
-			);
-			path = PrayerViews;
-			sourceTree = "<group>";
-		};
 		369EF0682EB0163800AC7A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,13 +289,229 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		36BC8D482F565A7900EC46D1 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D472F565A7900EC46D1 /* AppContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		36BC8D4C2F565A7900EC46D1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D492F565A7900EC46D1 /* AlarmRepositoryProtocol.swift */,
+				36BC8D4A2F565A7900EC46D1 /* EntryRepositoryProtocol.swift */,
+				36BC8D4B2F565A7900EC46D1 /* PrayerRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		36BC8D522F565A7900EC46D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D4D2F565A7900EC46D1 /* AlarmServiceProtocol.swift */,
+				36BC8D4E2F565A7900EC46D1 /* CalendarServiceProtocol.swift */,
+				36BC8D4F2F565A7900EC46D1 /* LiveActivityServiceProtocol.swift */,
+				36BC8D502F565A7900EC46D1 /* NotificationServiceProtocol.swift */,
+				36BC8D512F565A7900EC46D1 /* PrayerServiceProtocol.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		36BC8D532F565A7900EC46D1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D4C2F565A7900EC46D1 /* Repositories */,
+				36BC8D522F565A7900EC46D1 /* Services */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		36BC8D572F565A7900EC46D1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D542F565A7900EC46D1 /* AlarmRepository.swift */,
+				36BC8D552F565A7900EC46D1 /* EntryRepository.swift */,
+				36BC8D562F565A7900EC46D1 /* PrayerRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		36BC8D582F565A7900EC46D1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D482F565A7900EC46D1 /* DI */,
+				36BC8D532F565A7900EC46D1 /* Protocols */,
+				36BC8D572F565A7900EC46D1 /* Repositories */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		36BC8D5A2F565A7900EC46D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D592F565A7900EC46D1 /* Extensions + Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36BC8D612F565A7900EC46D1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D5B2F565A7900EC46D1 /* CalendarManager.swift */,
+				36BC8D5C2F565A7900EC46D1 /* CheckInQueue.swift */,
+				36BC8D5D2F565A7900EC46D1 /* LiveActivityManager.swift */,
+				36BC8D5E2F565A7900EC46D1 /* NotificationManager.swift */,
+				36BC8D5F2F565A7900EC46D1 /* NotificationType.swift */,
+				36BC8D602F565A7900EC46D1 /* Router.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		36BC8D692F565A7900EC46D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D622F565A7900EC46D1 /* ActivePrayerState.swift */,
+				36BC8D632F565A7900EC46D1 /* PendingCheckIn.swift */,
+				36BC8D642F565A7900EC46D1 /* Prayer.swift */,
+				36BC8D652F565A7900EC46D1 /* PrayerActivityAttributes.swift */,
+				36BC8D662F565A7900EC46D1 /* PrayerAlarm.swift */,
+				36BC8D672F565A7900EC46D1 /* PrayerEntry.swift */,
+				36BC8D682F565A7900EC46D1 /* PrayerStatistics.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		36BC8D6F2F565A7900EC46D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D6A2F565A7900EC46D1 /* AlarmService.swift */,
+				36BC8D6B2F565A7900EC46D1 /* CalendarService.swift */,
+				36BC8D6C2F565A7900EC46D1 /* LiveActivityService.swift */,
+				36BC8D6D2F565A7900EC46D1 /* NotificationService.swift */,
+				36BC8D6E2F565A7900EC46D1 /* PrayerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		36BC8D732F565A7900EC46D1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D702F565A7900EC46D1 /* AddPrayerViewModel.swift */,
+				36BC8D712F565A7900EC46D1 /* AlarmsViewModel.swift */,
+				36BC8D722F565A7900EC46D1 /* TodayViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		36BC8D752F565A7900EC46D1 /* ViewRows */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D742F565A7900EC46D1 /* AlarmRow.swift */,
+			);
+			path = ViewRows;
+			sourceTree = "<group>";
+		};
+		36BC8D7C2F565A7900EC46D1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D752F565A7900EC46D1 /* ViewRows */,
+				36BC8D762F565A7900EC46D1 /* CircularProgressView.swift */,
+				36BC8D782F565A7900EC46D1 /* IconPickerView.swift */,
+				36BC8D792F565A7900EC46D1 /* PixelGridView.swift */,
+				36BC8D7A2F565A7900EC46D1 /* PrayerCardView.swift */,
+				36BC8D7B2F565A7900EC46D1 /* StatCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		36BC8D7E2F565A7900EC46D1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D7D2F565A7900EC46D1 /* LiveActivityDebugView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		36BC8D802F565A7900EC46D1 /* AlarmViews */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D7F2F565A7900EC46D1 /* AddAlarmView.swift */,
+			);
+			path = AlarmViews;
+			sourceTree = "<group>";
+		};
+		36BC8D832F565A7900EC46D1 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D812F565A7900EC46D1 /* AlarmsView.swift */,
+				36BC8D822F565A7900EC46D1 /* TodayView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		36BC8D882F565A7900EC46D1 /* PrayerViews */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D842F565A7900EC46D1 /* AddPrayerSheet.swift */,
+				36BC8D852F565A7900EC46D1 /* CalendarView.swift */,
+				36BC8D862F565A7900EC46D1 /* PrayerDetailView.swift */,
+				36BC8D872F565A7900EC46D1 /* StatisticsView.swift */,
+			);
+			path = PrayerViews;
+			sourceTree = "<group>";
+		};
+		36BC8D8B2F565A7900EC46D1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D802F565A7900EC46D1 /* AlarmViews */,
+				36BC8D832F565A7900EC46D1 /* MainViews */,
+				36BC8D882F565A7900EC46D1 /* PrayerViews */,
+				36BC8D892F565A7900EC46D1 /* ActivePrayerTimerView.swift */,
+				36BC8D8A2F565A7900EC46D1 /* TabBarScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		36BC8D8C2F565A7900EC46D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D7C2F565A7900EC46D1 /* Components */,
+				36BC8D7E2F565A7900EC46D1 /* Debug */,
+				36BC8D8B2F565A7900EC46D1 /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		36BC8D942F565A7900EC46D1 /* Prayer Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				36BC8D582F565A7900EC46D1 /* Core */,
+				36BC8D5A2F565A7900EC46D1 /* Extensions */,
+				36BC8D612F565A7900EC46D1 /* Managers */,
+				36BC8D692F565A7900EC46D1 /* Models */,
+				36BC8D6F2F565A7900EC46D1 /* Services */,
+				36BC8D732F565A7900EC46D1 /* ViewModels */,
+				36BC8D8C2F565A7900EC46D1 /* Views */,
+				36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */,
+				36BC8D8E2F565A7900EC46D1 /* Assets.xcassets */,
+				36BC8D8F2F565A7900EC46D1 /* LocalPersistanceContainer.swift */,
+				36BC8D902F565A7900EC46D1 /* NotificationDelegate.swift */,
+				36BC8D912F565A7900EC46D1 /* Prayer Tracker.entitlements */,
+				36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */,
+				36BC8D932F565A7900EC46D1 /* PrayerTracker.icon */,
+			);
+			path = "Prayer Tracker";
+			sourceTree = "<group>";
+		};
 		36DD5C7C2EB0073F00E7A9DC = {
 			isa = PBXGroup;
 			children = (
 				364FCAF92ECE6DA200563843 /* Prayer Tracker.xctestplan */,
 				3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */,
 				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
-				364965932EB5596100EC74CF /* Prayer Tracker */,
+				36BC8D942F565A7900EC46D1 /* Prayer Tracker */,
 				369EF0E32EB01C5D00AC7A06 /* PrayerTrackerTests */,
 				369EF0F52EB01EE000AC7A06 /* PrayerWidgets */,
 				369EF0682EB0163800AC7A06 /* Frameworks */,
@@ -544,8 +658,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */,
-				3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,8 +665,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */,
-				364965942EB5596100EC74CF /* Assets.xcassets in Resources */,
+				36BC8DCC2F565A7900EC46D1 /* Assets.xcassets in Resources */,
+				36BC8DCD2F565A7900EC46D1 /* PrayerTracker.icon in Resources */,
 				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,20 +685,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
-				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
-				364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
-				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
-				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
-				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
-				368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
-				368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */,
-				368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */,
-				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
-				368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */,
-				368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */,
-				368AD5FA2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */,
-				3649661E2EB55C0100EC74CF /* PrayerStatistics.swift in Sources */,
+				36BC8DD62F565BB500EC46D1 /* PrayerActivityAttributes.swift in Sources */,
+				36BC8DCF2F565ABB00EC46D1 /* PrayerAlarm.swift in Sources */,
+				36BC8DD22F565AF600EC46D1 /* CheckInQueue.swift in Sources */,
+				36BC8DD12F565AD800EC46D1 /* PrayerEntry.swift in Sources */,
+				36BC8DD32F565AFF00EC46D1 /* PendingCheckIn.swift in Sources */,
+				36BC8DD52F565BA600EC46D1 /* Extensions + Color.swift in Sources */,
+				36BC8DD02F565AC600EC46D1 /* AppGroup.swift in Sources */,
+				36BC8DD42F565B1300EC46D1 /* PrayerStatistics.swift in Sources */,
+				36BC8DCE2F565AB600EC46D1 /* Prayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,41 +701,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				364965972EB5596100EC74CF /* AppGroup.swift in Sources */,
-				368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */,
-				368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */,
-				364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */,
-				364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */,
-				364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */,
-				364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */,
-				364966562EB6153F00EC74CF /* ActivePrayerTimerView.swift in Sources */,
-				368AD6012EEEBE9600103C43 /* Router.swift in Sources */,
-				3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */,
-				3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */,
-				364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */,
-				3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */,
-				368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */,
-				364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */,
-				3649660D2EB55BB100EC74CF /* TabBarScreen.swift in Sources */,
-				3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */,
-				364966522EB614DC00EC74CF /* CircularProgressView 2.swift in Sources */,
-				3649660F2EB55BB100EC74CF /* CalendarManager.swift in Sources */,
-				364966102EB55BB100EC74CF /* PrayerDetailView.swift in Sources */,
-				364966112EB55BB100EC74CF /* AlarmsView.swift in Sources */,
-				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
-				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
-				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
-				368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
-				368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */,
-				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
-				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
-				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
-				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
-				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,
-				364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */,
-				364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */,
-				364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */,
-				364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */,
+				36BC8D952F565A7900EC46D1 /* CalendarServiceProtocol.swift in Sources */,
+				36BC8D962F565A7900EC46D1 /* EntryRepositoryProtocol.swift in Sources */,
+				36BC8D972F565A7900EC46D1 /* PrayerRepositoryProtocol.swift in Sources */,
+				36BC8D982F565A7900EC46D1 /* ActivePrayerState.swift in Sources */,
+				36BC8D992F565A7900EC46D1 /* LiveActivityDebugView.swift in Sources */,
+				36BC8D9A2F565A7900EC46D1 /* LiveActivityManager.swift in Sources */,
+				36BC8D9B2F565A7900EC46D1 /* PrayerCardView.swift in Sources */,
+				36BC8D9C2F565A7900EC46D1 /* AppGroup.swift in Sources */,
+				36BC8D9D2F565A7900EC46D1 /* CalendarManager.swift in Sources */,
+				36BC8D9E2F565A7900EC46D1 /* AlarmRow.swift in Sources */,
+				36BC8D9F2F565A7900EC46D1 /* AlarmRepositoryProtocol.swift in Sources */,
+				36BC8DA02F565A7900EC46D1 /* NotificationService.swift in Sources */,
+				36BC8DA22F565A7900EC46D1 /* PrayerActivityAttributes.swift in Sources */,
+				36BC8DA32F565A7900EC46D1 /* AlarmsViewModel.swift in Sources */,
+				36BC8DA42F565A7900EC46D1 /* AddAlarmView.swift in Sources */,
+				36BC8DA52F565A7900EC46D1 /* AddPrayerSheet.swift in Sources */,
+				36BC8DA62F565A7900EC46D1 /* Prayer_TrackerApp.swift in Sources */,
+				36BC8DA72F565A7900EC46D1 /* NotificationManager.swift in Sources */,
+				36BC8DA82F565A7900EC46D1 /* PrayerAlarm.swift in Sources */,
+				36BC8DA92F565A7900EC46D1 /* AppContainer.swift in Sources */,
+				36BC8DAA2F565A7900EC46D1 /* PrayerDetailView.swift in Sources */,
+				36BC8DAB2F565A7900EC46D1 /* PixelGridView.swift in Sources */,
+				36BC8DAC2F565A7900EC46D1 /* EntryRepository.swift in Sources */,
+				36BC8DAD2F565A7900EC46D1 /* LiveActivityService.swift in Sources */,
+				36BC8DAE2F565A7900EC46D1 /* NotificationServiceProtocol.swift in Sources */,
+				36BC8DAF2F565A7900EC46D1 /* TodayViewModel.swift in Sources */,
+				36BC8DB02F565A7900EC46D1 /* PrayerService.swift in Sources */,
+				36BC8DB12F565A7900EC46D1 /* LiveActivityServiceProtocol.swift in Sources */,
+				36BC8DB22F565A7900EC46D1 /* CalendarView.swift in Sources */,
+				36BC8DB32F565A7900EC46D1 /* ActivePrayerTimerView.swift in Sources */,
+				36BC8DB42F565A7900EC46D1 /* LocalPersistanceContainer.swift in Sources */,
+				36BC8DB52F565A7900EC46D1 /* CircularProgressView.swift in Sources */,
+				36BC8DB62F565A7900EC46D1 /* Router.swift in Sources */,
+				36BC8DB72F565A7900EC46D1 /* AddPrayerViewModel.swift in Sources */,
+				36BC8DB82F565A7900EC46D1 /* Prayer.swift in Sources */,
+				36BC8DB92F565A7900EC46D1 /* PendingCheckIn.swift in Sources */,
+				36BC8DBA2F565A7900EC46D1 /* TabBarScreen.swift in Sources */,
+				36BC8DBB2F565A7900EC46D1 /* TodayView.swift in Sources */,
+				36BC8DBC2F565A7900EC46D1 /* PrayerRepository.swift in Sources */,
+				36BC8DBD2F565A7900EC46D1 /* CheckInQueue.swift in Sources */,
+				36BC8DBE2F565A7900EC46D1 /* CalendarService.swift in Sources */,
+				36BC8DBF2F565A7900EC46D1 /* AlarmService.swift in Sources */,
+				36BC8DC02F565A7900EC46D1 /* PrayerStatistics.swift in Sources */,
+				36BC8DC12F565A7900EC46D1 /* PrayerServiceProtocol.swift in Sources */,
+				36BC8DC22F565A7900EC46D1 /* AlarmServiceProtocol.swift in Sources */,
+				36BC8DC32F565A7900EC46D1 /* NotificationType.swift in Sources */,
+				36BC8DC42F565A7900EC46D1 /* StatisticsView.swift in Sources */,
+				36BC8DC52F565A7900EC46D1 /* AlarmRepository.swift in Sources */,
+				36BC8DC62F565A7900EC46D1 /* IconPickerView.swift in Sources */,
+				36BC8DC72F565A7900EC46D1 /* NotificationDelegate.swift in Sources */,
+				36BC8DC82F565A7900EC46D1 /* AlarmsView.swift in Sources */,
+				36BC8DC92F565A7900EC46D1 /* StatCard.swift in Sources */,
+				36BC8DCA2F565A7900EC46D1 /* PrayerEntry.swift in Sources */,
+				36BC8DCB2F565A7900EC46D1 /* Extensions + Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
