@@ -114,22 +114,22 @@ final class AppContainer {
         )
     }
 
-    // MARK: - ViewModel Factories
-
-    func makeTodayViewModel() -> TodayViewModel {
+// MARK: - ViewModels
+    
+    lazy var todayViewModel: TodayViewModel = {
         TodayViewModel(prayerService: prayerService)
-    }
+    }()
 
-    func makeAlarmsViewModel() -> AlarmsViewModel {
+    lazy var alarmsViewModel: AlarmsViewModel = {
         AlarmsViewModel(
             alarmService: alarmService,
             prayerService: prayerService
         )
-    }
-
-    func makeAddPrayerViewModel() -> AddPrayerViewModel {
+    }()
+    
+    lazy var addPrayerViewModel: AddPrayerViewModel = {
         AddPrayerViewModel(prayerService: prayerService)
-    }
+    }()
 }
 
 // MARK: - Environment Key

@@ -80,6 +80,8 @@
 		36BC8DD42F565B1300EC46D1 /* PrayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D682F565A7900EC46D1 /* PrayerStatistics.swift */; };
 		36BC8DD52F565BA600EC46D1 /* Extensions + Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D592F565A7900EC46D1 /* Extensions + Color.swift */; };
 		36BC8DD62F565BB500EC46D1 /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8D652F565A7900EC46D1 /* PrayerActivityAttributes.swift */; };
+		36BC8E392F577A3900EC46D1 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E382F577A3900EC46D1 /* CustomTextFieldStyle.swift */; };
+		36BC8E3B2F577A5700EC46D1 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E3A2F577A5700EC46D1 /* ColorButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		36BC8D912F565A7900EC46D1 /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
 		36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer_TrackerApp.swift; sourceTree = "<group>"; };
 		36BC8D932F565A7900EC46D1 /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
+		36BC8E382F577A3900EC46D1 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
+		36BC8E3A2F577A5700EC46D1 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		36DD5C852EB0073F00E7A9DC /* Prayer Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prayer Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -422,6 +426,8 @@
 				36BC8D792F565A7900EC46D1 /* PixelGridView.swift */,
 				36BC8D7A2F565A7900EC46D1 /* PrayerCardView.swift */,
 				36BC8D7B2F565A7900EC46D1 /* StatCard.swift */,
+				36BC8E382F577A3900EC46D1 /* CustomTextFieldStyle.swift */,
+				36BC8E3A2F577A5700EC46D1 /* ColorButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -487,6 +493,11 @@
 		36BC8D942F565A7900EC46D1 /* Prayer Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */,
+				36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */,
+				36BC8D8F2F565A7900EC46D1 /* LocalPersistanceContainer.swift */,
+				36BC8D902F565A7900EC46D1 /* NotificationDelegate.swift */,
+				36BC8D912F565A7900EC46D1 /* Prayer Tracker.entitlements */,
 				36BC8D582F565A7900EC46D1 /* Core */,
 				36BC8D5A2F565A7900EC46D1 /* Extensions */,
 				36BC8D612F565A7900EC46D1 /* Managers */,
@@ -494,12 +505,7 @@
 				36BC8D6F2F565A7900EC46D1 /* Services */,
 				36BC8D732F565A7900EC46D1 /* ViewModels */,
 				36BC8D8C2F565A7900EC46D1 /* Views */,
-				36BC8D8D2F565A7900EC46D1 /* AppGroup.swift */,
 				36BC8D8E2F565A7900EC46D1 /* Assets.xcassets */,
-				36BC8D8F2F565A7900EC46D1 /* LocalPersistanceContainer.swift */,
-				36BC8D902F565A7900EC46D1 /* NotificationDelegate.swift */,
-				36BC8D912F565A7900EC46D1 /* Prayer Tracker.entitlements */,
-				36BC8D922F565A7900EC46D1 /* Prayer_TrackerApp.swift */,
 				36BC8D932F565A7900EC46D1 /* PrayerTracker.icon */,
 			);
 			path = "Prayer Tracker";
@@ -709,12 +715,14 @@
 				36BC8D9A2F565A7900EC46D1 /* LiveActivityManager.swift in Sources */,
 				36BC8D9B2F565A7900EC46D1 /* PrayerCardView.swift in Sources */,
 				36BC8D9C2F565A7900EC46D1 /* AppGroup.swift in Sources */,
+				36BC8E392F577A3900EC46D1 /* CustomTextFieldStyle.swift in Sources */,
 				36BC8D9D2F565A7900EC46D1 /* CalendarManager.swift in Sources */,
 				36BC8D9E2F565A7900EC46D1 /* AlarmRow.swift in Sources */,
 				36BC8D9F2F565A7900EC46D1 /* AlarmRepositoryProtocol.swift in Sources */,
 				36BC8DA02F565A7900EC46D1 /* NotificationService.swift in Sources */,
 				36BC8DA22F565A7900EC46D1 /* PrayerActivityAttributes.swift in Sources */,
 				36BC8DA32F565A7900EC46D1 /* AlarmsViewModel.swift in Sources */,
+				36BC8E3B2F577A5700EC46D1 /* ColorButton.swift in Sources */,
 				36BC8DA42F565A7900EC46D1 /* AddAlarmView.swift in Sources */,
 				36BC8DA52F565A7900EC46D1 /* AddPrayerSheet.swift in Sources */,
 				36BC8DA62F565A7900EC46D1 /* Prayer_TrackerApp.swift in Sources */,

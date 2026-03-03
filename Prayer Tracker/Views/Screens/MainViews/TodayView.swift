@@ -9,23 +9,13 @@ import SwiftUI
 
 struct TodayView: View {
     @Environment(\.appContainer) private var appContainer
-    @State private var viewModel: TodayViewModel?
     @State private var showingAddSheet = false
     @State private var selectedPrayer: Prayer?
 
     var body: some View {
-        Group {
-            if let viewModel = viewModel {
-                contentView(viewModel: viewModel)
-            } else {
-                ProgressView()
-            }
-        }
-        .task {
-            if viewModel == nil, let container = appContainer {
-                viewModel = container.makeTodayViewModel()
-                await viewModel?.loadPrayers()
-            }
+        if let viewModel = appContainer?.todayViewModel {
+            contentView(viewModel: viewModel)
+                .task { await viewModel.loadPrayers() }
         }
     }
 

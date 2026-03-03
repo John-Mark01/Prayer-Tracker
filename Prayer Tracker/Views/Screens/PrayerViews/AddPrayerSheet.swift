@@ -21,17 +21,8 @@ struct AddPrayerSheet: View {
     ]
 
     var body: some View {
-        Group {
-            if let viewModel = viewModel {
-                contentView(viewModel: viewModel)
-            } else {
-                ProgressView()
-            }
-        }
-        .task {
-            if viewModel == nil, let container = appContainer {
-                viewModel = container.makeAddPrayerViewModel()
-            }
+        if let viewModel = appContainer?.addPrayerViewModel {
+            contentView(viewModel: viewModel)
         }
     }
 
@@ -199,41 +190,6 @@ struct AddPrayerSheet: View {
     private func handleSubmit() {
         if titleIsFocused {
             subtitleIsFocused = true
-        }
-    }
-}
-
-struct CustomTextFieldStyle: TextFieldStyle {
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
-            .font(.system(size: 16, weight: .medium, design: .rounded))
-            .foregroundStyle(.white)
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.white.opacity(0.08))
-            )
-    }
-}
-
-struct ColorButton: View {
-    let color: Color
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            ZStack {
-                Circle()
-                    .fill(color)
-                    .frame(width: 44, height: 44)
-
-                if isSelected {
-                    Circle()
-                        .strokeBorder(.white, lineWidth: 3)
-                        .frame(width: 44, height: 44)
-                }
-            }
         }
     }
 }

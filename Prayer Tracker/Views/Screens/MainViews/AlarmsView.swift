@@ -9,23 +9,13 @@ import SwiftUI
 
 struct AlarmsView: View {
     @Environment(\.appContainer) private var appContainer
-    @State private var viewModel: AlarmsViewModel?
     @State private var showingAddAlarm = false
     @State private var showingDebug = false
 
     var body: some View {
-        Group {
-            if let viewModel = viewModel {
-                contentView(viewModel: viewModel)
-            } else {
-                ProgressView()
-            }
-        }
-        .task {
-            if viewModel == nil, let container = appContainer {
-                viewModel = container.makeAlarmsViewModel()
-                await viewModel?.loadData()
-            }
+        if let viewModel = appContainer?.alarmsViewModel {
+            contentView(viewModel: viewModel)
+                .task { await viewModel.loadData() }
         }
     }
 
