@@ -6,72 +6,59 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct TodayView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
-    @Query private var allEntries: [PrayerEntry]
-
+    @Environment(\.appContainer) private var appContainer
+    @State private var viewModel: TodayViewModel?
     @State private var showingAddSheet = false
     @State private var selectedPrayer: Prayer?
 
-    private let calendar = Calendar.current
-
-    private func todayEntries(for prayer: Prayer) -> [PrayerEntry] {
-        let today = calendar.startOfDay(for: Date())
-        return prayer.entries.filter { entry in
-            calendar.isDate(entry.timestamp, inSameDayAs: today)
-        }
-    }
-
-    private func todayCount(for prayer: Prayer) -> Int {
-        todayEntries(for: prayer).count
-    }
-
-    private func checkIn(for prayer: Prayer) {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            let entry = PrayerEntry(timestamp: Date(), prayer: prayer)
-            modelContext.insert(entry)
-        }
-    }
-
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 16) {
-                ForEach(prayers) { prayer in
-                    PrayerCardView(
-                        prayer: prayer,
-                        entries: prayer.entries,
-                        todayCount: todayCount(for: prayer),
-                        onCheckIn: { checkIn(for: prayer) },
-                        onTap: { selectedPrayer = prayer }
-                    )
-                    //TODO: Left here to track colors when needed to copy their HEX Value
-                    //                                .onAppear {
-                    //                                    print("\nPrayer: \(prayer.title) has color: \(prayer.colorHex)")
-                    //                                }
-                }
+        Group {
+            if let viewModel = viewModel {
+                contentView(viewModel: viewModel)
+            } else {
+                ProgressView()
             }
-            .padding(20)
         }
-        .overlay {
-            
-            // Empty State
-            if prayers.isEmpty {
+        .task {
+            if viewModel == nil, let container = appContainer {
+                viewModel = container.makeTodayViewModel()
+                await viewModel?.loadPrayers()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func contentView(viewModel: TodayViewModel) -> some View {
+        ScrollView {
+            if viewModel.isLoading {
+                ProgressView()
+                    .padding(.top, 100)
+            } else if let error = viewModel.errorMessage {
                 VStack(spacing: 16) {
-                    Image(systemName: "hands.sparkles")
+                    Image(systemName: "exclamationmark.triangle")
                         .font(.system(size: 60))
-                        .foregroundStyle(.white.opacity(0.3))
-                    
-                    Text("No prayers yet")
+                        .foregroundStyle(.red.opacity(0.6))
+
+                    Text("Error")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
-                    
-                    Text("Tap + to add your first prayer")
+
+                    Text(error)
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.white.opacity(0.6))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 40)
                 }
+                .padding(.top, 100)
+            } else {
+                prayersList(viewModel: viewModel)
+            }
+        }
+        .overlay {
+            if !viewModel.isLoading && viewModel.prayers.isEmpty {
+                emptyStateView
             }
         }
         .background(Color(white: 0.05).ignoresSafeArea())
@@ -86,7 +73,11 @@ struct TodayView: View {
                 }
             }
         }
-        .sheet(isPresented: $showingAddSheet) {
+        .sheet(isPresented: $showingAddSheet, onDismiss: {
+            Task {
+                await viewModel.loadPrayers()
+            }
+        }) {
             AddPrayerSheet()
         }
         .sheet(item: $selectedPrayer) { prayer in
@@ -95,9 +86,48 @@ struct TodayView: View {
             }
         }
     }
+
+    @ViewBuilder
+    private func prayersList(viewModel: TodayViewModel) -> some View {
+        LazyVStack(spacing: 16) {
+            ForEach(viewModel.prayers) { prayer in
+                PrayerCardView(
+                    prayer: prayer,
+                    entries: prayer.entries,
+                    todayCount: viewModel.todayCount(for: prayer),
+                    onCheckIn: {
+                        Task {
+                            await viewModel.checkIn(for: prayer)
+                        }
+                    },
+                    onTap: { selectedPrayer = prayer }
+                )
+            }
+        }
+        .padding(20)
+    }
+
+    private var emptyStateView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "hands.sparkles")
+                .font(.system(size: 60))
+                .foregroundStyle(.white.opacity(0.3))
+
+            Text("No prayers yet")
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+
+            Text("Tap + to add your first prayer")
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .foregroundStyle(.white.opacity(0.6))
+        }
+    }
 }
 
 #Preview {
-    TodayView()
-        .modelContainer(for: Prayer.self, inMemory: true)
+    let container = AppContainer.build()
+    return NavigationStack {
+        TodayView()
+            .environment(\.appContainer, container)
+    }
 }

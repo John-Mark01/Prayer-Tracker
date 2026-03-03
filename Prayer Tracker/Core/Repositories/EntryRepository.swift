@@ -20,12 +20,12 @@ actor EntryRepository: EntryRepositoryProtocol {
         modelContainer.mainContext
     }
 
-    func fetchAll() async throws -> [PrayerEntry] {
+    nonisolated func fetchAll() async throws -> [PrayerEntry] {
         let descriptor = FetchDescriptor<PrayerEntry>(sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)])
         return try await context.fetch(descriptor)
     }
 
-    func fetchByPrayer(_ prayer: Prayer) async throws -> [PrayerEntry] {
+    nonisolated func fetchByPrayer(_ prayer: Prayer) async throws -> [PrayerEntry] {
         let prayerId = prayer.id
         let descriptor = FetchDescriptor<PrayerEntry>(
             predicate: #Predicate { $0.prayer?.id == prayerId },
@@ -34,7 +34,7 @@ actor EntryRepository: EntryRepositoryProtocol {
         return try await context.fetch(descriptor)
     }
 
-    func fetchByDateRange(from startDate: Date, to endDate: Date) async throws -> [PrayerEntry] {
+    nonisolated func fetchByDateRange(from startDate: Date, to endDate: Date) async throws -> [PrayerEntry] {
         let descriptor = FetchDescriptor<PrayerEntry>(
             predicate: #Predicate { entry in
                 entry.timestamp >= startDate && entry.timestamp <= endDate
@@ -44,12 +44,12 @@ actor EntryRepository: EntryRepositoryProtocol {
         return try await context.fetch(descriptor)
     }
 
-    func insert(_ entry: PrayerEntry) async throws {
+    nonisolated func insert(_ entry: PrayerEntry) async throws {
         await context.insert(entry)
         try await context.save()
     }
 
-    func delete(_ entry: PrayerEntry) async throws {
+    nonisolated func delete(_ entry: PrayerEntry) async throws {
         await context.delete(entry)
         try await context.save()
     }

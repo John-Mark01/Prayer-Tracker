@@ -6,32 +6,37 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct AddPrayerSheet: View {
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.appContainer) private var appContainer
     @Environment(\.dismiss) private var dismiss
-    @Query private var allPrayers: [Prayer]
-    
+    @State private var viewModel: AddPrayerViewModel?
+
     @FocusState private var titleIsFocused: Bool
     @FocusState private var subtitleIsFocused: Bool
-
-    @State private var title = ""
-    @State private var subtitle = ""
-    @State private var selectedIcon = "hands.sparkles.fill"
-    @State private var selectedColor = Color.green
-    @State private var showingIconPicker = false
 
     private let availableColors: [Color] = [
         .green, .purple, .blue, .orange, .red,
         .pink, .yellow, .cyan, .indigo, .mint
     ]
 
-    private var isValid: Bool {
-        !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    var body: some View {
+        Group {
+            if let viewModel = viewModel {
+                contentView(viewModel: viewModel)
+            } else {
+                ProgressView()
+            }
+        }
+        .task {
+            if viewModel == nil, let container = appContainer {
+                viewModel = container.makeAddPrayerViewModel()
+            }
+        }
     }
 
-    var body: some View {
+    @ViewBuilder
+    private func contentView(viewModel: AddPrayerViewModel) -> some View {
         NavigationStack {
             ZStack {
                 Color(white: 0.05)
@@ -42,12 +47,12 @@ struct AddPrayerSheet: View {
                         // Icon Preview
                         ZStack {
                             Circle()
-                                .fill(selectedColor.opacity(0.2))
+                                .fill(viewModel.selectedColor.opacity(0.2))
                                 .frame(width: 80, height: 80)
 
-                            Image(systemName: selectedIcon)
+                            Image(systemName: viewModel.selectedIcon)
                                 .font(.system(size: 40))
-                                .foregroundStyle(selectedColor)
+                                .foregroundStyle(viewModel.selectedColor)
                         }
                         .padding(.top, 20)
 
@@ -58,7 +63,10 @@ struct AddPrayerSheet: View {
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.white.opacity(0.7))
 
-                                TextField("e.g., Morning Prayer", text: $title)
+                                TextField("e.g., Morning Prayer", text: Binding(
+                                    get: { viewModel.title },
+                                    set: { viewModel.title = $0 }
+                                ))
                                     .textFieldStyle(CustomTextFieldStyle())
                                     .focused($titleIsFocused)
                                     .onTapGesture { titleIsFocused = true }
@@ -70,7 +78,10 @@ struct AddPrayerSheet: View {
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.white.opacity(0.7))
 
-                                TextField("e.g., Start the day with gratitude", text: $subtitle)
+                                TextField("e.g., Start the day with gratitude", text: Binding(
+                                    get: { viewModel.subtitle },
+                                    set: { viewModel.subtitle = $0 }
+                                ))
                                     .textFieldStyle(CustomTextFieldStyle())
                                     .focused($subtitleIsFocused)
                                     .onTapGesture { subtitleIsFocused = true }
@@ -82,11 +93,11 @@ struct AddPrayerSheet: View {
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.white.opacity(0.7))
 
-                                Button(action: { showingIconPicker = true }) {
+                                Button(action: { viewModel.showingIconPicker = true }) {
                                     HStack {
-                                        Image(systemName: selectedIcon)
+                                        Image(systemName: viewModel.selectedIcon)
                                             .font(.system(size: 20))
-                                            .foregroundStyle(selectedColor)
+                                            .foregroundStyle(viewModel.selectedColor)
 
                                         Text("Choose Icon")
                                             .font(.system(size: 16, weight: .medium, design: .rounded))
@@ -111,26 +122,37 @@ struct AddPrayerSheet: View {
                                 Text("Color")
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.white.opacity(0.7))
-                                
+
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
-                                        
+
                                         ForEach(availableColors, id: \.description) { color in
                                             ColorButton(
                                                 color: color,
-                                                isSelected: selectedColor == color,
-                                                action: { selectedColor = color }
+                                                isSelected: viewModel.selectedColor == color,
+                                                action: { viewModel.selectedColor = color }
                                             )
                                         }
-                                        
-                                        ColorPicker("", selection: $selectedColor, supportsOpacity: false)
+
+                                        ColorPicker("", selection: Binding(
+                                            get: { viewModel.selectedColor },
+                                            set: { viewModel.selectedColor = $0 }
+                                        ), supportsOpacity: false)
                                             .scaleEffect(CGSize(width: 1.6, height: 1.6))
                                             .labelsHidden()
                                             .padding(.horizontal, 5)
-                                        
+
                                     }
                                     .padding(.horizontal, 4)
                                 }
+                            }
+
+                            // Error Message
+                            if let error = viewModel.errorMessage {
+                                Text(error)
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.red)
+                                    .multilineTextAlignment(.center)
                             }
                         }
                         .padding(.horizontal, 20)
@@ -151,38 +173,32 @@ struct AddPrayerSheet: View {
 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        savePrayer()
+                        Task {
+                            let success = await viewModel.savePrayer()
+                            if success {
+                                dismiss()
+                            }
+                        }
                     }
                     .fontWeight(.semibold)
-                    .disabled(!isValid)
+                    .disabled(!viewModel.isValid)
                 }
             }
-            .sheet(isPresented: $showingIconPicker) {
-                IconPickerView(selectedIcon: $selectedIcon)
+            .sheet(isPresented: Binding(
+                get: { viewModel.showingIconPicker },
+                set: { viewModel.showingIconPicker = $0 }
+            )) {
+                IconPickerView(selectedIcon: Binding(
+                    get: { viewModel.selectedIcon },
+                    set: { viewModel.selectedIcon = $0 }
+                ))
             }
         }
     }
 
-    private func savePrayer() {
-        let maxSortOrder = allPrayers.map(\.sortOrder).max() ?? -1
-        let prayer = Prayer(
-            title: title.trimmingCharacters(in: .whitespacesAndNewlines),
-            subtitle: subtitle.trimmingCharacters(in: .whitespacesAndNewlines),
-            iconName: selectedIcon,
-            colorHex: selectedColor.toHex() ?? "#9333EA",
-            sortOrder: maxSortOrder + 1
-        )
-        modelContext.insert(prayer)
-        dismiss()
-    }
-    
     private func handleSubmit() {
-        Task {
-            await MainActor.run {
-                if titleIsFocused {
-                    subtitleIsFocused = true
-                }
-            }
+        if titleIsFocused {
+            subtitleIsFocused = true
         }
     }
 }
@@ -223,6 +239,7 @@ struct ColorButton: View {
 }
 
 #Preview {
-    AddPrayerSheet()
-        .modelContainer(for: Prayer.self, inMemory: true)
+    let container = AppContainer.build()
+    return AddPrayerSheet()
+        .environment(\.appContainer, container)
 }

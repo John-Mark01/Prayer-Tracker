@@ -10,29 +10,29 @@ import SwiftData
 
 @main
 struct Prayer_TrackerApp: App {
-    @State private var notificationDelegate = NotificationDelegate()
-    @State private var activePrayerState = ActivePrayerState()
-    @State private var localPersistanceContainer = LocalPersistanceContainer()
+    @State private var appContainer: AppContainer
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
-        UNUserNotificationCenter.current().delegate = notificationDelegate
+        // Build dependency injection container
+        let container = AppContainer.build()
+        self._appContainer = State(initialValue: container)
 
-        // Pass activePrayerState reference to notification delegate
-        // Note: Using _wrappedValue to access @State in init
-        notificationDelegate.activePrayerState = _activePrayerState.wrappedValue
+        // Set up notification delegate
+        UNUserNotificationCenter.current().delegate = container.notificationDelegate
     }
 
     var body: some Scene {
         WindowGroup {
             TabBarScreen()
                 .tint(.appTint)
-                .environment(activePrayerState)
+                .environment(appContainer.activePrayerState)
+                .environment(\.appContainer, appContainer)
                 .onOpenURL { url in
                     handleURL(url)
                 }
         }
-        .modelContainer(localPersistanceContainer.sharedModelContainer)
+        .modelContainer(appContainer.modelContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
                 // Process pending operations when app becomes active
@@ -85,9 +85,10 @@ struct Prayer_TrackerApp: App {
 
         // Start the Live Activity countdown
         print("▶️ Starting Live Activity countdown...")
-        await LiveActivityManager.shared.startPrayerCountdown(activityID: activityID)
+        await appContainer.liveActivityService.startPrayerCountdown(activityID: activityID)
 
         // Start the in-app countdown if modal is showing
+        let activePrayerState = appContainer.activePrayerState
         print("🔍 Checking in-app state - activityID: \(activePrayerState.activityID ?? "nil"), isReady: \(activePrayerState.isReady)")
         if activePrayerState.activityID == activityID && activePrayerState.isReady {
             print("▶️ Starting in-app countdown...")
@@ -114,7 +115,7 @@ struct Prayer_TrackerApp: App {
 
         print("📝 Processing \(queue.count) pending check-in(s)")
 
-        let context = localPersistanceContainer.sharedModelContainer.mainContext
+        let context = appContainer.modelContainer.mainContext
         var checkedInActivityIDs: [String] = []
 
         for checkIn in queue {
@@ -141,7 +142,7 @@ struct Prayer_TrackerApp: App {
             checkedInActivityIDs.append(checkIn.activityID)
 
             // End the Live Activity
-            await LiveActivityManager.shared.endActivity(activityID: checkIn.activityID)
+            await appContainer.liveActivityService.endActivity(activityID: checkIn.activityID)
         }
 
         // Save all entries
@@ -156,6 +157,7 @@ struct Prayer_TrackerApp: App {
         CheckInQueue.clearQueue()
 
         // If the current in-app prayer session was checked in from Live Activity, dismiss it
+        let activePrayerState = appContainer.activePrayerState
         if let currentActivityID = activePrayerState.activityID,
            checkedInActivityIDs.contains(currentActivityID) {
             print("🚪 Check-in was for current in-app session - dismissing modal")

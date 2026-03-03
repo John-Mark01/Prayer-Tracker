@@ -14,30 +14,39 @@ import Observation
     // MARK: - Published State
 
     private(set) var alarms: [PrayerAlarm] = []
+    private(set) var prayers: [Prayer] = []
     private(set) var isLoading = false
     private(set) var errorMessage: String?
 
     // MARK: - Dependencies
 
     private let alarmService: AlarmServiceProtocol
+    private let prayerService: PrayerServiceProtocol
 
     // MARK: - Initialization
 
-    init(alarmService: AlarmServiceProtocol) {
+    init(
+        alarmService: AlarmServiceProtocol,
+        prayerService: PrayerServiceProtocol
+    ) {
         self.alarmService = alarmService
+        self.prayerService = prayerService
     }
 
     // MARK: - View Actions
 
-    func loadAlarms() async {
+    func loadData() async {
         isLoading = true
         errorMessage = nil
 
         do {
-            alarms = try await alarmService.fetchAllAlarms()
+            async let alarmsTask = alarmService.fetchAllAlarms()
+            async let prayersTask = prayerService.fetchAllPrayers()
+
+            (alarms, prayers) = try await (alarmsTask, prayersTask)
             isLoading = false
         } catch {
-            errorMessage = "Failed to load alarms: \(error.localizedDescription)"
+            errorMessage = "Failed to load data: \(error.localizedDescription)"
             isLoading = false
         }
     }
@@ -45,7 +54,7 @@ import Observation
     func toggleAlarm(_ alarm: PrayerAlarm) async {
         do {
             try await alarmService.toggleAlarm(alarm)
-            await loadAlarms()
+            await loadData()
         } catch {
             errorMessage = "Failed to toggle alarm: \(error.localizedDescription)"
         }
@@ -54,15 +63,22 @@ import Observation
     func deleteAlarm(_ alarm: PrayerAlarm) async {
         do {
             try await alarmService.deleteAlarm(alarm)
-            await loadAlarms()
+            await loadData()
         } catch {
             errorMessage = "Failed to delete alarm: \(error.localizedDescription)"
         }
     }
 
+    func deleteAlarms(at offsets: IndexSet, from alarmsList: [PrayerAlarm]) async {
+        for index in offsets {
+            let alarm = alarmsList[index]
+            await deleteAlarm(alarm)
+        }
+    }
+
     // MARK: - Computed Properties
 
-    func groupedAlarms(prayers: [Prayer]) -> [(prayer: Prayer?, alarms: [PrayerAlarm])] {
+    var groupedAlarms: [(prayer: Prayer?, alarms: [PrayerAlarm])] {
         let grouped = Dictionary(grouping: alarms) { $0.prayer }
 
         var result: [(Prayer?, [PrayerAlarm])] = []

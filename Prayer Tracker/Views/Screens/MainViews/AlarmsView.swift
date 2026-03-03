@@ -6,87 +6,81 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct AlarmsView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: [SortDescriptor(\PrayerAlarm.hour), SortDescriptor(\PrayerAlarm.minute)]) private var alarms: [PrayerAlarm]
-    @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
+    @Environment(\.appContainer) private var appContainer
+    @State private var viewModel: AlarmsViewModel?
     @State private var showingAddAlarm = false
     @State private var showingDebug = false
-    
-    // Group alarms by prayer
-    private var groupedAlarms: [(prayer: Prayer?, alarms: [PrayerAlarm])] {
-        let grouped = Dictionary(grouping: alarms) { $0.prayer }
-        
-        // Sort: prayers with alarms first (by prayer sort order), then orphaned alarms
-        var result: [(Prayer?, [PrayerAlarm])] = []
-        
-        // Add prayers with alarms
-        for prayer in prayers {
-            if let prayerAlarms = grouped[prayer], !prayerAlarms.isEmpty {
-                result.append((prayer, prayerAlarms))
+
+    var body: some View {
+        Group {
+            if let viewModel = viewModel {
+                contentView(viewModel: viewModel)
+            } else {
+                ProgressView()
             }
         }
-        
-        // Add orphaned alarms (no prayer associated)
-        if let orphanedAlarms = grouped[nil], !orphanedAlarms.isEmpty {
-            result.append((nil, orphanedAlarms))
+        .task {
+            if viewModel == nil, let container = appContainer {
+                viewModel = container.makeAlarmsViewModel()
+                await viewModel?.loadData()
+            }
         }
-        
-        return result
     }
-    
-    var body: some View {
+
+    @ViewBuilder
+    private func contentView(viewModel: AlarmsViewModel) -> some View {
         List {
-            ForEach(Array(groupedAlarms.enumerated()), id: \.offset) { _, group in
-                Section {
-                    ForEach(group.alarms) { alarm in
-                        AlarmRow(alarm: alarm, modelContext: modelContext)
+            if viewModel.isLoading {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .listRowBackground(Color.clear)
+            } else {
+                ForEach(Array(viewModel.groupedAlarms.enumerated()), id: \.offset) { _, group in
+                    Section {
+                        ForEach(group.alarms) { alarm in
+                            AlarmRow(
+                                alarm: alarm,
+                                onToggle: {
+                                    Task {
+                                        await viewModel.toggleAlarm(alarm)
+                                    }
+                                }
+                            )
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
-                    }
-                    .onDelete { offsets in
-                        deleteAlarms(from: group.alarms, offsets: offsets)
-                    }
-                } header: {
-                    if let prayer = group.prayer {
-                        HStack(spacing: 8) {
-                            Image(systemName: prayer.iconName)
-                                .foregroundStyle(Color(hex: prayer.colorHex))
-                            Text(prayer.title)
-                                .font(.system(size: 16, weight: .semibold, design: .rounded))
                         }
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                        .foregroundStyle(.white)
-                        .textCase(nil)
-                    } else {
-                        Text("Other Alarms")
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.6))
+                        .onDelete { offsets in
+                            Task {
+                                await viewModel.deleteAlarms(at: offsets, from: group.alarms)
+                            }
+                        }
+                    } header: {
+                        if let prayer = group.prayer {
+                            HStack(spacing: 8) {
+                                Image(systemName: prayer.iconName)
+                                    .foregroundStyle(Color(hex: prayer.colorHex))
+                                Text(prayer.title)
+                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                            }
+                            .lineLimit(2)
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.white)
                             .textCase(nil)
+                        } else {
+                            Text("Other Alarms")
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.6))
+                                .textCase(nil)
+                        }
                     }
                 }
             }
         }
         .overlay {
-            if alarms.isEmpty {
-                VStack(spacing: 16) {
-                    Image(systemName: "bell.slash")
-                        .font(.system(size: 60))
-                        .foregroundStyle(.white.opacity(0.3))
-
-                    Text("No Prayer Alarms")
-                        .font(.title2.bold())
-                        .foregroundStyle(.white)
-
-                    Text("Create an alarm to get reminded when it's time to pray")
-                        .font(.body)
-                        .foregroundStyle(.white.opacity(0.6))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 40)
-                }
+            if !viewModel.isLoading && viewModel.alarms.isEmpty {
+                emptyStateView
             }
         }
         .background(Color.white.opacity(0.05).ignoresSafeArea())
@@ -104,51 +98,48 @@ struct AlarmsView: View {
                 }
             }
 #endif
-            
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: { showingAddAlarm = true }) {
                     Image(systemName: "plus")
                 }
             }
         }
-        .sheet(isPresented: $showingAddAlarm) { AddAlarmView() }
-        .sheet(isPresented: $showingDebug) { LiveActivityDebugView() }
+        .sheet(isPresented: $showingAddAlarm, onDismiss: {
+            Task {
+                await viewModel.loadData()
+            }
+        }) {
+            AddAlarmView()
+        }
+        .sheet(isPresented: $showingDebug) {
+            LiveActivityDebugView()
+        }
     }
 
-    private func deleteAlarms(from alarmsList: [PrayerAlarm], offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                let alarm = alarmsList[index]
+    private var emptyStateView: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "bell.slash")
+                .font(.system(size: 60))
+                .foregroundStyle(.white.opacity(0.3))
 
-                // Cancel alarm notification if exists
-                if let identifier = alarm.notificationIdentifier {
-                    NotificationManager.shared.cancelNotification(identifier: identifier)
-                }
+            Text("No Prayer Alarms")
+                .font(.title2.bold())
+                .foregroundStyle(.white)
 
-                // Cancel warning notification if exists
-                if let identifier = alarm.warningNotificationIdentifier {
-                    NotificationManager.shared.cancelNotification(identifier: identifier)
-                }
-
-                // Delete calendar event if exists
-                if let calendarId = alarm.calendarIdentifier {
-                    CalendarManager.shared.deleteCalendarEvent(identifier: calendarId)
-                }
-
-                // End Live Activity if exists
-                if let activityId = alarm.liveActivityId {
-                    Task {
-                        await LiveActivityManager.shared.endActivity(activityID: activityId)
-                    }
-                }
-
-                modelContext.delete(alarm)
-            }
+            Text("Create an alarm to get reminded when it's time to pray")
+                .font(.body)
+                .foregroundStyle(.white.opacity(0.6))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
         }
     }
 }
 
 #Preview {
-    AlarmsView()
-        .modelContainer(for: PrayerAlarm.self, inMemory: true)
+    let container = AppContainer.build()
+    return NavigationStack {
+        AlarmsView()
+            .environment(\.appContainer, container)
+    }
 }

@@ -20,26 +20,26 @@ actor PrayerRepository: PrayerRepositoryProtocol {
         modelContainer.mainContext
     }
 
-    func fetchAll() async throws -> [Prayer] {
+    nonisolated func fetchAll() async throws -> [Prayer] {
         let descriptor = FetchDescriptor<Prayer>(sortBy: [SortDescriptor(\Prayer.sortOrder)])
         return try await context.fetch(descriptor)
     }
 
-    func fetchById(_ id: UUID) async throws -> Prayer? {
+    nonisolated func fetchById(_ id: UUID) async throws -> Prayer? {
         let descriptor = FetchDescriptor<Prayer>(predicate: #Predicate { $0.id == id })
         return try await context.fetch(descriptor).first
     }
 
-    func insert(_ prayer: Prayer) async throws {
+    nonisolated func insert(_ prayer: Prayer) async throws {
         await context.insert(prayer)
         try await context.save()
     }
 
-    func update(_ prayer: Prayer) async throws {
+    nonisolated func update(_ prayer: Prayer) async throws {
         try await context.save()
     }
 
-    func delete(_ prayer: Prayer) async throws {
+    nonisolated func delete(_ prayer: Prayer) async throws {
         await context.delete(prayer)
         try await context.save()
     }

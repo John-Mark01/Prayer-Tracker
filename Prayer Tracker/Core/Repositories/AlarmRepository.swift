@@ -20,7 +20,7 @@ actor AlarmRepository: AlarmRepositoryProtocol {
         modelContainer.mainContext
     }
 
-    func fetchAll() async throws -> [PrayerAlarm] {
+    nonisolated func fetchAll() async throws -> [PrayerAlarm] {
         let descriptor = FetchDescriptor<PrayerAlarm>(
             sortBy: [
                 SortDescriptor(\PrayerAlarm.hour),
@@ -30,22 +30,22 @@ actor AlarmRepository: AlarmRepositoryProtocol {
         return try await context.fetch(descriptor)
     }
 
-    func fetchById(_ id: UUID) async throws -> PrayerAlarm? {
+    nonisolated func fetchById(_ id: UUID) async throws -> PrayerAlarm? {
         // Note: PrayerAlarm doesn't have id property, need to add it or use different lookup
         // For now, returning nil - this should be addressed in model refactoring
         return nil
     }
 
-    func insert(_ alarm: PrayerAlarm) async throws {
+    nonisolated func insert(_ alarm: PrayerAlarm) async throws {
         await context.insert(alarm)
         try await context.save()
     }
 
-    func update(_ alarm: PrayerAlarm) async throws {
+    nonisolated func update(_ alarm: PrayerAlarm) async throws {
         try await context.save()
     }
 
-    func delete(_ alarm: PrayerAlarm) async throws {
+    nonisolated func delete(_ alarm: PrayerAlarm) async throws {
         await context.delete(alarm)
         try await context.save()
     }

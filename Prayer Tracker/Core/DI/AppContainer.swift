@@ -121,7 +121,10 @@ final class AppContainer {
     }
 
     func makeAlarmsViewModel() -> AlarmsViewModel {
-        AlarmsViewModel(alarmService: alarmService)
+        AlarmsViewModel(
+            alarmService: alarmService,
+            prayerService: prayerService
+        )
     }
 
     func makeAddPrayerViewModel() -> AddPrayerViewModel {
