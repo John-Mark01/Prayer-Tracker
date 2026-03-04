@@ -7,50 +7,57 @@
 
 import Foundation
 import SwiftData
+import Observation
 
-actor EntryRepository: EntryRepositoryProtocol {
+@MainActor
+@Observable
+final class EntryRepository: EntryRepositoryProtocol {
+    // MARK: - Published State
+
+    private(set) var entries: [PrayerEntry] = []
+
+    // MARK: - Private Properties
+
     private let modelContainer: ModelContainer
+
+    private var context: ModelContext {
+        modelContainer.mainContext
+    }
+
+    // MARK: - Initialization
 
     init(modelContainer: ModelContainer) {
         self.modelContainer = modelContainer
     }
 
-    @MainActor
-    private var context: ModelContext {
-        modelContainer.mainContext
-    }
+    // MARK: - Fetch Operations
 
-    nonisolated func fetchAll() async throws -> [PrayerEntry] {
+    func fetchAll() throws {
         let descriptor = FetchDescriptor<PrayerEntry>(sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)])
-        return try await context.fetch(descriptor)
+        entries = try context.fetch(descriptor)
     }
 
-    nonisolated func fetchByPrayer(_ prayer: Prayer) async throws -> [PrayerEntry] {
-        let prayerId = prayer.id
-        let descriptor = FetchDescriptor<PrayerEntry>(
-            predicate: #Predicate { $0.prayer?.id == prayerId },
-            sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)]
-        )
-        return try await context.fetch(descriptor)
+    func entriesByPrayer(_ prayer: Prayer) -> [PrayerEntry] {
+        entries.filter { $0.prayer?.id == prayer.id }
     }
 
-    nonisolated func fetchByDateRange(from startDate: Date, to endDate: Date) async throws -> [PrayerEntry] {
-        let descriptor = FetchDescriptor<PrayerEntry>(
-            predicate: #Predicate { entry in
-                entry.timestamp >= startDate && entry.timestamp <= endDate
-            },
-            sortBy: [SortDescriptor(\PrayerEntry.timestamp, order: .reverse)]
-        )
-        return try await context.fetch(descriptor)
+    func entriesByDateRange(from startDate: Date, to endDate: Date) -> [PrayerEntry] {
+        entries.filter { entry in
+            entry.timestamp >= startDate && entry.timestamp <= endDate
+        }
     }
 
-    nonisolated func insert(_ entry: PrayerEntry) async throws {
-        await context.insert(entry)
-        try await context.save()
+    // MARK: - Write Operations
+
+    func insert(_ entry: PrayerEntry) throws {
+        context.insert(entry)
+        try context.save()
+        try fetchAll()  // Refresh cache
     }
 
-    nonisolated func delete(_ entry: PrayerEntry) async throws {
-        await context.delete(entry)
-        try await context.save()
+    func delete(_ entry: PrayerEntry) throws {
+        context.delete(entry)
+        try context.save()
+        try fetchAll()  // Refresh cache
     }
 }

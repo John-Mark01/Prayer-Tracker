@@ -35,7 +35,7 @@ final class MockPrayerService: PrayerServiceProtocol {
 
     // MARK: - Protocol Implementation
 
-    func fetchAllPrayers() async throws -> [Prayer] {
+    nonisolated func fetchAllPrayers() async throws -> [Prayer] {
         fetchAllPrayersCalled = true
 
         if shouldThrowError {
@@ -45,7 +45,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         return prayersToReturn
     }
 
-    func fetchPrayer(byId id: UUID) async throws -> Prayer? {
+    nonisolated func fetchPrayer(byId id: UUID) async throws -> Prayer? {
         fetchPrayerCalled = true
 
         if shouldThrowError {
@@ -55,7 +55,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         return prayerToReturn
     }
 
-    func createPrayer(title: String, subtitle: String, iconName: String, colorHex: String) async throws -> Prayer {
+    nonisolated func createPrayer(title: String, subtitle: String, iconName: String, colorHex: String) async throws -> Prayer {
         createPrayerCalled = true
         createdPrayers.append((title, subtitle, iconName, colorHex))
 
@@ -74,7 +74,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         return prayer
     }
 
-    func updatePrayer(_ prayer: Prayer) async throws {
+    nonisolated func updatePrayer(_ prayer: Prayer) async throws {
         updatePrayerCalled = true
         updatedPrayers.append(prayer)
 
@@ -83,7 +83,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         }
     }
 
-    func deletePrayer(_ prayer: Prayer) async throws {
+    nonisolated func deletePrayer(_ prayer: Prayer) async throws {
         deletePrayerCalled = true
         deletedPrayers.append(prayer)
 
@@ -94,7 +94,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         prayersToReturn.removeAll { $0.id == prayer.id }
     }
 
-    func checkIn(for prayer: Prayer, at timestamp: Date) async throws -> PrayerEntry {
+    nonisolated func checkIn(for prayer: Prayer, at timestamp: Date) async throws -> PrayerEntry {
         checkInCalled = true
         checkIns.append((prayer, timestamp))
 
@@ -107,7 +107,7 @@ final class MockPrayerService: PrayerServiceProtocol {
         return entry
     }
 
-    func fetchTodayEntries(for prayer: Prayer) async throws -> [PrayerEntry] {
+    nonisolated func fetchTodayEntries(for prayer: Prayer) async throws -> [PrayerEntry] {
         fetchTodayEntriesCalled = true
 
         if shouldThrowError {

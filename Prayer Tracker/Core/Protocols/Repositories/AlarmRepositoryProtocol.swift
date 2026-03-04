@@ -7,10 +7,13 @@
 
 import Foundation
 
-protocol AlarmRepositoryProtocol: Sendable {
-    func fetchAll() async throws -> [PrayerAlarm]
-    func fetchById(_ id: UUID) async throws -> PrayerAlarm?
-    func insert(_ alarm: PrayerAlarm) async throws
-    func update(_ alarm: PrayerAlarm) async throws
-    func delete(_ alarm: PrayerAlarm) async throws
+@MainActor
+protocol AlarmRepositoryProtocol {
+    var alarms: [PrayerAlarm] { get }
+
+    func fetchAll() throws
+    func fetchById(_ id: UUID) throws -> PrayerAlarm?
+    func insert(_ alarm: PrayerAlarm) throws
+    func update(_ alarm: PrayerAlarm) throws
+    func delete(_ alarm: PrayerAlarm) throws
 }

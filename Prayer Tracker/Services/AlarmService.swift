@@ -26,11 +26,12 @@ final class AlarmService: AlarmServiceProtocol {
         self.calendarService = calendarService
     }
 
-    nonisolated func fetchAllAlarms() async throws -> [PrayerAlarm] {
-        try await alarmRepository.fetchAll()
+    func fetchAllAlarms() async throws -> [PrayerAlarm] {
+        try alarmRepository.fetchAll()
+        return alarmRepository.alarms
     }
 
-    nonisolated func createAlarm(
+    func createAlarm(
         title: String,
         hour: Int,
         minute: Int,
@@ -52,7 +53,7 @@ final class AlarmService: AlarmServiceProtocol {
         )
 
         // Insert alarm first
-        try await alarmRepository.insert(alarm)
+        try alarmRepository.insert(alarm)
 
         // Schedule notifications
         if alarm.isEnabled {
@@ -69,12 +70,12 @@ final class AlarmService: AlarmServiceProtocol {
         }
 
         // Update alarm with identifiers
-        try await alarmRepository.update(alarm)
+        try alarmRepository.update(alarm)
 
         return alarm
     }
 
-    nonisolated func toggleAlarm(_ alarm: PrayerAlarm) async throws {
+    func toggleAlarm(_ alarm: PrayerAlarm) async throws {
         alarm.isEnabled.toggle()
 
         if alarm.isEnabled {
@@ -114,10 +115,10 @@ final class AlarmService: AlarmServiceProtocol {
             }
         }
 
-        try await alarmRepository.update(alarm)
+        try alarmRepository.update(alarm)
     }
 
-    nonisolated func deleteAlarm(_ alarm: PrayerAlarm) async throws {
+    func deleteAlarm(_ alarm: PrayerAlarm) async throws {
         // Cancel alarm notification
         if let notificationId = alarm.notificationIdentifier {
             await notificationService.cancelNotification(identifier: notificationId)
@@ -139,10 +140,10 @@ final class AlarmService: AlarmServiceProtocol {
         }
 
         // Delete from database
-        try await alarmRepository.delete(alarm)
+        try alarmRepository.delete(alarm)
     }
 
-    nonisolated func updateAlarm(_ alarm: PrayerAlarm) async throws {
-        try await alarmRepository.update(alarm)
+    func updateAlarm(_ alarm: PrayerAlarm) async throws {
+        try alarmRepository.update(alarm)
     }
 }

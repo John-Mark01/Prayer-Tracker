@@ -10,12 +10,12 @@ import Foundation
 
 @MainActor
 @Observable class LiveActivityManager {
-    static let shared = LiveActivityManager()
+    nonisolated(unsafe) static let shared = LiveActivityManager()
 
     // Store active timers for each running activity
     private var activeTimers: [String: Timer] = [:]
 
-    private init() {}
+    nonisolated private init() {}
 
 // MARK: - Authorization
 

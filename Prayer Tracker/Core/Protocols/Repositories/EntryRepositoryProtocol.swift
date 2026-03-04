@@ -7,10 +7,13 @@
 
 import Foundation
 
-protocol EntryRepositoryProtocol: Sendable {
-    func fetchAll() async throws -> [PrayerEntry]
-    func fetchByPrayer(_ prayer: Prayer) async throws -> [PrayerEntry]
-    func fetchByDateRange(from startDate: Date, to endDate: Date) async throws -> [PrayerEntry]
-    func insert(_ entry: PrayerEntry) async throws
-    func delete(_ entry: PrayerEntry) async throws
+@MainActor
+protocol EntryRepositoryProtocol {
+    var entries: [PrayerEntry] { get }
+
+    func fetchAll() throws
+    func entriesByPrayer(_ prayer: Prayer) -> [PrayerEntry]
+    func entriesByDateRange(from startDate: Date, to endDate: Date) -> [PrayerEntry]
+    func insert(_ entry: PrayerEntry) throws
+    func delete(_ entry: PrayerEntry) throws
 }

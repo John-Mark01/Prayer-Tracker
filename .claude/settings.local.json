@@ -13,7 +13,8 @@
       "Read(//Users/johnkata/**)",
       "Bash(tee:*)",
       "Bash(swift -frontend -typecheck:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(swift-frontend:*)"
     ],
     "deny": [],
     "ask": []

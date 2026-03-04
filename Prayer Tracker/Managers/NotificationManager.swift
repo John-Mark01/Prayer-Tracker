@@ -10,11 +10,11 @@ import Foundation
 
 @MainActor
 @Observable class NotificationManager {
-    static let shared = NotificationManager()
+    nonisolated(unsafe) static let shared = NotificationManager()
 
     private let center = UNUserNotificationCenter.current()
 
-    private init() {
+    nonisolated private init() {
         // Set up notification categories for future actions
         setupNotificationCategories()
     }
@@ -183,7 +183,7 @@ import Foundation
 
     // MARK: - Categories & Actions
 
-    private func setupNotificationCategories() {
+    nonisolated private func setupNotificationCategories() {
         // Define notification actions for future Live Activity integration
         let startTimerAction = UNNotificationAction(
             identifier: NotificationCategory.startTimer.rawValue,

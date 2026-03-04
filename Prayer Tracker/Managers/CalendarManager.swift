@@ -10,11 +10,11 @@ internal import EventKit
 
 @MainActor
 @Observable class CalendarManager {
-    static let shared = CalendarManager()
+    nonisolated(unsafe) static let shared = CalendarManager()
 
     private let eventStore = EKEventStore()
 
-    private init() {}
+    nonisolated private init() {}
 
     // MARK: - Authorization
 
@@ -162,7 +162,9 @@ internal import EventKit
         let events = getUpcomingEvents().filter { $0.title.hasPrefix("🙏") }
         print("📅 Prayer calendar events: \(events.count)")
         for event in events {
-            print("  - \(event.title ?? "Untitled"): \(event.startDate)")
+            let title = event.title ?? "Untitled"
+            let startDate = event.startDate.map { "\($0)" } ?? "No date"
+            print("  - \(title): \(startDate)")
         }
     }
 }

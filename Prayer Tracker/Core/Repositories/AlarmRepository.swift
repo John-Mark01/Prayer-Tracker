@@ -7,46 +7,63 @@
 
 import Foundation
 import SwiftData
+import Observation
 
-actor AlarmRepository: AlarmRepositoryProtocol {
+@MainActor
+@Observable
+final class AlarmRepository: AlarmRepositoryProtocol {
+    // MARK: - Published State
+
+    private(set) var alarms: [PrayerAlarm] = []
+
+    // MARK: - Private Properties
+
     private let modelContainer: ModelContainer
+
+    private var context: ModelContext {
+        modelContainer.mainContext
+    }
+
+    // MARK: - Initialization
 
     init(modelContainer: ModelContainer) {
         self.modelContainer = modelContainer
     }
 
-    @MainActor
-    private var context: ModelContext {
-        modelContainer.mainContext
-    }
+    // MARK: - Fetch Operations
 
-    nonisolated func fetchAll() async throws -> [PrayerAlarm] {
+    func fetchAll() throws {
         let descriptor = FetchDescriptor<PrayerAlarm>(
             sortBy: [
                 SortDescriptor(\PrayerAlarm.hour),
                 SortDescriptor(\PrayerAlarm.minute)
             ]
         )
-        return try await context.fetch(descriptor)
+        alarms = try context.fetch(descriptor)
     }
 
-    nonisolated func fetchById(_ id: UUID) async throws -> PrayerAlarm? {
-        // Note: PrayerAlarm doesn't have id property, need to add it or use different lookup
-        // For now, returning nil - this should be addressed in model refactoring
+    func fetchById(_ id: UUID) throws -> PrayerAlarm? {
+        // Note: PrayerAlarm doesn't have id property
+        // Search by UUID if needed, or return nil
         return nil
     }
 
-    nonisolated func insert(_ alarm: PrayerAlarm) async throws {
-        await context.insert(alarm)
-        try await context.save()
+    // MARK: - Write Operations
+
+    func insert(_ alarm: PrayerAlarm) throws {
+        context.insert(alarm)
+        try context.save()
+        try fetchAll()  // Refresh cache
     }
 
-    nonisolated func update(_ alarm: PrayerAlarm) async throws {
-        try await context.save()
+    func update(_ alarm: PrayerAlarm) throws {
+        try context.save()
+        try fetchAll()  // Refresh cache
     }
 
-    nonisolated func delete(_ alarm: PrayerAlarm) async throws {
-        await context.delete(alarm)
-        try await context.save()
+    func delete(_ alarm: PrayerAlarm) throws {
+        context.delete(alarm)
+        try context.save()
+        try fetchAll()  // Refresh cache
     }
 }

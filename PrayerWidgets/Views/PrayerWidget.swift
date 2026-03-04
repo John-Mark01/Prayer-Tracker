@@ -106,18 +106,10 @@ struct PrayerWidget: Widget {
 
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: WidgetPrayerConfigurationIntent.self, provider: PrayerWidgetProvider()) { entry in
-            
-            let color = if let colorHex = entry.prayer?.colorHex {
-                Color(hex: colorHex)
-            } else {
-                Color(hex: "#FAFAFA")
-            }
-
             PrayerWidgetView(entry: entry)
                 .containerRelativeFrame(.vertical)
                 .containerRelativeFrame(.horizontal)
                 .containerBackground(.black, for: .widget)
-            
         }
         .configurationDisplayName("Prayer Tracker")
         .description("Track your daily prayers and streaks")

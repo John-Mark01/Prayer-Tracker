@@ -11,7 +11,6 @@
 		364FCAFB2ECE6DEB00563843 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; platformFilter = ios; };
 		364FCAFC2ECE6DEB00563843 /* XCTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFA2ECE6DEB00563843 /* XCTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		364FCAFF2ECE6E1600563843 /* SwiftData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364FCAFE2ECE6E1600563843 /* SwiftData.framework */; };
-		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
 		369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -614,7 +613,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					369EF0E12EB01C5D00AC7A06 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -673,7 +672,6 @@
 			files = (
 				36BC8DCC2F565A7900EC46D1 /* Assets.xcassets in Resources */,
 				36BC8DCD2F565A7900EC46D1 /* PrayerTracker.icon in Resources */,
-				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +945,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1004,6 +1003,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

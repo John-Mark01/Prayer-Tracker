@@ -7,11 +7,14 @@
 
 import Foundation
 
-protocol PrayerRepositoryProtocol: Sendable {
-    func fetchAll() async throws -> [Prayer]
-    func fetchById(_ id: UUID) async throws -> Prayer?
-    func insert(_ prayer: Prayer) async throws
-    func update(_ prayer: Prayer) async throws
-    func delete(_ prayer: Prayer) async throws
-    func getMaxSortOrder() async throws -> Int
+@MainActor
+protocol PrayerRepositoryProtocol {
+    var prayers: [Prayer] { get }
+
+    func fetchAll() throws
+    func fetchById(_ id: UUID) throws -> Prayer?
+    func insert(_ prayer: Prayer) throws
+    func update(_ prayer: Prayer) throws
+    func delete(_ prayer: Prayer) throws
+    func getMaxSortOrder() throws -> Int
 }

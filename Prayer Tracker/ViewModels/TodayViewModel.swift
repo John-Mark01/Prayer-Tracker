@@ -13,18 +13,25 @@ import Observation
 
     // MARK: - Published State
 
-    private(set) var prayers: [Prayer] = []
     private(set) var isLoading = false
     private(set) var errorMessage: String?
 
     // MARK: - Dependencies
 
     private let prayerService: PrayerServiceProtocol
+    private let prayerRepository: PrayerRepositoryProtocol
 
     // MARK: - Initialization
 
-    init(prayerService: PrayerServiceProtocol) {
+    init(prayerService: PrayerServiceProtocol, prayerRepository: PrayerRepositoryProtocol) {
         self.prayerService = prayerService
+        self.prayerRepository = prayerRepository
+    }
+
+    // MARK: - Computed Properties (Observe Repository)
+
+    var prayers: [Prayer] {
+        prayerRepository.prayers
     }
 
     // MARK: - View Actions
@@ -34,7 +41,7 @@ import Observation
         errorMessage = nil
 
         do {
-            prayers = try await prayerService.fetchAllPrayers()
+            _ = try await prayerService.fetchAllPrayers()
             isLoading = false
         } catch {
             errorMessage = "Failed to load prayers: \(error.localizedDescription)"
@@ -45,13 +52,12 @@ import Observation
     func checkIn(for prayer: Prayer) async {
         do {
             _ = try await prayerService.checkIn(for: prayer, at: Date())
-            await loadPrayers()
         } catch {
             errorMessage = "Failed to check in: \(error.localizedDescription)"
         }
     }
 
-    // MARK: - Computed Properties
+    // MARK: - Helper Methods
 
     func todayCount(for prayer: Prayer) -> Int {
         let calendar = Calendar.current

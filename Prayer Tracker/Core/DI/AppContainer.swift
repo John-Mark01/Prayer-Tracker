@@ -114,22 +114,31 @@ final class AppContainer {
         )
     }
 
-// MARK: - ViewModels
-    
+    // MARK: - ViewModels
+
+    // Singleton ViewModels for main tab views (live for app lifetime)
     lazy var todayViewModel: TodayViewModel = {
-        TodayViewModel(prayerService: prayerService)
+        TodayViewModel(
+            prayerService: prayerService,
+            prayerRepository: prayerRepository
+        )
     }()
 
     lazy var alarmsViewModel: AlarmsViewModel = {
         AlarmsViewModel(
             alarmService: alarmService,
-            prayerService: prayerService
+            prayerService: prayerService,
+            alarmRepository: alarmRepository,
+            prayerRepository: prayerRepository
         )
     }()
-    
-    lazy var addPrayerViewModel: AddPrayerViewModel = {
+
+    // MARK: - ViewModel Factories
+
+    // Factory for transient ViewModels (sheets, modals) that need fresh state
+    func makeAddPrayerViewModel() -> AddPrayerViewModel {
         AddPrayerViewModel(prayerService: prayerService)
-    }()
+    }
 }
 
 // MARK: - Environment Key

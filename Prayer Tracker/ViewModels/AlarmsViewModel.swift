@@ -13,8 +13,6 @@ import Observation
 
     // MARK: - Published State
 
-    private(set) var alarms: [PrayerAlarm] = []
-    private(set) var prayers: [Prayer] = []
     private(set) var isLoading = false
     private(set) var errorMessage: String?
 
@@ -22,61 +20,32 @@ import Observation
 
     private let alarmService: AlarmServiceProtocol
     private let prayerService: PrayerServiceProtocol
+    private let alarmRepository: AlarmRepositoryProtocol
+    private let prayerRepository: PrayerRepositoryProtocol
 
     // MARK: - Initialization
 
     init(
         alarmService: AlarmServiceProtocol,
-        prayerService: PrayerServiceProtocol
+        prayerService: PrayerServiceProtocol,
+        alarmRepository: AlarmRepositoryProtocol,
+        prayerRepository: PrayerRepositoryProtocol
     ) {
         self.alarmService = alarmService
         self.prayerService = prayerService
+        self.alarmRepository = alarmRepository
+        self.prayerRepository = prayerRepository
     }
 
-    // MARK: - View Actions
+    // MARK: - Computed Properties (Observe Repositories)
 
-    func loadData() async {
-        isLoading = true
-        errorMessage = nil
-
-        do {
-            async let alarmsTask = alarmService.fetchAllAlarms()
-            async let prayersTask = prayerService.fetchAllPrayers()
-
-            (alarms, prayers) = try await (alarmsTask, prayersTask)
-            isLoading = false
-        } catch {
-            errorMessage = "Failed to load data: \(error.localizedDescription)"
-            isLoading = false
-        }
+    var alarms: [PrayerAlarm] {
+        alarmRepository.alarms
     }
 
-    func toggleAlarm(_ alarm: PrayerAlarm) async {
-        do {
-            try await alarmService.toggleAlarm(alarm)
-            await loadData()
-        } catch {
-            errorMessage = "Failed to toggle alarm: \(error.localizedDescription)"
-        }
+    var prayers: [Prayer] {
+        prayerRepository.prayers
     }
-
-    func deleteAlarm(_ alarm: PrayerAlarm) async {
-        do {
-            try await alarmService.deleteAlarm(alarm)
-            await loadData()
-        } catch {
-            errorMessage = "Failed to delete alarm: \(error.localizedDescription)"
-        }
-    }
-
-    func deleteAlarms(at offsets: IndexSet, from alarmsList: [PrayerAlarm]) async {
-        for index in offsets {
-            let alarm = alarmsList[index]
-            await deleteAlarm(alarm)
-        }
-    }
-
-    // MARK: - Computed Properties
 
     var groupedAlarms: [(prayer: Prayer?, alarms: [PrayerAlarm])] {
         let grouped = Dictionary(grouping: alarms) { $0.prayer }
@@ -96,5 +65,44 @@ import Observation
         }
 
         return result
+    }
+
+    // MARK: - View Actions
+
+    func loadData() async {
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            _ = try await alarmService.fetchAllAlarms()
+            _ = try await prayerService.fetchAllPrayers()
+            isLoading = false
+        } catch {
+            errorMessage = "Failed to load data: \(error.localizedDescription)"
+            isLoading = false
+        }
+    }
+
+    func toggleAlarm(_ alarm: PrayerAlarm) async {
+        do {
+            try await alarmService.toggleAlarm(alarm)
+        } catch {
+            errorMessage = "Failed to toggle alarm: \(error.localizedDescription)"
+        }
+    }
+
+    func deleteAlarm(_ alarm: PrayerAlarm) async {
+        do {
+            try await alarmService.deleteAlarm(alarm)
+        } catch {
+            errorMessage = "Failed to delete alarm: \(error.localizedDescription)"
+        }
+    }
+
+    func deleteAlarms(at offsets: IndexSet, from alarmsList: [PrayerAlarm]) async {
+        for index in offsets {
+            let alarm = alarmsList[index]
+            await deleteAlarm(alarm)
+        }
     }
 }

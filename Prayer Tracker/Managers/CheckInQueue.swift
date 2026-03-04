@@ -7,11 +7,12 @@
 
 import Foundation
 
+@MainActor
 class CheckInQueue {
     private static let queueKey = "pendingCheckIns"
 
     /// Add a check-in to the pending queue
-    static func enqueue(prayerID: String, activityID: String) {
+    nonisolated static func enqueue(prayerID: String, activityID: String) {
         print("📥 CheckInQueue.enqueue() called")
         print("   Prayer ID: \(prayerID)")
         print("   Activity ID: \(activityID)")
@@ -46,7 +47,7 @@ class CheckInQueue {
     }
 
     /// Get all pending check-ins
-    static func getQueue() -> [PendingCheckIn] {
+    nonisolated static func getQueue() -> [PendingCheckIn] {
         guard let defaults = AppGroup.userDefaults else {
             return []
         }
@@ -60,7 +61,7 @@ class CheckInQueue {
     }
 
     /// Clear all pending check-ins
-    static func clearQueue() {
+    nonisolated static func clearQueue() {
         guard let defaults = AppGroup.userDefaults else {
             return
         }

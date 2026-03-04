@@ -21,8 +21,17 @@ struct AddPrayerSheet: View {
     ]
 
     var body: some View {
-        if let viewModel = appContainer?.addPrayerViewModel {
-            contentView(viewModel: viewModel)
+        Group {
+            if let viewModel = viewModel {
+                contentView(viewModel: viewModel)
+            } else {
+                ProgressView()
+            }
+        }
+        .task {
+            if viewModel == nil, let container = appContainer {
+                viewModel = container.makeAddPrayerViewModel()
+            }
         }
     }
 

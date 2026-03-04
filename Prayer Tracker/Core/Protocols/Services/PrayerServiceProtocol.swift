@@ -7,7 +7,8 @@
 
 import Foundation
 
-protocol PrayerServiceProtocol: Sendable {
+@MainActor
+protocol PrayerServiceProtocol {
     func fetchAllPrayers() async throws -> [Prayer]
     func fetchPrayer(byId id: UUID) async throws -> Prayer?
     func createPrayer(title: String, subtitle: String, iconName: String, colorHex: String) async throws -> Prayer
