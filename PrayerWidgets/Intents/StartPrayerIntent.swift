@@ -9,11 +9,6 @@ import AppIntents
 import ActivityKit
 import Foundation
 
-// Ensure AppGroup is accessible
-fileprivate struct AppGroupAccess {
-    static let identifier = "group.johnmark.PrayerTracker"
-}
-
 /// App Intent for starting a prayer from the Live Activity
 /// MUST conform to LiveActivityIntent for Live Activity buttons to work!
 struct StartPrayerIntent: LiveActivityIntent {
@@ -39,11 +34,11 @@ struct StartPrayerIntent: LiveActivityIntent {
 
         // Store in UserDefaults to signal app to start countdown
         if let activityID = activityID {
-            if let defaults = UserDefaults(suiteName: AppGroupAccess.identifier) {
+            if let defaults = UserDefaults(suiteName: AppGroup.identifier) {
                 defaults.set(activityID, forKey: "pendingStartPrayerActivityID")
                 defaults.set(Date(), forKey: "pendingStartPrayerTimestamp")
                 defaults.synchronize()  // Force immediate write
-                print("✅ Start prayer signal stored in App Group: \(AppGroupAccess.identifier)")
+                print("✅ Start prayer signal stored in App Group: \(AppGroup.identifier)")
                 print("✅ Stored activity ID: \(activityID)")
 
                 // Verify it was written
