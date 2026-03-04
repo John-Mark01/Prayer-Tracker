@@ -43,20 +43,8 @@ struct WidgetPrayerEntityQuery: EntityQuery {
     }
 
     private func fetchPrayers() -> [Prayer] {
-        let schema = Schema([Prayer.self, PrayerEntry.self, PrayerAlarm.self])
-
         do {
-            let container: ModelContainer
-
-            if let appGroupURL = AppGroup.containerURL {
-                let storeURL = appGroupURL.appendingPathComponent("PrayerTracker.sqlite")
-                let config = ModelConfiguration(url: storeURL)
-                container = try ModelContainer(for: schema, configurations: [config])
-            } else {
-                container = try ModelContainer(for: schema)
-            }
-
-            let context = ModelContext(container)
+            let context = PrayerDataManager.shared.newContext()
             let descriptor = FetchDescriptor<Prayer>(sortBy: [SortDescriptor(\Prayer.sortOrder)])
 
             return try context.fetch(descriptor)

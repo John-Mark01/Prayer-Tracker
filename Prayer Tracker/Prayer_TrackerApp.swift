@@ -12,7 +12,7 @@ import SwiftData
 struct Prayer_TrackerApp: App {
     @State private var notificationDelegate = NotificationDelegate()
     @State private var activePrayerState = ActivePrayerState()
-    @State private var localPersistanceContainer = LocalPersistanceContainer()
+    @State private var localPersistanceContainer = PrayerDataManager.shared.container
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -32,7 +32,7 @@ struct Prayer_TrackerApp: App {
                     handleURL(url)
                 }
         }
-        .modelContainer(localPersistanceContainer.sharedModelContainer)
+        .modelContainer(localPersistanceContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .active {
                 // Process pending operations when app becomes active
@@ -114,7 +114,7 @@ struct Prayer_TrackerApp: App {
 
         print("📝 Processing \(queue.count) pending check-in(s)")
 
-        let context = localPersistanceContainer.sharedModelContainer.mainContext
+        let context = localPersistanceContainer.mainContext
         var checkedInActivityIDs: [String] = []
 
         for checkIn in queue {

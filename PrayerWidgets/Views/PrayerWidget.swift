@@ -70,20 +70,8 @@ struct PrayerWidgetProvider: AppIntentTimelineProvider {
     }
 
     private func fetchPrayerEntries(for prayerId: UUID) -> [PrayerEntry] {
-        let schema = Schema([Prayer.self, PrayerEntry.self, PrayerAlarm.self])
-
         do {
-            let container: ModelContainer
-
-            if let appGroupURL = AppGroup.containerURL {
-                let storeURL = appGroupURL.appendingPathComponent("PrayerTracker.sqlite")
-                let config = ModelConfiguration(url: storeURL)
-                container = try ModelContainer(for: schema, configurations: [config])
-            } else {
-                container = try ModelContainer(for: schema)
-            }
-
-            let context = ModelContext(container)
+            let context = PrayerDataManager.shared.newContext()
 
             // Fetch entries for this prayer
             let entriesDescriptor = FetchDescriptor<PrayerEntry>(

@@ -17,21 +17,8 @@ struct CheckInIntent: AppIntent {
     var prayerId: String?
 
     func perform() async throws -> some IntentResult {
-        // Create prayer entry
-        let schema = Schema([Prayer.self, PrayerEntry.self, PrayerAlarm.self])
-
         do {
-            let container: ModelContainer
-
-            if let appGroupURL = AppGroup.containerURL {
-                let storeURL = appGroupURL.appendingPathComponent("PrayerTracker.sqlite")
-                let config = ModelConfiguration(url: storeURL)
-                container = try ModelContainer(for: schema, configurations: [config])
-            } else {
-                container = try ModelContainer(for: schema)
-            }
-
-            let context = ModelContext(container)
+            let context = await PrayerDataManager.shared.newContext()
 
             // Find the prayer if prayerId is provided
             var prayer: Prayer?

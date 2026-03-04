@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363D79152F58BDE900DE79E1 /* PrayerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D79132F58BDE900DE79E1 /* PrayerDataManager.swift */; };
+		363D79162F58BDE900DE79E1 /* PrayerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D79132F58BDE900DE79E1 /* PrayerDataManager.swift */; };
 		364965942EB5596100EC74CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
 		364965972EB5596100EC74CF /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649657D2EB5596100EC74CF /* AppGroup.swift */; };
 		364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */; };
@@ -59,8 +61,6 @@
 		368AD5FA2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
 		368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */; };
 		368AD5FC2EEEBCFA00103C43 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965ED2EB55BB100EC74CF /* LiveActivityManager.swift */; };
-		368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
-		368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */; };
 		368AD6012EEEBE9600103C43 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6002EEEBE9600103C43 /* Router.swift */; };
 		368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
 		368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
@@ -113,6 +113,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		363D79132F58BDE900DE79E1 /* PrayerDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDataManager.swift; sourceTree = "<group>"; };
 		3649657D2EB5596100EC74CF /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		3649657E2EB5596100EC74CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		364965882EB5596100EC74CF /* Prayer Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Prayer Tracker.entitlements"; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
-		368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistanceContainer.swift; sourceTree = "<group>"; };
 		368AD6002EEEBE9600103C43 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		368AD6022EEF0DE100103C43 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Prayer-Tracker-Info.plist"; sourceTree = "<group>"; };
@@ -247,10 +247,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		363D79142F58BDE900DE79E1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				363D79132F58BDE900DE79E1 /* PrayerDataManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		364965932EB5596100EC74CF /* Prayer Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				368AD5FD2EEEBD7500103C43 /* LocalPersistanceContainer.swift */,
+				363D79142F58BDE900DE79E1 /* Shared */,
 				368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */,
 				364965892EB5596100EC74CF /* Prayer_TrackerApp.swift */,
 				3649657D2EB5596100EC74CF /* AppGroup.swift */,
@@ -573,13 +581,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				363D79152F58BDE900DE79E1 /* PrayerDataManager.swift in Sources */,
 				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
 				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
 				364966502EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
 				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
-				368AD5FE2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
 				368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */,
 				368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */,
 				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
@@ -606,6 +614,7 @@
 				3649660A2EB55BB100EC74CF /* PrayerEntry.swift in Sources */,
 				3649660B2EB55BB100EC74CF /* CalendarView.swift in Sources */,
 				364966582EB615F500EC74CF /* Extensions + Color.swift in Sources */,
+				363D79162F58BDE900DE79E1 /* PrayerDataManager.swift in Sources */,
 				3649660C2EB55BB100EC74CF /* TodayView.swift in Sources */,
 				368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */,
 				364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */,
@@ -618,7 +627,6 @@
 				364966122EB55BB100EC74CF /* NotificationManager.swift in Sources */,
 				364966202EB55DAB00EC74CF /* AddAlarmView.swift in Sources */,
 				364966232EB55E4000EC74CF /* AlarmRow.swift in Sources */,
-				368AD5FF2EEEBD7500103C43 /* LocalPersistanceContainer.swift in Sources */,
 				368AD5FB2EEEBC7D00103C43 /* NotificationDelegate.swift in Sources */,
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
 				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
