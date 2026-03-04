@@ -32,26 +32,12 @@ struct StartPrayerIntent: LiveActivityIntent {
         print("🙏 StartPrayerIntent TRIGGERED")
         print("📦 Activity ID: \(activityID ?? "nil")")
 
-        // Store in UserDefaults to signal app to start countdown
+        // Queue the operation for the app to process
         if let activityID = activityID {
-            if let defaults = UserDefaults(suiteName: AppGroup.identifier) {
-                defaults.set(activityID, forKey: "pendingStartPrayerActivityID")
-                defaults.set(Date(), forKey: "pendingStartPrayerTimestamp")
-                defaults.synchronize()  // Force immediate write
-                print("✅ Start prayer signal stored in App Group: \(AppGroup.identifier)")
-                print("✅ Stored activity ID: \(activityID)")
-
-                // Verify it was written
-                if let readBack = defaults.string(forKey: "pendingStartPrayerActivityID") {
-                    print("✅ Verified: Read back activity ID: \(readBack)")
-                } else {
-                    print("⚠️ WARNING: Could not read back the activity ID!")
-                }
-
-                print("✅ App will open and start countdown due to openAppWhenRun = true")
-            } else {
-                print("❌ Failed to access App Group UserDefaults")
-            }
+            let operation = PendingStartPrayer(activityID: activityID)
+            OperationQueue.enqueue(operation, key: .startPrayers)
+            print("✅ Start prayer operation queued successfully")
+            print("✅ App will open and process queue due to openAppWhenRun = true")
         } else {
             print("⚠️ Missing activity ID")
         }

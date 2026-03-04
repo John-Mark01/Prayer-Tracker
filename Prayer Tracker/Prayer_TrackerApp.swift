@@ -37,8 +37,7 @@ struct Prayer_TrackerApp: App {
             if newPhase == .active {
                 // Process pending operations when app becomes active
                 Task {
-                    await processPendingCheckIns()
-                    await processPendingStartPrayer()
+                    await processPendingOperations()
                 }
             }
         }
@@ -51,76 +50,78 @@ struct Prayer_TrackerApp: App {
 
         if url.scheme == "prayertracker" {
             if url.host == "process-checkins" || url.path.contains("process-checkins") {
-                print("✅ Processing check-ins from URL scheme")
+                print("✅ Processing operations from URL scheme")
                 Task {
-                    await processPendingCheckIns()
+                    await processPendingOperations()
                 }
             }
         }
     }
 
-    // MARK: - Start Prayer Processing
+    // MARK: - Operation Processing
 
     @MainActor
-    func processPendingStartPrayer() async {
-        print("🔄 Checking for pending start prayer signals")
-        print("📍 Using App Group: \(AppGroup.identifier)")
+    func processPendingOperations() async {
+        print("🔄 Processing all pending operations from Live Activities")
 
-        guard let defaults = AppGroup.userDefaults else {
-            print("❌ Failed to access App Group UserDefaults")
-            return
-        }
-
-        // Check for pending start prayer activity ID
-        guard let activityID = defaults.string(forKey: "pendingStartPrayerActivityID") else {
-            print("ℹ️ No pending start prayer signal found")
-            return
-        }
-
-        print("🎬 Found pending start prayer for activity: \(activityID)")
-
-        // Clear the pending signal
-        defaults.removeObject(forKey: "pendingStartPrayerActivityID")
-        defaults.removeObject(forKey: "pendingStartPrayerTimestamp")
-
-        // Start the Live Activity countdown
-        print("▶️ Starting Live Activity countdown...")
-        await LiveActivityManager.shared.startPrayerCountdown(activityID: activityID)
-
-        // Start the in-app countdown if modal is showing
-        print("🔍 Checking in-app state - activityID: \(activePrayerState.activityID ?? "nil"), isReady: \(activePrayerState.isReady)")
-        if activePrayerState.activityID == activityID && activePrayerState.isReady {
-            print("▶️ Starting in-app countdown...")
-            activePrayerState.beginCountdown()
-            print("✅ In-app timer also started")
-        } else {
-            print("ℹ️ In-app timer not in ready state or different activity")
-        }
-
-        print("✅ Prayer countdown started from Live Activity button")
+        // Process Live Activity operations
+        await processStartPrayerOperations()
+        await processCheckInOperations()
     }
 
-    // MARK: - Check-In Processing
+    // MARK: - Start Prayer Operations
 
     @MainActor
-    func processPendingCheckIns() async {
-        print("🔄 processPendingCheckIns() called")
-        let queue = CheckInQueue.getQueue()
+    private func processStartPrayerOperations() async {
+        let queue = OperationQueue.getQueue(PendingStartPrayer.self, key: .startPrayers)
 
         guard !queue.isEmpty else {
-            print("ℹ️ No pending check-ins to process")
+            print("ℹ️ No pending start prayer operations")
             return
         }
 
-        print("📝 Processing \(queue.count) pending check-in(s)")
+        print("📝 Processing \(queue.count) start prayer operation(s)")
+
+        for operation in queue {
+            print("🎬 Starting prayer countdown for activity: \(operation.activityID)")
+
+            // Start the Live Activity countdown
+            await LiveActivityManager.shared.startPrayerCountdown(activityID: operation.activityID)
+
+            // Start the in-app countdown if modal is showing
+            if activePrayerState.activityID == operation.activityID && activePrayerState.isReady {
+                print("▶️ Starting in-app countdown...")
+                activePrayerState.beginCountdown()
+                print("✅ In-app timer also started")
+            } else {
+                print("ℹ️ In-app timer not in ready state or different activity")
+            }
+        }
+
+        OperationQueue.clearQueue(key: .startPrayers)
+        print("✅ Processed all start prayer operations")
+    }
+
+    // MARK: - Check-In Operations (from Live Activities)
+
+    @MainActor
+    private func processCheckInOperations() async {
+        let queue = OperationQueue.getQueue(PendingCheckIn.self, key: .checkIns)
+
+        guard !queue.isEmpty else {
+            print("ℹ️ No pending check-in operations")
+            return
+        }
+
+        print("📝 Processing \(queue.count) check-in operation(s)")
 
         let context = localPersistanceContainer.mainContext
         var checkedInActivityIDs: [String] = []
 
-        for checkIn in queue {
+        for operation in queue {
             // Find the prayer
             var prayer: Prayer? = nil
-            if let uuid = UUID(uuidString: checkIn.prayerID) {
+            if let uuid = UUID(uuidString: operation.prayerID) {
                 let descriptor = FetchDescriptor<Prayer>(
                     predicate: #Predicate { $0.id == uuid }
                 )
@@ -128,7 +129,7 @@ struct Prayer_TrackerApp: App {
             }
 
             // Create the prayer entry
-            let entry = PrayerEntry(timestamp: checkIn.timestamp, prayer: prayer)
+            let entry = PrayerEntry(timestamp: operation.timestamp, prayer: prayer)
             context.insert(entry)
 
             if let prayer = prayer {
@@ -138,10 +139,10 @@ struct Prayer_TrackerApp: App {
             }
 
             // Track activity IDs that were checked in
-            checkedInActivityIDs.append(checkIn.activityID)
+            checkedInActivityIDs.append(operation.activityID)
 
             // End the Live Activity
-            await LiveActivityManager.shared.endActivity(activityID: checkIn.activityID)
+            await LiveActivityManager.shared.endActivity(activityID: operation.activityID)
         }
 
         // Save all entries
@@ -152,8 +153,7 @@ struct Prayer_TrackerApp: App {
             print("❌ Failed to save check-ins: \(error)")
         }
 
-        // Clear the queue
-        CheckInQueue.clearQueue()
+        OperationQueue.clearQueue(key: .checkIns)
 
         // If the current in-app prayer session was checked in from Live Activity, dismiss it
         if let currentActivityID = activePrayerState.activityID,
@@ -162,4 +162,5 @@ struct Prayer_TrackerApp: App {
             activePrayerState.reset()
         }
     }
+
 }

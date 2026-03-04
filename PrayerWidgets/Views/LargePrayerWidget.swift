@@ -126,7 +126,7 @@ struct LargePrayerWidget: View {
                 .padding(.bottom, 8)
 
                 // Check-in button
-                Button(intent: CheckInIntent()) {
+                Button(intent: WidgetCheckInIntent()) {
                     HStack(spacing: 8) {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 18))

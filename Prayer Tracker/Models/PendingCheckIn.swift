@@ -7,12 +7,17 @@
 
 import Foundation
 
-struct PendingCheckIn: Codable {
+/// Operation to check in a prayer from a Live Activity
+struct PendingCheckIn: PendingOperation {
     let prayerID: String
     let timestamp: Date
     let activityID: String
 
-    init(prayerID: String, timestamp: Date, activityID: String) {
+    var operationType: OperationType {
+        return .checkIn
+    }
+
+    init(prayerID: String, timestamp: Date = Date(), activityID: String) {
         self.prayerID = prayerID
         self.timestamp = timestamp
         self.activityID = activityID

@@ -11,7 +11,7 @@ import Foundation
 
 /// App Intent for checking in a prayer from the Live Activity
 /// MUST conform to LiveActivityIntent for Live Activity buttons to work!
-struct CheckInPrayerIntent: LiveActivityIntent {
+struct ActivityCheckInIntent: LiveActivityIntent {
     static var title: LocalizedStringResource = "Check In Prayer"
     static var description = IntentDescription("Record a prayer check-in from Live Activity")
 

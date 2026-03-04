@@ -37,7 +37,7 @@ struct PrayerLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     if context.state.phase == .completed {
                         // Show check-in button when completed
-                        Button(intent: CheckInPrayerIntent(
+                        Button(intent: ActivityCheckInIntent(
                             prayerID: context.attributes.prayerID,
                             activityID: context.activityID
                         )) {
@@ -153,7 +153,7 @@ struct LockScreenLiveActivityView: View {
 
                 // Right side info based on phase
                 if context.state.phase == .completed {
-                    Button(intent: CheckInPrayerIntent(
+                    Button(intent: ActivityCheckInIntent(
                         prayerID: context.attributes.prayerID,
                         activityID: context.activityID
                     )) {

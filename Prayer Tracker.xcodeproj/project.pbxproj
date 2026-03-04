@@ -31,7 +31,6 @@
 		364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364966022EB55BB100EC74CF /* StatisticsView.swift */; };
 		364966162EB55BB100EC74CF /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F02EB55BB100EC74CF /* Prayer.swift */; };
 		364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965FD2EB55BB100EC74CF /* AddPrayerSheet.swift */; };
-		364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F62EB55BB100EC74CF /* IconPickerView.swift */; };
 		364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F12EB55BB100EC74CF /* PrayerActivityAttributes.swift */; };
 		3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F22EB55BB100EC74CF /* PrayerAlarm.swift */; };
 		3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364965F32EB55BB100EC74CF /* PrayerEntry.swift */; };
@@ -54,6 +53,10 @@
 		3654AD322EB7C9D600BCB19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3649657E2EB5596100EC74CF /* Assets.xcassets */; };
 		3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
 		3654AF612EBBD0F700BCB19E /* PrayerTracker.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */; };
+		365BB91A2F58C4FF001E889A /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9192F58C4FF001E889A /* PendingOperation.swift */; };
+		365BB91B2F58C4FF001E889A /* PendingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9192F58C4FF001E889A /* PendingOperation.swift */; };
+		365BB9202F58C873001E889A /* PendingStartPrayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB91F2F58C873001E889A /* PendingStartPrayer.swift */; };
+		365BB9212F58C873001E889A /* PendingStartPrayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB91F2F58C873001E889A /* PendingStartPrayer.swift */; };
 		368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
@@ -64,7 +67,6 @@
 		368AD6012EEEBE9600103C43 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6002EEEBE9600103C43 /* Router.swift */; };
 		368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
 		368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD6022EEF0DE100103C43 /* NotificationType.swift */; };
-		3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */; };
 		369EF0F32EB01EE000AC7A06 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF0692EB0163800AC7A06 /* WidgetKit.framework */; };
 		369EF0F42EB01EE000AC7A06 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369EF06B2EB0163800AC7A06 /* SwiftUI.framework */; };
 		369EF1032EB01EE100AC7A06 /* PrayerWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 369EF0F22EB01EE000AC7A06 /* PrayerWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -149,6 +151,8 @@
 		364FCAFA2ECE6DEB00563843 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		364FCAFE2ECE6E1600563843 /* SwiftData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk/System/Library/Frameworks/SwiftData.framework; sourceTree = DEVELOPER_DIR; };
 		3654AF5F2EBBD0F700BCB19E /* PrayerTracker.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = PrayerTracker.icon; sourceTree = "<group>"; };
+		365BB9192F58C4FF001E889A /* PendingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperation.swift; sourceTree = "<group>"; };
+		365BB91F2F58C873001E889A /* PendingStartPrayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingStartPrayer.swift; sourceTree = "<group>"; };
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -167,7 +171,7 @@
 		364966252EB56E2F00EC74CF /* Exceptions for "PrayerWidgets" folder in "Prayer Tracker" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Intents/CheckInPrayerIntent.swift,
+				Intents/ActivityCheckInIntent.swift,
 				Intents/StartPrayerIntent.swift,
 				Views/WidgetPixelGridView.swift,
 			);
@@ -251,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				363D79132F58BDE900DE79E1 /* PrayerDataManager.swift */,
+				365BB9192F58C4FF001E889A /* PendingOperation.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				364965F32EB55BB100EC74CF /* PrayerEntry.swift */,
 				364965F42EB55BB100EC74CF /* PrayerStatistics.swift */,
 				368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */,
+				365BB91F2F58C873001E889A /* PendingStartPrayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,7 +508,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					369EF0E12EB01C5D00AC7A06 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -563,7 +569,6 @@
 			files = (
 				3654AF602EBBD0F700BCB19E /* PrayerTracker.icon in Resources */,
 				364965942EB5596100EC74CF /* Assets.xcassets in Resources */,
-				3690288F2EB2BDA00072302D /* Prayer-Tracker-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365BB91A2F58C4FF001E889A /* PendingOperation.swift in Sources */,
 				363D79152F58BDE900DE79E1 /* PrayerDataManager.swift in Sources */,
 				364965AB2EB5596100EC74CF /* AppGroup.swift in Sources */,
 				3649661A2EB55BE200EC74CF /* PrayerAlarm.swift in Sources */,
@@ -588,6 +594,7 @@
 				3649661B2EB55BE200EC74CF /* PrayerEntry.swift in Sources */,
 				3649661C2EB55BE200EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				3649661D2EB55BF600EC74CF /* Prayer.swift in Sources */,
+				365BB9212F58C873001E889A /* PendingStartPrayer.swift in Sources */,
 				368AD5F72EEEB5E300103C43 /* CheckInQueue.swift in Sources */,
 				368AD6042EEF0DEB00103C43 /* NotificationType.swift in Sources */,
 				364966592EB6160800EC74CF /* Extensions + Color.swift in Sources */,
@@ -603,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				364965972EB5596100EC74CF /* AppGroup.swift in Sources */,
+				365BB9202F58C873001E889A /* PendingStartPrayer.swift in Sources */,
 				368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */,
 				368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */,
 				364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */,
@@ -633,8 +641,8 @@
 				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
 				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
 				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,
+				365BB91B2F58C4FF001E889A /* PendingOperation.swift in Sources */,
 				364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */,
-				364966182EB55BB100EC74CF /* IconPickerView.swift in Sources */,
 				364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */,
 			);
@@ -821,6 +829,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -878,6 +887,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

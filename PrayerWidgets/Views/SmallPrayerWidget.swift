@@ -92,7 +92,7 @@ struct SmallPrayerWidget: View {
                     
                     // Check button
                     Button(intent: {
-                        let intent = CheckInIntent()
+                        let intent = WidgetCheckInIntent()
                         intent.prayerId = entry.prayer?.id.uuidString
                         return intent
                     }()) {

@@ -92,6 +92,7 @@ internal import EventKit
     // MARK: - Event Deletion
 
     /// Delete a calendar event by its identifier
+    @discardableResult
     func deleteCalendarEvent(identifier: String) -> Bool {
         guard let event = eventStore.event(withIdentifier: identifier) else {
             print("⚠️ Event not found: \(identifier)")
@@ -162,7 +163,7 @@ internal import EventKit
         let events = getUpcomingEvents().filter { $0.title.hasPrefix("🙏") }
         print("📅 Prayer calendar events: \(events.count)")
         for event in events {
-            print("  - \(event.title ?? "Untitled"): \(event.startDate)")
+            print("  - \(event.title ?? "Untitled"): \(event.startDate, default: "NULL")")
         }
     }
 }

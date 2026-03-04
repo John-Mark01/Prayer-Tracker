@@ -56,7 +56,7 @@ struct MediumPrayerWidget: View {
                     // Check-in Button
                     VStack(alignment:.center, spacing: 6) {
                         Button(intent: {
-                            let intent = CheckInIntent()
+                            let intent = WidgetCheckInIntent()
                             intent.prayerId = prayer.id.uuidString
                             return intent
                         }()) {
