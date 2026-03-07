@@ -1,8 +1,11 @@
 import SwiftUI
 import RevenueCat
+import RevenueCatUI
 
 struct OnboardingView: View {
     @Binding var hasCompletedOnboarding: Bool
+    @State private var displayPaywall = false
+    
     @State private var currentPage = 0
     private let totalPages = 5
 
@@ -64,8 +67,11 @@ struct OnboardingView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 20)
         }
-        .background(Color("Onboarding/background"))
+        .background(Color.background)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $displayPaywall) {
+            PaywallView()
+        }
     }
 
     // MARK: - Progress Bar
@@ -74,7 +80,7 @@ struct OnboardingView: View {
             ZStack(alignment: .leading) {
                 // Background
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color("Onboarding/backgroundSecondary"))
+                    .fill(Color.backgroundSecondary)
                     .frame(height: 8)
 
                 // Progress

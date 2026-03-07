@@ -15,6 +15,7 @@ struct Prayer_TrackerApp: App {
     @State private var activePrayerState = ActivePrayerState()
     @State private var localPersistanceContainer = PrayerDataManager.shared.container
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
 
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
@@ -26,12 +27,18 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabBarScreen()
-                .tint(.appTint)
-                .environment(activePrayerState)
-                .onOpenURL { url in
-                    handleURL(url)
-                }
+            if hasCompletedOnboarding {
+                TabBarScreen()
+                    .tint(.appTint)
+                    .environment(activePrayerState)
+                    .onOpenURL { url in
+                        handleURL(url)
+                    }
+            } else {
+                OnboardingView(
+                    hasCompletedOnboarding: $hasCompletedOnboarding
+                )
+            }
         }
         .modelContainer(localPersistanceContainer)
         .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -44,7 +51,7 @@ struct Prayer_TrackerApp: App {
         }
     }
 
-    // MARK: - URL Handling
+// MARK: - URL Handling
 
     private func handleURL(_ url: URL) {
         print("🔗 Received URL: \(url.absoluteString)")
@@ -59,7 +66,7 @@ struct Prayer_TrackerApp: App {
         }
     }
 
-    // MARK: - Operation Processing
+// MARK: - Operation Processing
 
     @MainActor
     func processPendingOperations() async {
@@ -70,7 +77,7 @@ struct Prayer_TrackerApp: App {
         await processCheckInOperations()
     }
 
-    // MARK: - Start Prayer Operations
+// MARK: - Start Prayer Operations
 
     @MainActor
     private func processStartPrayerOperations() async {
@@ -103,7 +110,7 @@ struct Prayer_TrackerApp: App {
         print("✅ Processed all start prayer operations")
     }
 
-    // MARK: - Check-In Operations (from Live Activities)
+// MARK: - Check-In Operations (from Live Activities)
 
     @MainActor
     private func processCheckInOperations() async {

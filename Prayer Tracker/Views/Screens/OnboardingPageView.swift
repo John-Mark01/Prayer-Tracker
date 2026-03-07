@@ -18,13 +18,13 @@ struct OnboardingPageView: View {
             // Title
             Text(title)
                 .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundStyle(Color("Onboarding/textPrimary"))
+                .foregroundStyle(Color.textPrimary)
                 .multilineTextAlignment(.center)
 
             // Message
             Text(message)
                 .font(.system(size: 20, weight: .regular, design: .rounded))
-                .foregroundStyle(Color("Onboarding/textSecondary"))
+                .foregroundStyle(Color.textSecondary)
                 .multilineTextAlignment(.center)
                 .lineSpacing(4)
 //                .padding(.horizontal, 40)
