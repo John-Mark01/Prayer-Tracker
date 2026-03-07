@@ -15,13 +15,13 @@ struct TabBarScreen: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
-                TodayView()
+                TodayScreen()
             }
             .tag(0)
             .tabItem { Label("Today", systemImage: "house.fill") }
             
             NavigationStack {
-                AlarmsView()
+                AlarmsScreen()
             }
             .tag(1)
             .tabItem { Label("Alarms", systemImage: "bell.fill") }

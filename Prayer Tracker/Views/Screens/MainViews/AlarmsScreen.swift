@@ -1,5 +1,5 @@
 //
-//  AlarmsView.swift
+//  AlarmsScreen.swift
 //  Prayer Tracker
 //
 //  Created by John-Mark Iliev on 27.10.25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct AlarmsView: View {
+struct AlarmsScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: [SortDescriptor(\PrayerAlarm.hour), SortDescriptor(\PrayerAlarm.minute)]) private var alarms: [PrayerAlarm]
     @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
@@ -149,6 +149,6 @@ struct AlarmsView: View {
 }
 
 #Preview {
-    AlarmsView()
+    AlarmsScreen()
         .modelContainer(for: PrayerAlarm.self, inMemory: true)
 }
