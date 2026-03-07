@@ -1,2 +1,64 @@
-*.md
-2025-10-28 - Home Features redesign + notifications + calendar.txt
+# ========================
+# Xcode
+# ========================
+
+# Build artifacts
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-to-trash
+*.xcuserstate
+*.xcscmblueprint
+
+# Xcode project settings users shouldn't share
+project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+
+# App signing & provisioning
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.p12
+*.p8
+
+# macOS cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+
+# Env & secrets
+.env
+.env.*
+Secrets.swift             # If you use a local secrets file
+Secrets.plist
+
+# TestFlight / AppStore Connect metadata
+AuthKey_*.p8
+
+# Instruments
+*.trace
+
+# Simulator
+*.sim
