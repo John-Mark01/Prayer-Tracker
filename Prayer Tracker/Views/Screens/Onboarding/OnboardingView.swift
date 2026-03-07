@@ -4,6 +4,8 @@ import RevenueCatUI
 
 struct OnboardingView: View {
     @Environment(SubscriptionManager.self) private var subscriptionManager
+    @AppStorage("isOnLastPage") private var isOnLastPage: Bool = false
+    
     @Binding var hasCompletedOnboarding: Bool
     @State private var displayPaywall = false
     
@@ -64,12 +66,16 @@ struct OnboardingView: View {
             .padding(.horizontal, 16)
             
             // Bottom buttons
-            bottomButtons
+            bottomButton
                 .padding(.horizontal, 24)
                 .padding(.bottom, 20)
         }
         .background(Color.background)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            guard isOnLastPage else { return }
+            currentPage = 4
+        }
         .sheet(isPresented: $displayPaywall) {
             PaywallView()
         }
@@ -101,7 +107,7 @@ struct OnboardingView: View {
     }
 
     // MARK: - Bottom Buttons
-    private var bottomButtons: some View {
+    private var bottomButton: some View {
         VStack(spacing: 12) {
             // Next / Get Started button
             Button {
@@ -111,7 +117,8 @@ struct OnboardingView: View {
                     }
                 } else {
                     // Complete onboarding
-                    completeOnboarding()
+                    isOnLastPage = true
+                    presentPaywall()
                 }
             } label: {
                 Text(currentPage == totalPages - 1 ? "Get Started" : "Next")
@@ -132,7 +139,7 @@ struct OnboardingView: View {
     }
 
     // MARK: - Actions
-    private func completeOnboarding() {
+    private func presentPaywall() {
         withAnimation {
             subscriptionManager.showPaywall = true
         }
