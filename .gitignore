@@ -3,7 +3,7 @@
 # ========================
 
 # Ignoring specific files
-.storekit
+*.storekit
 *.xctestplan
 *.xcscheme
 
