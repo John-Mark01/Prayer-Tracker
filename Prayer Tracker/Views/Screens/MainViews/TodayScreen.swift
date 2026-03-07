@@ -1,5 +1,5 @@
 //
-//  TodayView.swift
+//  TodayScreen.swift
 //  Prayer Tracker
 //
 //  Created by John-Mark Iliev on 27.10.25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct TodayView: View {
+struct TodayScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Prayer.sortOrder) private var prayers: [Prayer]
     @Query private var allEntries: [PrayerEntry]
@@ -98,6 +98,6 @@ struct TodayView: View {
 }
 
 #Preview {
-    TodayView()
+    TodayScreen()
         .modelContainer(for: Prayer.self, inMemory: true)
 }
