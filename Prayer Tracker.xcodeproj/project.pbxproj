@@ -159,6 +159,7 @@
 		365BB91F2F58C873001E889A /* PendingStartPrayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingStartPrayer.swift; sourceTree = "<group>"; };
 		365BB9BC2F5C4744001E889A /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		365BB9BE2F5C4751001E889A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		365BB9C02F5C4B86001E889A /* Pray: Christian Prayer Tracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Pray: Christian Prayer Tracker.storekit"; sourceTree = "<group>"; };
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -418,6 +419,7 @@
 		36DD5C7C2EB0073F00E7A9DC = {
 			isa = PBXGroup;
 			children = (
+				365BB9C02F5C4B86001E889A /* Pray: Christian Prayer Tracker.storekit */,
 				364FCAF92ECE6DA200563843 /* Prayer Tracker.xctestplan */,
 				3690288E2EB2BDA00072302D /* Prayer-Tracker-Info.plist */,
 				369EF1312EB0203900AC7A06 /* PrayerWidgetsExtension.entitlements */,
