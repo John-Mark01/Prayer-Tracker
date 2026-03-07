@@ -4,8 +4,8 @@
 
 # Ignoring specific files
 .storekit
-.xctestplan
-.xcscheme
+*.xctestplan
+*.xcscheme
 
 # Build artifacts
 build/

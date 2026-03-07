@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import RevenueCat
 
 @main
 struct Prayer_TrackerApp: App {
@@ -17,10 +18,10 @@ struct Prayer_TrackerApp: App {
 
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
-
-        // Pass activePrayerState reference to notification delegate
-        // Note: Using _wrappedValue to access @State in init
         notificationDelegate.activePrayerState = _activePrayerState.wrappedValue
+        
+        //RevenueCat
+        Purchases.configure(withAPIKey: "test_vxPwddDJsnnyVecrDVDLDrpxQRN")
     }
 
     var body: some Scene {
