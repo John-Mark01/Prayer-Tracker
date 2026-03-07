@@ -62,6 +62,8 @@
 		365BB9BD2F5C4744001E889A /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9BC2F5C4744001E889A /* OnboardingPageView.swift */; };
 		365BB9BF2F5C4751001E889A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9BE2F5C4751001E889A /* OnboardingView.swift */; };
 		365BB9C32F5C60E1001E889A /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9C22F5C60E1001E889A /* SubscriptionManager.swift */; };
+		365BB9F32F5CC907001E889A /* SubscriptionStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9F22F5CC907001E889A /* SubscriptionStatusCard.swift */; };
+		365BB9F52F5CC92E001E889A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9F42F5CC92E001E889A /* SettingsScreen.swift */; };
 		368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
@@ -162,6 +164,8 @@
 		365BB9BE2F5C4751001E889A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		365BB9C02F5C4B86001E889A /* Pray: Christian Prayer Tracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Pray: Christian Prayer Tracker.storekit"; sourceTree = "<group>"; };
 		365BB9C22F5C60E1001E889A /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		365BB9F22F5CC907001E889A /* SubscriptionStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatusCard.swift; sourceTree = "<group>"; };
+		365BB9F42F5CC92E001E889A /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 				364965F82EB55BB100EC74CF /* PrayerCardView.swift */,
 				364965F92EB55BB100EC74CF /* StatCard.swift */,
 				364966532EB614FD00EC74CF /* IconPickerView.swift */,
+				365BB9F22F5CC907001E889A /* SubscriptionStatusCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 				364966002EB55BB100EC74CF /* TabBarScreen.swift */,
 				364966032EB55BB100EC74CF /* TodayScreen.swift */,
 				364965FE2EB55BB100EC74CF /* AlarmsScreen.swift */,
+				365BB9F42F5CC92E001E889A /* SettingsScreen.swift */,
 				364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */,
 			);
 			path = MainViews;
@@ -667,10 +673,12 @@
 				364966132EB55BB100EC74CF /* StatCard.swift in Sources */,
 				3649664F2EB614B700EC74CF /* ActivePrayerState.swift in Sources */,
 				364966142EB55BB100EC74CF /* PrayerStatistics.swift in Sources */,
+				365BB9F32F5CC907001E889A /* SubscriptionStatusCard.swift in Sources */,
 				364966152EB55BB100EC74CF /* StatisticsView.swift in Sources */,
 				364966162EB55BB100EC74CF /* Prayer.swift in Sources */,
 				365BB91B2F58C4FF001E889A /* PendingOperation.swift in Sources */,
 				365BB9C32F5C60E1001E889A /* SubscriptionManager.swift in Sources */,
+				365BB9F52F5CC92E001E889A /* SettingsScreen.swift in Sources */,
 				364966172EB55BB100EC74CF /* AddPrayerSheet.swift in Sources */,
 				364966192EB55BB100EC74CF /* PrayerActivityAttributes.swift in Sources */,
 				364965A12EB5596100EC74CF /* Prayer_TrackerApp.swift in Sources */,

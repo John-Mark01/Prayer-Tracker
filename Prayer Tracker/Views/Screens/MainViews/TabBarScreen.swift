@@ -10,28 +10,42 @@ import SwiftData
 
 struct TabBarScreen: View {
     @Environment(ActivePrayerState.self) private var activePrayerState
-    @State private var selectedTab = 0
+    @Environment(SubscriptionManager.self) private var subscriptionManager
+    @State private var showingSettings = false
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            NavigationStack {
-                TodayScreen()
-            }
-            .tag(0)
-            .tabItem { Label("Today", systemImage: "house.fill") }
+        TabView {
             
-            NavigationStack {
-                AlarmsScreen()
+            //Today Screen
+            Tab("Today", systemImage: "house.fill") {
+                NavigationStack {
+                    TodayScreen()
+                }
             }
-            .tag(1)
-            .tabItem { Label("Alarms", systemImage: "bell.fill") }
+            
+            //Alarms Screen
+            Tab("Alarms", systemImage: "bell.fill") {
+                NavigationStack {
+                    AlarmsScreen()
+                }
+            }
+            
+            //Settings Screen
+            Tab("Settings", systemImage: "gear", role: .search) {
+                NavigationStack {
+                    SettingsScreen()
+                }
+            }
         }
         .sheet(isPresented: Binding(
             get: { activePrayerState.isActive },
             set: { if !$0 { activePrayerState.reset() } }
         )) {
-            ActivePrayerTimerView(prayerState: activePrayerState) {
-                selectedTab = 0
+            ActivePrayerTimerView(prayerState: activePrayerState) {}
+        }
+        .sheet(isPresented: $showingSettings) {
+            NavigationStack {
+                SettingsScreen()
             }
         }
     }
@@ -40,4 +54,6 @@ struct TabBarScreen: View {
 #Preview {
     TabBarScreen()
         .modelContainer(for: Prayer.self, inMemory: true)
+        .environment(SubscriptionManager())
+        .environment(ActivePrayerState())
 }
