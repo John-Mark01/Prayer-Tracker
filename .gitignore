@@ -2,6 +2,10 @@
 # Xcode
 # ========================
 
+# Ignoring specific files
+.storekit
+.xctestplan
+
 # Build artifacts
 build/
 DerivedData/
