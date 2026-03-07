@@ -8,14 +8,18 @@
 import SwiftUI
 import SwiftData
 import RevenueCat
+import RevenueCatUI
 
 @main
 struct Prayer_TrackerApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    
     @State private var notificationDelegate = NotificationDelegate()
     @State private var activePrayerState = ActivePrayerState()
     @State private var localPersistanceContainer = PrayerDataManager.shared.container
-    @Environment(\.scenePhase) private var scenePhase
-    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    @State private var subscriptionManager = SubscriptionManager()
+    
 
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
@@ -27,17 +31,42 @@ struct Prayer_TrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if hasCompletedOnboarding {
-                TabBarScreen()
-                    .tint(.appTint)
-                    .environment(activePrayerState)
-                    .onOpenURL { url in
-                        handleURL(url)
+            Group {
+                if hasCompletedOnboarding {
+                    TabBarScreen()
+                } else {
+                    OnboardingView(
+                        hasCompletedOnboarding: $hasCompletedOnboarding
+                    )
+                }
+            }
+            .tint(.appTint)
+            .environment(activePrayerState)
+            .environment(subscriptionManager)
+            .onOpenURL { handleURL($0) }
+            .animation(.easeInOut, value: hasCompletedOnboarding)
+            .task {
+//                UserDefaults.standard.set(false, forKey: "hasCompletedOnboarding")
+                for await customerInfo in Purchases.shared.customerInfoStream {
+                    subscriptionManager.update(customerInfo: customerInfo)
+                }
+            }
+            .sheet(isPresented: Binding(
+                get: { subscriptionManager.showPaywall },
+                set: { subscriptionManager.showPaywall = $0 })
+            
+            ) {
+                PaywallView()
+                    .onPurchaseCompleted { customerInfo in
+                        subscriptionManager.update(customerInfo: customerInfo)
+                        subscriptionManager.showPaywall = false
+                        hasCompletedOnboarding = true
                     }
-            } else {
-                OnboardingView(
-                    hasCompletedOnboarding: $hasCompletedOnboarding
-                )
+                    .onRestoreCompleted { customerInfo in
+                        subscriptionManager.update(customerInfo: customerInfo)
+                        subscriptionManager.showPaywall = false
+                        hasCompletedOnboarding = true
+                    }
             }
         }
         .modelContainer(localPersistanceContainer)
@@ -45,6 +74,7 @@ struct Prayer_TrackerApp: App {
             if newPhase == .active {
                 // Process pending operations when app becomes active
                 Task {
+                    guard !Task.isCancelled else { return }
                     await processPendingOperations()
                 }
             }

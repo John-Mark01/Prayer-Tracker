@@ -3,6 +3,7 @@ import RevenueCat
 import RevenueCatUI
 
 struct OnboardingView: View {
+    @Environment(SubscriptionManager.self) private var subscriptionManager
     @Binding var hasCompletedOnboarding: Bool
     @State private var displayPaywall = false
     
@@ -133,7 +134,7 @@ struct OnboardingView: View {
     // MARK: - Actions
     private func completeOnboarding() {
         withAnimation {
-            hasCompletedOnboarding = true
+            subscriptionManager.showPaywall = true
         }
     }
 }
