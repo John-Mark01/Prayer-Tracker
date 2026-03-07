@@ -7,8 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import RevenueCat
-import RevenueCatUI
 
 struct TodayView: View {
     @Environment(\.modelContext) private var modelContext
@@ -37,8 +35,6 @@ struct TodayView: View {
             modelContext.insert(entry)
         }
     }
-    
-    @State private var displayPaywall = false
 
     var body: some View {
         ScrollView {
@@ -89,12 +85,6 @@ struct TodayView: View {
                         .font(.system(size: 18, weight: .semibold))
                 }
             }
-            ToolbarItem(placement: .topBarLeading) {
-                Button(action: { displayPaywall = true }) {
-                    Image(systemName: "receipt.fill")
-                        .font(.system(size: 18, weight: .semibold))
-                }
-            }
         }
         .sheet(isPresented: $showingAddSheet) {
             AddPrayerSheet()
@@ -103,9 +93,6 @@ struct TodayView: View {
             NavigationStack {
                 PrayerDetailView(prayer: prayer)
             }
-        }
-        .sheet(isPresented: $displayPaywall) {
-            PaywallView()
         }
     }
 }
