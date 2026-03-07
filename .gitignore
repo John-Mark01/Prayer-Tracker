@@ -7,6 +7,9 @@
 *.xctestplan
 *.xcscheme
 
+# Ignoring specific folders
+/untitled folder
+
 # Build artifacts
 build/
 DerivedData/
