@@ -64,6 +64,8 @@
 		365BB9C32F5C60E1001E889A /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9C22F5C60E1001E889A /* SubscriptionManager.swift */; };
 		365BB9F32F5CC907001E889A /* SubscriptionStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9F22F5CC907001E889A /* SubscriptionStatusCard.swift */; };
 		365BB9F52F5CC92E001E889A /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BB9F42F5CC92E001E889A /* SettingsScreen.swift */; };
+		365BBAD92F5CD72E001E889A /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BBAD82F5CD72E001E889A /* TipJarView.swift */; };
+		365BBADB2F5CD748001E889A /* SettingsRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365BBADA2F5CD748001E889A /* SettingsRows.swift */; };
 		368AD5F12EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */; };
 		368AD5F42EEEB4DD00103C43 /* CheckInQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */; };
@@ -166,6 +168,8 @@
 		365BB9F22F5CC907001E889A /* SubscriptionStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatusCard.swift; sourceTree = "<group>"; };
 		365BB9F42F5CC92E001E889A /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		365BBAD72F5CD5CD001E889A /* Pray: Christian Prayer Tracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Pray: Christian Prayer Tracker.storekit"; sourceTree = "<group>"; };
+		365BBAD82F5CD72E001E889A /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		365BBADA2F5CD748001E889A /* SettingsRows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRows.swift; sourceTree = "<group>"; };
 		368AD5F02EEEB4C400103C43 /* PendingCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCheckIn.swift; sourceTree = "<group>"; };
 		368AD5F32EEEB4DD00103C43 /* CheckInQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInQueue.swift; sourceTree = "<group>"; };
 		368AD5F92EEEBC7D00103C43 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				364966222EB55E4000EC74CF /* AlarmRow.swift */,
+				365BBADA2F5CD748001E889A /* SettingsRows.swift */,
 			);
 			path = ViewRows;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				364966032EB55BB100EC74CF /* TodayScreen.swift */,
 				364965FE2EB55BB100EC74CF /* AlarmsScreen.swift */,
 				365BB9F42F5CC92E001E889A /* SettingsScreen.swift */,
+				365BBAD82F5CD72E001E889A /* TipJarView.swift */,
 				364966552EB6153F00EC74CF /* ActivePrayerTimerView.swift */,
 			);
 			path = MainViews;
@@ -647,6 +653,7 @@
 				368AD5F22EEEB4C400103C43 /* PendingCheckIn.swift in Sources */,
 				364966062EB55BB100EC74CF /* PrayerCardView.swift in Sources */,
 				364966072EB55BB100EC74CF /* LiveActivityDebugView.swift in Sources */,
+				365BBADB2F5CD748001E889A /* SettingsRows.swift in Sources */,
 				364966082EB55BB100EC74CF /* LiveActivityManager.swift in Sources */,
 				365BB9BF2F5C4751001E889A /* OnboardingView.swift in Sources */,
 				364966092EB55BB100EC74CF /* PrayerAlarm.swift in Sources */,
@@ -659,6 +666,7 @@
 				3649660C2EB55BB100EC74CF /* TodayScreen.swift in Sources */,
 				368AD6032EEF0DE100103C43 /* NotificationType.swift in Sources */,
 				364966542EB614FD00EC74CF /* IconPickerView.swift in Sources */,
+				365BBAD92F5CD72E001E889A /* TipJarView.swift in Sources */,
 				3649660D2EB55BB100EC74CF /* TabBarScreen.swift in Sources */,
 				3649660E2EB55BB100EC74CF /* PixelGridView.swift in Sources */,
 				364966522EB614DC00EC74CF /* CircularProgressView 2.swift in Sources */,
